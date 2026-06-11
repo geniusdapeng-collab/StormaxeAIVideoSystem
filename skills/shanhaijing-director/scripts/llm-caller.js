@@ -356,6 +356,19 @@ function createLLMCaller(options = {}) {
 
 module.exports = { LLMCaller, createLLMCaller };
 
+// 🆕 v6.33-Peng-fix41: 统一LLM JSON契约调用接口
+// 后续所有模块统一用这个,替代各自手工 extractJSON + JSON.parse
+LLMCaller.prototype.callContractJSON = async function(moduleName, systemPrompt, userPrompt, options = {}) {
+  const { parseLLMContract } = require('./llm-contract');
+  const result = await this.call(systemPrompt, userPrompt, options);
+  const text = result.result || result.content || '';
+  const parsed = parseLLMContract(moduleName, text);
+  return {
+    ...result,
+    parsedJSON: parsed
+  };
+};
+
 // 测试
 if (require.main === module) {
   (async () => {

@@ -1,24 +1,27 @@
 #!/usr/bin/env node
 /**
- * BeastMind Engine v2.0-Peng — 兽魂叙事引擎 (ShanhaiStory Forge v2.8-Peng)
+ * BeastMind Engine v3.0-Peng — 兽魂叙事引擎 (ShanhaiStory Forge v2.43-Peng)
  * 核心定位: 为山海经神话视频生成增强型故事计划 (story-plan.json)
  * 核心哲学: "兽负" (The Beast's Burden) — 异兽不是主角，它的负担才是
- * + 🆕 v2.0-Peng: 软性注入V2编剧方法论 — 四层角色内核推导 (Want/Need/Ghost/Lie)
+ * + 🆕 v3.0-Peng: LLM推理接入 — LLM作为创意引擎生成角色性格+叙事节拍+四层内核
+ *   本地规则降级为fallback，LLM失败时自动回退
+ * + v2.0-Peng: 软性注入V2编剧方法论 — 四层角色内核推导 (Want/Need/Ghost/Lie)
  *
  * 集成点: 替换 director-pipeline.js Stage-3 中 story-plan.json 的生成逻辑
  * 向后兼容: 默认关闭，通过 projectConfig.enableBeastMind = true 启用
  *
- * @version v2.0-Peng
+ * @version v3.0-Peng
  * @author 小G
- * @date 2026-05-26
+ * @date 2026-06-11
  */
 
 const fs = require('fs');
 const path = require('path');
+const { parseLLMContract, normalizeStoryPlan } = require('./llm-contract');
 
 class BeastMindEngine {
   constructor(options = {}) {
-    this.version = 'v2.0-Peng';
+    this.version = 'v3.0-Peng';
     this.options = options;
     
     // 加载原型数据
@@ -32,38 +35,137 @@ class BeastMindEngine {
 
   /**
    * 主入口：根据输入生成增强型story-plan
+   * 🆕 v3.0-Peng: LLM作为主推理引擎，本地规则降级为fallback
    * @param {Object} input - 输入参数
-   *   - beastName: 异兽名称（如"饕餮"）
-   *   - beastDescription: 异兽描述（来自档案）
-   *   - habitat: Nirath生态区ID（如"S01"）
-   *   - duration: 目标时长（30/60/90/120）
-   *   - xiaoGContext: 小G角色设定
    * @returns {Object} 增强型story-plan JSON
    */
-  generate(input) {
+  async generate(input) {
     console.log(`\n🧠 BeastMind Engine ${this.version} 启动`);
     console.log(`   异兽: ${input.beastName} | 时长: ${input.duration}s | 生态区: ${input.habitat || 'auto'}`);
 
-    // Step 1: 原型匹配
+    // 🆕 v3.0-Peng: 尝试LLM推理，失败时降级本地规则
+    try {
+      const llmResult = await this._generateWithLLM(input);
+      if (llmResult) {
+        console.log(`   ✅ LLM增强型story-plan生成完成`);
+        return normalizeStoryPlan(llmResult);
+      }
+    } catch (err) {
+      console.log(`   ⚠️ LLM推理失败: ${err.message?.substring(0, 80)}，降级本地规则`);
+    }
+
+    // 降级：本地规则
+    const local = this._generateLocal(input);
+    return normalizeStoryPlan(local);
+  }
+
+  /**
+   * 🆕 v3.0-Peng: LLM驱动的story-plan生成
+   */
+  async _generateWithLLM(input) {
+    const { LLMReasoningLayer } = require('./llm-reasoning-layer');
+    const llmLayer = new LLMReasoningLayer();
+
+    let bestiaryData = null;
+    try {
+      const bp = path.join(__dirname, '../../shanhaijing-bestiary/bestiary.js');
+      if (fs.existsSync(bp)) bestiaryData = require(bp);
+    } catch (e) { /* bestiary不可用 */ }
+
+    const archetype = this._matchArchetype(input.beastName, input.beastDescription);
+    const template = this._selectTemplate(input.duration);
+    const beastInfo = bestiaryData ? this._extractBestiaryInfo(bestiaryData, input.beastName) : null;
+
+    const systemPrompt = `You are a master narrative designer for a mythological video series "ShanhaiStory Forge". Generate a story-plan JSON for a beast encounter episode.
+
+CORE PHILOSOPHY: "The Beast's Burden" — the beast is not the protagonist; its burden is. Every beast carries a weight (guardianship, imprisonment, hunger, exile) that defines its behavior. XiaoG (8-year-old Chinese boy exploring planet Nirath) initially misunderstands the beast as a threat, then discovers the truth.
+
+BEAT STRUCTURE: hook(intimidating first encounter) → deepening(power display, fear escalates) → crack(subtle clue, behavior doesn't match "monster") → flip(truth revealed, beast was protecting/enduring) → resonance(emotional resolution, mutual understanding)
+
+FOUR-LAYER KERNEL: Want(conscious pursuit), Need(true desire, often opposite), Ghost(past trauma), Lie(false self-belief)
+
+OUTPUT: Valid JSON only, no markdown:
+{"title":"BeastName: Burden Theme","outline":{"起":"Chinese setup","承":"Chinese development","转":"Chinese turning point","高潮":"Chinese climax","合":"Chinese resolution"},"beastMind":{"archetype":"guardian|prisoner|wanderer|devourer|trickster|sage|destroyer|innocent","burden":"Burden in Chinese","narrativeCore":{"want":"...","need":"...","ghost":"...","lie":"..."},"ecologicalRole":"Nirath ecosystem function","emotionalCurve":[{"beat":"hook","emotion":"fear","intensity":70},{"beat":"deepening","emotion":"terror","intensity":85},{"beat":"crack","emotion":"confusion","intensity":50},{"beat":"flip","emotion":"realization","intensity":80},{"beat":"resonance","emotion":"peace","intensity":60}]},"shots":[{"id":"S01","type":"hook","act":1,"description":"Chinese visual description with camera/lighting","duration":8,"tension":7,"camera":"English camera cue","lighting":"English lighting cue","misunderstandingLayers":{"audience":"...","human":"XiaoG thinks...","beast":"Actually...","ecosystem":"Ecological truth"}}]}
+
+RULES: outline/description in Chinese, camera/lighting in English, 5-15s per shot, every shot has misunderstandingLayers, reference Nirath environment (light veins, dual suns, bioluminescence), NO narration/voiceover.`;
+
+    const beastDesc = beastInfo
+      ? `Appearance: ${beastInfo.appearance}\nSignature: ${beastInfo.signatureFeatures}\nColors: ${beastInfo.colorPalette}\nLore: ${beastInfo.lore}`
+      : (input.beastDescription || '');
+
+    const userPrompt = `Generate story-plan for ${input.duration}s episode.
+BEAST: ${input.beastName}
+${beastDesc}
+HABITAT: ${input.habitat || 'Nirath'}
+ARCHETYPE: ${archetype.name}(${archetype.nameEn}) — ${archetype.coreDrive}
+TEMPLATE: ${template.duration}s/${template.beatCount}beats/${template.reversalMode}
+XIAOG: ${input.xiaoGContext || '8-year-old Chinese boy, Nirath explorer'}
+
+Generate complete JSON with ${template.beatCount} shots.`;
+
+    const result = await llmLayer.llmReason({
+      stage: 'beastmind-story-plan',
+      systemPrompt, userPrompt,
+      level: 'heavy',
+      llmOptions: { temperature: 0.8, maxTokens: 16000 },
+      fallback: () => null
+    });
+
+    if (!result.success || result.fallbackUsed || !result.result) return null;
+
+    let llmPlan = null;
+    try {
+      llmPlan = parseLLMContract('beastmind-story-plan', result.result);
+    } catch (e) {
+      console.log(`   ⚠️ LLM返回JSON契约不合法: ${e.message}，降级本地规则`);
+      return null;
+    }
+    const psyche = this._generatePsyche(archetype, input);
+    const beats = this._generateBeats(template, archetype, input);
+
+    if (llmPlan.beastMind?.narrativeCore) psyche.narrativeCore = llmPlan.beastMind.narrativeCore;
+    if (llmPlan.beastMind?.burden) psyche.burden = llmPlan.beastMind.burden;
+
+    const storyPlan = this._convertToStoryPlan(beats, archetype, psyche, input);
+    if (llmPlan.outline) storyPlan.outline = llmPlan.outline;
+    if (llmPlan.shots && Array.isArray(llmPlan.shots)) {
+      storyPlan.shots = storyPlan.shots.map((ls, i) => {
+        const llmS = llmPlan.shots[i];
+        if (!llmS) return ls;
+        return { ...ls, description: llmS.description || ls.description, camera: llmS.camera || ls.camera, lighting: llmS.lighting || ls.lighting, beastMind: { ...ls.beastMind, misunderstandingLayers: llmS.misunderstandingLayers || ls.beastMind?.misunderstandingLayers } };
+      });
+    }
+    if (storyPlan.segments && storyPlan.shots) {
+      storyPlan.segments = storyPlan.segments.map(seg => ({ ...seg, shots: storyPlan.shots.filter(s => s.act === seg.id?.replace('SEG','') || s.segmentId === seg.id) }));
+    }
+    return storyPlan;
+  }
+
+  _extractBestiaryInfo(bestiaryData, beastName) {
+    if (!bestiaryData) return null;
+    const beasts = Array.isArray(bestiaryData) ? bestiaryData : (bestiaryData.beasts || []);
+    const beast = beasts.find(b => (b.name||b.id||'').includes(beastName) || (b.nameEn||'').toLowerCase().includes(beastName.toLowerCase()));
+    if (!beast) return null;
+    return {
+      appearance: beast.appearance?.description || beast.description || '',
+      signatureFeatures: Array.isArray(beast.appearance?.signatureFeatures) ? beast.appearance.signatureFeatures.join(', ') : (beast.signatureFeatures || ''),
+      colorPalette: Array.isArray(beast.appearance?.colorPalette) ? beast.appearance.colorPalette.join(', ') : (beast.colorPalette || ''),
+      lore: beast.lore || beast.background || ''
+    };
+  }
+
+  _generateLocal(input) {
+    console.log(`   🔄 使用本地规则生成story-plan`);
     const archetype = this._matchArchetype(input.beastName, input.beastDescription);
     console.log(`   🎯 原型匹配: ${archetype.name} (${archetype.nameEn})`);
-
-    // Step 2: 选择时长模板
     const template = this._selectTemplate(input.duration);
     console.log(`   📐 时长模板: ${template.duration}s / ${template.beatCount}节拍 / ${template.reversalMode}断裂`);
-
-    // Step 3: 生成兽魂心理模型
     const psyche = this._generatePsyche(archetype, input);
     console.log(`   💭 兽负: ${psyche.burden}`);
-
-    // Step 4: 生成增强节拍
     const beats = this._generateBeats(template, archetype, input);
     console.log(`   🎬 生成 ${beats.length} 个叙事节拍`);
-
-    // Step 5: 转换为标准story-plan格式
     const storyPlan = this._convertToStoryPlan(beats, archetype, psyche, input);
-    console.log(`   ✅ 增强型story-plan生成完成`);
-
+    console.log(`   ✅ 本地规则story-plan生成完成`);
     return storyPlan;
   }
 

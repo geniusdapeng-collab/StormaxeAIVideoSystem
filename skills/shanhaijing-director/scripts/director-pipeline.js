@@ -475,13 +475,18 @@ function verifyAdapterBypass(productionDir, bypass) {
 
 const fs = require('fs');
 const path = require('path');
+const {
+  normalizeStoryPlan,
+  normalizeDialogueAnnotation,
+  normalizeShot
+} = require('./llm-contract');
 
 // 🆕 v6.11-Peng-fix3: storyPlan.characters是{key:charObj}对象而非数组,提供转换工具
 // 用法: toCharArray(storyPlan.characters) → [{name, ...}, ...]
+// 🆕 v6.33-Peng-fix41: 统一走 llm-contract normalizeCharacters
 function toCharArray(characters) {
   if (!characters) return [];
-  if (Array.isArray(characters)) return characters;
-  return Object.values(characters);
+  return normalizeStoryPlan({ characters }).characters || [];
 }
 
 // 🆕 v4.2-Peng: 任务类型路由器 - 自动检测任务类型并配置完整链路
@@ -567,7 +572,7 @@ const {
 } = require('./platform-preset');
 
 // ============ 配置 ============
-const PIPELINE_VERSION = 'v6.31-Peng';
+const PIPELINE_VERSION = 'v6.34-Peng';
 const STAGES = [
   'prd-generation',
   'requirement-alignment',
@@ -884,7 +889,9 @@ class DirectorPipeline {
         let cleaned = false;
         for (const segment of storyPlan.segments || []) {
           for (const shot of segment.shots || []) {
-            const runtimeFields = ['_generatedPrompt', '_finalPrompt', '_promptLength', '_titleConfig', '_isOpeningTitle'];
+            const runtimeFields = ['_generatedPrompt', '_finalPrompt', '_promptLength', '_titleConfig', '_isOpeningTitle',
+              // 🆕 v6.32-fix3: 清理上次预生产的对白残留，防止台词污染
+              'dialogues', 'Dialogue', 'dialogue'];
             for (const field of runtimeFields) {
               if (shot[field] !== undefined) {
                 delete shot[field];
@@ -896,6 +903,19 @@ class DirectorPipeline {
         if (cleaned) {
           fs.writeFileSync(storyPlanPath, JSON.stringify(storyPlan, null, 2), 'utf8');
           console.log(`\n🧹 已清理story-plan.json运行时字段(_generatedPrompt等),防止残留干扰`);
+        }
+      }
+
+      // 🆕 v6.32-fix3: 清理上次预生产的对白输出文件，防止台词污染
+      const dialogueFiles = [
+        path.join(this.productionDir, '03-characters', 'dialogue-annotation.json'),
+        path.join(this.productionDir, '03-characters', 'dialogue-script.md'),
+        path.join(this.productionDir, '03-characters', 'shot-dialogues.json')
+      ];
+      for (const df of dialogueFiles) {
+        if (fs.existsSync(df)) {
+          fs.unlinkSync(df);
+          console.log(`🧹 已清理对白残留文件: ${path.basename(df)}`);
         }
       }
 
@@ -1045,6 +1065,20 @@ class DirectorPipeline {
           this._writeAuditLog('stage8_0_ad_fusion_end', { status: 'success' });
         }
 
+        // 🆕 v6.32-fix2: 定妆照前置检查 — Stage 8.2之前验证角色参考图目录
+        this._writeAuditLog('stage8_1_5_charref_check_start', { action: '定妆照前置检查开始' });
+        const charRefCheck = this._checkCharacterRefsBeforePromptGen();
+        if (!charRefCheck.passed) {
+          const errMsg = `FATAL_BLOCKER: 定妆照缺失 — ${charRefCheck.reason}`;
+          console.log(`\n  ❌ ${errMsg}`);
+          const blockerError = new Error(errMsg);
+          blockerError.code = 'FATAL_BLOCKER';
+          blockerError.blockerCount = 1;
+          blockerError.failedShots = [{ shotId: 'ALL', reason: charRefCheck.reason }];
+          throw blockerError;
+        }
+        this._writeAuditLog('stage8_1_5_charref_check_end', { status: 'success', characters: charRefCheck.characters });
+
         console.log(`\n📝 阶段8.2/10: 提示词预生成 (v5.1-Peng)`);
         console.log(`   为预生产审核生成完整提示词...`);
         await this.stage8_2_PromptPreGeneration();
@@ -1126,6 +1160,17 @@ class DirectorPipeline {
       return this._generateFinalReport('success');
 
     } catch (error) {
+      // 🆕 v6.32-fix1: FATAL_BLOCKER 不可恢复 — 闸机阻断必须硬停止，禁止agent绕过
+      if (error.code === 'FATAL_BLOCKER') {
+        console.error(`\n🔴 FATAL_BLOCKER: Pipeline被闸机阻断，不可恢复`);
+        console.error(`   阻断镜头数: ${error.blockerCount}`);
+        console.error(`   失败镜头: ${(error.failedShots || []).map(s => s.shotId).join(', ')}`);
+        console.error(`   操作: 修复问题后重新跑完整预生产链路`);
+        this.errors.push({ stage: this.currentStage, error: error.message, fatal: true });
+        this._finalizeAuditLog({ status: 'blocked', error: error.message, fatalBlocker: true });
+        // 重新抛出，让调用方也感知到阻断
+        throw error;
+      }
       console.error(`\n❌ Pipeline 失败: ${error.message}`);
       this.errors.push({ stage: this.currentStage, error: error.message });
       this._finalizeAuditLog({ status: 'failed', error: error.message });
@@ -1241,7 +1286,19 @@ ${(characters || []).map(c => `- ${c.name}: ${c.species || '未知'} (${c.role |
     const userInput = this.options.userInput || {};
     const beastKeywords = ['异兽', '山海经', '神兽', '饕餮', '烛龙', '帝江', '九尾', '刑天', '白泽', '麒麟', '穷奇', '混沌'];
     const text = `${userInput.title || ''} ${userInput.outline || ''} ${userInput.type || ''}`;
-    const hasBeast = beastKeywords.some(kw => text.includes(kw));
+    let hasBeast = beastKeywords.some(kw => text.includes(kw));
+
+    // 🆕 v6.33-Peng-fix: 如果userInput没有关键词,扫描PRD文件
+    if (!hasBeast) {
+      const prdPath = path.join(this.productionDir, '00-prd', 'prd.md');
+      if (fs.existsSync(prdPath)) {
+        const prdText = fs.readFileSync(prdPath, 'utf8').substring(0, 2000);
+        hasBeast = beastKeywords.some(kw => prdText.includes(kw));
+        if (hasBeast) {
+          console.log(`  🐉 PRD中检测到异兽关键词,启用BeastMind引擎`);
+        }
+      }
+    }
 
     // 或者如果项目配置了异兽模式
     const hasBeastConfig = this.projectConfig?.beastMode || this.projectConfig?.worldview === 'shanhaijing';
@@ -1255,15 +1312,31 @@ ${(characters || []).map(c => `- ${c.name}: ${c.species || '未知'} (${c.role |
 
     // 提取异兽信息
     const userInput = this.options.userInput || {};
-    const beastName = userInput.beastName || userInput.title?.split(/[::]/)[0] || '异兽';
-    const beastDesc = userInput.beastDescription || userInput.outline || '';
+    let beastName = userInput.beastName || userInput.title?.split(/[::]/)[0] || '';
+    let beastDesc = userInput.beastDescription || userInput.outline || '';
+    
+    // 🆕 v6.33-Peng-fix: CLI模式无userInput时,从PRD提取异兽名称和描述
+    // 同时处理task-router自动填充的占位符('未命名'/'异兽'等)
+    if (!beastName || beastName === '未命名' || beastName === '异兽') {
+      const prdPath = path.join(this.productionDir, '00-prd', 'prd.md');
+      if (fs.existsSync(prdPath)) {
+        const prdText = fs.readFileSync(prdPath, 'utf8');
+        // 从PRD标题提取异兽名: # 白泽 - 产品需求文档
+        const titleMatch = prdText.match(/^#\s*(\S+)\s*[-–—]/m);
+        if (titleMatch) beastName = titleMatch[1];
+        if (!beastDesc || beastDesc.length < 50) beastDesc = prdText.substring(0, 1500);
+        console.log(`  📋 从PRD提取: 异兽=${beastName}`);
+      }
+    }
+    if (!beastName) beastName = '异兽';
+    
     const habitat = userInput.habitat || this.projectConfig?.habitat || '';
     const duration = userInput.duration || 60;
     const episode = userInput.episode || 'E01';
     const title = userInput.title || `${beastName}的故事`;
 
-    // 生成增强型story-plan
-    const storyPlan = engine.generate({
+    // 生成增强型story-plan (v3.0-Peng: async LLM推理)
+    const storyPlan = await engine.generate({
       beastName,
       beastDescription: beastDesc,
       habitat,
@@ -1273,9 +1346,20 @@ ${(characters || []).map(c => `- ${c.name}: ${c.species || '未知'} (${c.role |
       xiaoGContext: '8岁中国男孩,Nirath探险者'
     });
 
-    // 🆕 v6.11-Peng-fix4: BeastMindEngine只返回story.outline(起/承/转/合文字),
-    //   没有segments/shots结构。必须在这里把outline转为segments+shots,否则后续Stage全部跳过
-    if (storyPlan.outline && !storyPlan.segments) {
+    // 🆕 v6.33-Peng-fix: BeastMindEngine v3.0+ 已返回shots数组(含camera/lighting/beastMind等),
+    //   优先使用LLM生成的shots,不再从outline文字重新构造空shots
+    if (storyPlan.shots && Array.isArray(storyPlan.shots) && storyPlan.shots.length > 0) {
+      // v3.0+: BeastMind已生成完整shots,直接包装为segments
+      storyPlan.segments = [{
+        id: 'SEG1',
+        name: '主段落',
+        act: 1,
+        type: 'main',
+        duration: storyPlan.totalDuration || duration,
+        shots: storyPlan.shots
+      }];
+      console.log(`  ✅ BeastMind v3.0+ shots: ${storyPlan.shots.length}个镜头,直接使用`);
+    } else if (storyPlan.outline && !storyPlan.segments) {
       const outlineMap = {
         '起': { act: 1, type: 'opening', duration: 8 },
         '承': { act: 2, type: 'development', duration: 10 },
@@ -1378,20 +1462,6 @@ ${(characters || []).map(c => `- ${c.name}: ${c.species || '未知'} (${c.role |
     fs.writeFileSync(storyPlanPath, JSON.stringify(storyPlan, null, 2));
 
     return storyPlan;
-  }
-
-  // 🆕 v2.6-Peng: BeastMind Engine 集成方法
-  _shouldUseBeastMind() {
-    // 自动检测:如果用户输入包含异兽相关信息,启用BeastMind
-    const userInput = this.options.userInput || {};
-    const beastKeywords = ['异兽', '山海经', '神兽', '饕餮', '烛龙', '帝江', '九尾', '刑天', '白泽', '麒麟', '穷奇', '混沌'];
-    const text = `${userInput.title || ''} ${userInput.outline || ''} ${userInput.type || ''}`;
-    const hasBeast = beastKeywords.some(kw => text.includes(kw));
-
-    // 或者如果项目配置了异兽模式
-    const hasBeastConfig = this.projectConfig?.beastMode || this.projectConfig?.worldview === 'shanhaijing';
-
-    return hasBeast || hasBeastConfig;
   }
 
   // 🆕 v6.4-Peng-fix: PRD智能摘要化 - 压缩PRD输入从3000字符到800字符以内
@@ -2124,7 +2194,7 @@ ${JSON.stringify(userInput, null, 2)}
 
     for (const shot of allShots) {
       // 🆕 v6.31-hotfix: Convert shot ID to match gate check format (1->S01, 2->S02, etc.)
-      const shotId = shot.id || shot.shotId || 'UNKNOWN';
+      const shotId = String(shot.id || shot.shotId || 'UNKNOWN');
       const normalizedShotId = shotId.startsWith('S') ? shotId : (`S${String(parseInt(shotId) || 0).padStart(2, '0')}`);
 
       let prompt = '';
@@ -2145,7 +2215,7 @@ ${JSON.stringify(userInput, null, 2)}
           checkOptions.skipOpeningTitleCheck = true;
           checkOptions.skipP0Check = true;
         }
-        const localResult = this.complianceAgent.check(prompt, shot, [], checkOptions);
+        const localResult = await this.complianceAgent.check(prompt, shot, [], checkOptions);
 
         // 第二层:LLM深度评估(只评估内容合规性)
         let llmScore = localResult.qualityScore;
@@ -2287,11 +2357,16 @@ ${JSON.stringify(userInput, null, 2)}
     // 阻断处理
     if (blockerCount > 0) {
       const failedShots = checkResults.filter(r => r.status !== 'pass');
-      const errorMsg = `${label}失败: ${blockerCount}个镜头不合格\n` +
+      const errorMsg = `FATAL_BLOCKER: ${label}失败: ${blockerCount}个镜头不合格\n` +
         failedShots.map(s => `  ${s.shotId}: ${s.length}字符, 状态:${s.status}`).join('\n') +
-        `\n必须修复后重新跑完整预生产链路`;
+        `\n必须修复后重新跑完整预生产链路。禁止绕过此闸机继续执行。`;
       console.log(`\n  ❌ ${errorMsg}`);
-      throw new Error(errorMsg);
+      // 🆕 v6.32-fix1: FATAL_BLOCKER 标记 — agent层识别此标记后必须停止，禁止catch后继续
+      const blockerError = new Error(errorMsg);
+      blockerError.code = 'FATAL_BLOCKER';
+      blockerError.blockerCount = blockerCount;
+      blockerError.failedShots = failedShots;
+      throw blockerError;
     }
 
     console.log(`  ✅ 全部${allShots.length}个镜头检查通过`);
@@ -2578,7 +2653,19 @@ ${prompt.substring(0, 5500)}...
     }
 
     const engine = new (getShotSequenceEngine().ShotSequenceEngine)({ debug: false });
-    const result = engine.analyzeSequence(shots);
+    const result = await engine.analyzeSequence(shots);
+
+    // 安全兜底：LLM返回结果可能缺少字段
+    if (!result || !result.strongImpactPoints || !result.warnings) {
+      console.log(`  ⚠️ LLM序列分析结果不完整，使用本地规则重新分析`);
+      const localResult = engine._analyzeLocal(shots);
+      result.strongImpactPoints = result.strongImpactPoints || localResult.strongImpactPoints || [];
+      result.warnings = result.warnings || localResult.warnings || [];
+      result.sequences = result.sequences || localResult.sequences || [];
+      result.rhythmAnalysis = result.rhythmAnalysis || localResult.rhythmAnalysis || { pacingVerdict: 'unknown' };
+      result.avgImpact = result.avgImpact ?? localResult.avgImpact ?? 0;
+      result.maxImpact = result.maxImpact ?? localResult.maxImpact ?? 0;
+    }
 
     // 输出关键冲击点
     if (result.strongImpactPoints.length > 0) {
@@ -3435,13 +3522,13 @@ ${prompt.substring(0, 5500)}...
 
     // 🆕 v6.11-Peng-fix3: Stage 7.5保存了dialogues到dialogue-annotation.json,但story-plan.json没有
     // 必须从dialogue-annotation.json加载dialogues注入到对应shot,否则字段注入拿不到对白
-    // 用productionDir字符串拼接,避免path module的TDZ问题
+    // 🆕 v6.33-Peng-fix41: 统一走 llm-contract normalizeDialogueAnnotation
     const dialoguePath = this.productionDir + '/03-shots/dialogue-annotation.json';
     try {
       if (fs.existsSync(dialoguePath)) {
-        const dialogueData = JSON.parse(fs.readFileSync(dialoguePath, 'utf8'));
-        // 🆕 fix-v6.25: dialogueData是对象{version,shots,...},不是数组
-        const dialogueShots = Array.isArray(dialogueData) ? dialogueData : (dialogueData.shots || []);
+        const rawDialogueData = JSON.parse(fs.readFileSync(dialoguePath, 'utf8'));
+        const dialogueData = normalizeDialogueAnnotation(rawDialogueData);
+        const dialogueShots = dialogueData.shots || [];
         for (const d of dialogueShots) {
           const shot = allShots.find(s => s.id === d.id);
           if (shot && !shot.dialogues && d.dialogues) {
@@ -3626,7 +3713,7 @@ ${prompt.substring(0, 5500)}...
       shot._p0Injected = true; // fix15-v6
       console.log(`     [SafeInject] ${shotId}: LLM→${this._countChars(llmPrompt)} | P0→${p0InjectLen} | 总→${this._countChars(shot._generatedPrompt)}`);
 
-      const report = metrics.calculate(shot._generatedPrompt, this._countChars(shot._generatedPrompt), shotId);
+      const report = await metrics.calculate(shot._generatedPrompt, this._countChars(shot._generatedPrompt), shotId);
       metricReports.push(report);
       console.log(`     ${metrics.formatLog(report)}`);
       
@@ -3639,7 +3726,7 @@ ${prompt.substring(0, 5500)}...
     // 🛠️ v6.31-hotfix: 输出结果修复（S00 重组/EN 残渣清理/Speaker 修正）
     console.log(`  🛠️ 输出结果修复中...`);
     try {
-      repairAllShotPromptOutputs(allShots);
+      await repairAllShotPromptOutputs(allShots);
       console.log(`  ✅ 输出结果修复完成`);
     } catch(e) {
       console.log(`  ⚠️ 输出结果修复失败：${e.message}`);
@@ -3905,7 +3992,7 @@ ${prompt.substring(0, 5500)}...
 
       // v6.27-Peng: S00 片头镜头写盘前再次标准化
       if (isOpeningTitleShot(shot)) {
-        normalizeShotPromptFields(shot, storyPlan, {
+        await normalizeShotPromptFields(shot, storyPlan, {
           openingTitle: this.results.openingTitle || null
         });
       }
@@ -3977,7 +4064,7 @@ ${prompt.substring(0, 5500)}...
     storyPlan._platform = this.platform;
 
     console.log(`  🎯 最终内容质量增强 + 10字段标准化...`);
-    const finalNormalizeResults = this._finalNormalizeAllShots(storyPlan, allShots);
+    const finalNormalizeResults = await this._finalNormalizeAllShots(storyPlan, allShots);
     this.results.finalNormalizeResults = finalNormalizeResults;
     
     console.log(`  ✅ 质量校准完成: ${fixCount}处修复`);
@@ -3995,17 +4082,17 @@ ${prompt.substring(0, 5500)}...
    * 对所有镜头执行最终质量增强 + 最终10字段标准化
    * 这是最终交付前的统一收口闸门
    */
-  _finalNormalizeAllShots(storyPlan, allShots) {
+  async _finalNormalizeAllShots(storyPlan, allShots) {
     if (!storyPlan || !Array.isArray(allShots) || allShots.length === 0) {
       console.log(`  ⚠️ _finalNormalizeAllShots: storyPlan 或 allShots 为空，跳过`);
       return [];
     }
 
     console.log(`  🎬 内容质量增强中...`);
-    enhanceShotQualityBundle(allShots, storyPlan);
+    await enhanceShotQualityBundle(allShots, storyPlan);
 
     console.log(`  🧱 10字段最终标准化中...`);
-    const results = normalizeAllShots(allShots, storyPlan, {
+    const results = await normalizeAllShots(allShots, storyPlan, {
       openingTitle: this.results.openingTitle || null
     });
 
@@ -4024,7 +4111,7 @@ ${prompt.substring(0, 5500)}...
     const promptsDir = path.join(this.productionDir, '04-prompts');
     fs.mkdirSync(promptsDir, { recursive: true });
     for (const shot of allShots) {
-      const shotId = shot.id || shot.shotId || 'UNKNOWN';
+      const shotId = String(shot.id || shot.shotId || 'UNKNOWN');
       const finalPrompt = this.replaceRefImagesFilenames(
         shot._finalPrompt || shot._generatedPrompt || ''
       );
@@ -4349,6 +4436,68 @@ ${prompt.substring(0, 5500)}...
    * v6.24-hotfix: 检测镜头主场角色（白泽/xiaoG）
    * 根据 Action/Scene 内容中的角色关键词频率决定
    */
+  // 🆕 v6.32-fix2: 定妆照前置检查 — Stage 8.2之前验证角色参考图目录
+  _checkCharacterRefsBeforePromptGen() {
+    const fs = require('fs');
+    const path = require('path');
+    const refsDir = path.join(this.productionDir, 'global-character-references');
+    
+    console.log(`\n  🔍 定妆照前置检查: ${refsDir}`);
+    
+    // 检查目录是否存在
+    if (!fs.existsSync(refsDir)) {
+      return {
+        passed: false,
+        reason: `global-character-references/ 目录不存在 (${refsDir})。请先运行 bestiary.js 生成角色定妆照。`
+      };
+    }
+    
+    // 检查目录下是否有角色子目录
+    const entries = fs.readdirSync(refsDir, { withFileTypes: true });
+    const charDirs = entries.filter(e => e.isDirectory());
+    
+    if (charDirs.length === 0) {
+      return {
+        passed: false,
+        reason: `global-character-references/ 目录为空，无角色子目录。请先运行 bestiary.js 生成角色定妆照。`
+      };
+    }
+    
+    // 检查每个角色子目录是否有图片文件
+    const imageExts = ['.png', '.jpg', '.jpeg', '.webp', '.gif'];
+    const charResults = {};
+    let totalImages = 0;
+    
+    for (const dir of charDirs) {
+      const charDir = path.join(refsDir, dir.name);
+      const files = fs.readdirSync(charDir);
+      const images = files.filter(f => imageExts.some(ext => f.toLowerCase().endsWith(ext)));
+      charResults[dir.name] = { count: images.length, images };
+      totalImages += images.length;
+    }
+    
+    // 检查每个角色至少有1张图
+    const emptyChars = Object.entries(charResults).filter(([, v]) => v.count === 0);
+    if (emptyChars.length > 0) {
+      return {
+        passed: false,
+        reason: `以下角色目录无定妆照图片: ${emptyChars.map(([k]) => k).join(', ')}`
+      };
+    }
+    
+    console.log(`  ✅ 定妆照检查通过: ${charDirs.length}个角色, ${totalImages}张参考图`);
+    for (const [char, info] of Object.entries(charResults)) {
+      console.log(`     ${char}: ${info.count}张 (${info.images.slice(0, 3).join(', ')}${info.count > 3 ? '...' : ''})`);
+    }
+    
+    return {
+      passed: true,
+      characters: Object.keys(charResults),
+      totalImages,
+      details: charResults
+    };
+  }
+
   _detectDominantRole(shot) {
     const text = `${shot.Action || ''} ${shot.Scene || ''} ${shot.description || ''}`.toLowerCase();
     const baizeKw = ['白泽', 'baize', '三尾', '竖眼', '额头', '月光', '蹄子', '神兽'];
@@ -4804,9 +4953,11 @@ ${prompt.substring(0, 5500)}...
   // 保存storyPlan
   _saveStoryPlan(storyPlan) {
     try {
+      const normalized = normalizeStoryPlan(storyPlan);
       const storyPlanPath = path.join(this.productionDir, '01-story', 'story-plan.json');
-      fs.writeFileSync(storyPlanPath, JSON.stringify(storyPlan, null, 2), 'utf8');
-      console.log(`  💾 StoryPlan已保存: ${storyPlanPath}`);
+      fs.writeFileSync(storyPlanPath, JSON.stringify(normalized, null, 2), 'utf8');
+      this.results.storyPlan = normalized;
+      console.log(`  💾 StoryPlan已保存(标准化): ${storyPlanPath}`);
     } catch (e) {
       console.warn(`  ⚠️ StoryPlan保存失败: ${e.message}`);
     }
@@ -5485,47 +5636,20 @@ ${prompt.substring(0, 5500)}...
    * 替代分散的 `const storyPlan = this.results.storyPlan; if (!storyPlan) { ... }` 重复模式
    * @returns {Object|null} { exists, storyPlan, segments, shots, characters, shotCount, segmentCount }
    */
+  /**
+   * 🆕 v6.33-Peng-fix41: 统一走 llm-contract normalizeStoryPlan
+   * 替代分散的手工兼容逻辑 (story_plan/characters object/shotId→id)
+   */
   _getStoryPlanStatus() {
-    // 🆕 v6.4-Peng-fix2: 断点续跑时,如果results.storyPlan为空,从文件加载
-    // 🆕 v6.10-Peng-fix: 始终从文件加载最新story-plan(确保Stage 7时长分配等修改被读取)
-    let storyPlan = null;
-    const storyPlanPath = path.join(this.productionDir, '01-story', 'story-plan.json');
-    if (fs.existsSync(storyPlanPath)) {
-      try {
-        storyPlan = JSON.parse(fs.readFileSync(storyPlanPath, 'utf8'));
-        // 🆕 v6.21-Peng-fix16: 修复 story-plan.json 嵌套结构 (story_plan.segments)
-        if (storyPlan.story_plan) {
-          storyPlan = storyPlan.story_plan;
-        }
-        // 🆕 fix14-v4: 统一characters格式为array
-        if (storyPlan.characters && typeof storyPlan.characters === 'object' && !Array.isArray(storyPlan.characters)) {
-          storyPlan.characters = Object.values(storyPlan.characters);
-        }
-        this.results.storyPlan = storyPlan; // 同步更新内存
-      } catch (e) {
-        console.warn(`  ⚠️ story-plan.json解析失败: ${e.message}`);
-      }
-    }
-    if (!storyPlan) {
-      storyPlan = this.results.storyPlan;
-    }
+    let storyPlan = this._loadNormalizedStoryPlanFromDisk() || this.results.storyPlan;
     if (!storyPlan) return null;
 
-    // 🆕 v6.11-Peng-fix: shotId → id 别名,统一字段命名
-    // story-plan 使用 shotId,但 pipeline 内部代码全用 .id;统一在这里做别名
+    storyPlan = normalizeStoryPlan(storyPlan);
+    this.results.storyPlan = storyPlan;
+
     const segments = storyPlan.segments || [];
-    for (const seg of segments) {
-      for (const shot of (seg.shots || [])) {
-        if (shot.shotId && !shot.id) {
-          shot.id = shot.shotId;
-        }
-      }
-    }
-    const shots = [];
-    for (const seg of segments) {
-      shots.push(...(seg.shots || []));
-    }
-    const characters = toCharArray(storyPlan.characters);
+    const shots = storyPlan.shots || [];
+    const characters = storyPlan.characters || [];
 
     return {
       exists: true,
@@ -5536,6 +5660,70 @@ ${prompt.substring(0, 5500)}...
       shotCount: shots.length,
       segmentCount: segments.length
     };
+  }
+
+  /**
+   * 🆕 v6.33-Peng-fix41: 从磁盘加载并标准化 story-plan
+   */
+  _loadNormalizedStoryPlanFromDisk() {
+    const storyPlanPath = path.join(this.productionDir, '01-story', 'story-plan.json');
+    if (!fs.existsSync(storyPlanPath)) return null;
+    try {
+      const raw = JSON.parse(fs.readFileSync(storyPlanPath, 'utf8'));
+      const normalized = normalizeStoryPlan(raw);
+      this.results.storyPlan = normalized;
+      return normalized;
+    } catch (e) {
+      console.warn(`  ⚠️ story-plan.json 读取/规范化失败: ${e.message}`);
+      return null;
+    }
+  }
+
+  /**
+   * 🆕 v6.33-Peng-fix41: 标准化后保存 story-plan
+   */
+  _saveNormalizedStoryPlan(storyPlan) {
+    const normalized = normalizeStoryPlan(storyPlan);
+    const storyPlanPath = path.join(this.productionDir, '01-story', 'story-plan.json');
+    fs.mkdirSync(path.dirname(storyPlanPath), { recursive: true });
+    fs.writeFileSync(storyPlanPath, JSON.stringify(normalized, null, 2), 'utf8');
+    this.results.storyPlan = normalized;
+    return normalized;
+  }
+
+  /**
+   * 🆕 v6.33-Peng-fix41: shot 统一归一化 (内部字段全部小写)
+   */
+  _normalizeShotInPlace(shot, idx = 0) {
+    if (!shot || typeof shot !== 'object') return shot;
+
+    if (!shot.id) shot.id = shot.shotId || `S${String(idx).padStart(2, '0')}`;
+    if (!shot.type) shot.type = shot.shotType || 'normal';
+
+    shot.character = shot.character || shot.Character || '';
+    shot.action = shot.action || shot.Action || '';
+    shot.scene = shot.scene || shot.Scene || shot.description || '';
+    shot.mood = shot.mood || shot.Mood || shot.emotion || '';
+    shot.camera = shot.camera || shot.Camera || '';
+    shot.lighting = shot.lighting || shot.Lighting || '';
+    shot.dialogue = shot.dialogue || shot.Dialogue || shot.dialogues || [];
+
+    if (!Array.isArray(shot.dialogue)) {
+      shot.dialogue = [shot.dialogue].filter(Boolean);
+    }
+    if (!Array.isArray(shot.characters)) {
+      shot.characters = typeof shot.characters === 'string' ? [shot.characters] : [];
+    }
+    if (!shot.description) {
+      shot.description = [shot.scene, shot.action, shot.character].filter(Boolean).join(' | ') || 'No description';
+    }
+    if (!shot.duration || Number.isNaN(Number(shot.duration))) {
+      shot.duration = 5;
+    } else {
+      shot.duration = Number(shot.duration);
+    }
+
+    return shot;
   }
 
   // ============ 🆕 v5.34-Peng P1-1: 统一注入与日志方法 ============

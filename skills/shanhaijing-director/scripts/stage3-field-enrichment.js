@@ -15,6 +15,7 @@ const fs = require('fs');
 const { logInfo, logWarn } = require('./pipeline-logger');
 const { extractBalancedJSON } = require('./pipeline-helpers');
 const { saveStoryPlan } = require('./story-plan-service');
+const { normalizeStoryPlan, parseLLMContract, safeParseJSON, extractJSONObject } = require('./llm-contract');
 
 /**
  * 9个必需字段的默认值（用于本地降级填充）
@@ -203,13 +204,17 @@ function localFallbackFields(shot) {
  */
 async function stage3_FieldEnrichment(pipeline) {
   pipeline.currentStage = 'field-enrichment';
-  console.log(`\n🎨 阶段3.5/12: 字段充实 (v6.21-Peng-fix15)`);
+  console.log(`\n🎨 阶段3.5/12: 字段充实 (v6.33-Peng-fix41)`);
 
-  const storyPlan = pipeline.results.storyPlan;
+  let storyPlan = pipeline.results.storyPlan;
   if (!storyPlan) {
     console.log(`  ⚠️ 无story-plan,跳过字段充实`);
     return { enriched: 0, total: 0 };
   }
+
+  // 🆕 v6.33-Peng-fix41: 统一标准化
+  storyPlan = normalizeStoryPlan(storyPlan);
+  pipeline.results.storyPlan = storyPlan;
 
   // 收集所有 shots
   const allShots = [];
