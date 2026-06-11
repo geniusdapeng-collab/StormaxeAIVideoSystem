@@ -1,0 +1,300 @@
+{
+  "_description": "异兽感知词汇库 — 软性数据注入 (v2.0-Peng)",
+  "_note": "此文件为软性配置，用于Prompt生成时的词汇替换，不改任何数据结构",
+  "version": "v2.0-Peng",
+  "beasts": {
+    "xingtian": {
+      "name": "刑天",
+      "nameEn": "Xingtian",
+      "species": "战魂形态",
+      "sensoryBlueprint": {
+        "primarySense": "能量波动感知",
+        "secondarySense": "地脉振动/战意共鸣",
+        "blindSpot": "实体色彩细节/人类语言表层含义",
+        "hyperZone": "恐惧气息（负面）/勇毅波动（正面）"
+      },
+      "vocabulary": {
+        "see": "能量波动扫描",
+        "hear": "地脉振动解码",
+        "touch": "战意共鸣传递",
+        "smell": "恐惧气息浓度感知",
+        "fear": "能量收缩+战意过载",
+        "warmth": "能量融合+地脉柔化",
+        "loneliness": "回声无回应+能量衰减",
+        "memory": "地脉深处的化石频率",
+        "death": "能量消散+归于地脉",
+        "legacy": "火种被托住",
+        "anger": "岩浆气味从三千年前涌上来",
+        "sadness": "感知范围内的生命波动越来越少，像一盏盏灯被风吹灭",
+        "hope": "一个异常频率切入，轻得像谎言，却真实得像记忆",
+        "time": "三千年是岩石风化的频率，不是钟表的时间",
+        "perspectivePrefix": {
+          "establishing": "能量波动扫描",
+          "action": "战意感知",
+          "reveal": "能量解码",
+          "climax": "场域共鸣",
+          "resolution": "远古记忆",
+          "ending": "感知余震"
+        }
+      },
+      "narrativeCore": {
+        "want": "守护战场，驱逐所有入侵者",
+        "need": "被记住，不再孤独",
+        "ghost": "被遗忘的战神，失去头颅后连面孔都不复存在",
+        "lie": "我不需要任何人。战意就是一切。"
+      },
+      "soundSignature": {
+        "style": "低语，像从地底传来",
+        "signatureExpression": "沉默为主，开口时像岩石摩擦",
+        "silencePreference": "在感知到勇毅波动时选择沉默——他在等待"
+      },
+      "coreImagery": {
+        "description": "火种被另一只手托住",
+        "prePlanting": [
+          "战魂的光在逐渐暗淡",
+          "温度的隐喻反复出现",
+          "消散与凝聚的对比"
+        ],
+        "bloomMoment": "战魂消散瞬间，一个孩子手中的微光——无声，只有地脉震动的频率改变"
+      }
+    },
+    "jiuweihu": {
+      "name": "九尾狐",
+      "nameEn": "Nine-Tailed Fox",
+      "species": "魅惑形态",
+      "sensoryBlueprint": {
+        "primarySense": "气味轨迹/情绪色晕",
+        "secondarySense": "心跳频率",
+        "blindSpot": "理性语言/逻辑结构",
+        "hyperZone": "欲望波动/谎言温差"
+      },
+      "vocabulary": {
+        "see": "色晕+气味映射",
+        "hear": "心跳频率读取",
+        "touch": "温度记忆提取",
+        "smell": "气味考古",
+        "fear": "气味变色+尾巴僵直",
+        "warmth": "金色色晕扩散",
+        "loneliness": "气味链断裂",
+        "memory": "气味考古",
+        "death": "色晕褪去+气味归零",
+        "legacy": "气味基因的延续",
+        "anger": "气味突然尖锐，像碎玻璃",
+        "sadness": "色晕从九种颜色褪成灰白",
+        "hope": "一个新的气味分子加入，整个气味图谱重组",
+        "time": "一百年是一次换毛周期",
+        "perspectivePrefix": {
+          "establishing": "色晕气味映射",
+          "action": "欲望波动感知",
+          "reveal": "心跳频率读取",
+          "climax": "魅惑场域共鸣",
+          "resolution": "远古气味记忆",
+          "ending": "色晕余震"
+        }
+      },
+      "narrativeCore": {
+        "want": "收集人类的欲望，增强自己的魅惑",
+        "need": "被真实地看见，而不是被欲望地凝视",
+        "ghost": "每一次魅惑都是真实的付出，但没有人看见真实的她",
+        "lie": "我不在乎他们是否真心"
+      },
+      "soundSignature": {
+        "style": "韵律性低语，像风穿过竹林",
+        "signatureExpression": "笑声像银铃，但尾音有一丝不易察觉的颤抖",
+        "silencePreference": "当对方说出真话时沉默——她在嫉妒"
+      },
+      "coreImagery": {
+        "description": "第九根尾巴在月光下透明，像从未存在过",
+        "prePlanting": [
+          "九根尾巴的色晕各不相同",
+          "月光下的尾巴比日光下更淡",
+          "尾巴的摆动频率与心跳同步"
+        ],
+        "bloomMoment": "最后一秒，第九根尾巴完全透明，月光穿过它，照亮了狐眼中的泪"
+      }
+    },
+    "zhulong": {
+      "name": "烛龙",
+      "nameEn": "Zhulong",
+      "species": "时间形态",
+      "sensoryBlueprint": {
+        "primarySense": "热成像/时间流速",
+        "secondarySense": "光暗呼吸",
+        "blindSpot": "微观瞬间/触觉",
+        "hyperZone": "生死交替/昼夜边界"
+      },
+      "vocabulary": {
+        "see": "热成像+时间层叠",
+        "hear": "光暗交替的韵律",
+        "touch": "时间质感的摩擦",
+        "smell": "年代的气味光谱",
+        "fear": "时间凝滞+热斑扩散",
+        "warmth": "时间流速恢复",
+        "loneliness": "时间线单一化",
+        "memory": "时间层的叠加干涉",
+        "death": "时间线断裂+热寂",
+        "legacy": "时间环的闭合",
+        "anger": "时间突然倒流，万物倒退生长",
+        "sadness": "热成像中某个时间层永远暗淡",
+        "hope": "一个新的时间层加入，整个时间谱变亮",
+        "time": "睁眼是昼，闭眼是夜，一眨眼是五百年",
+        "perspectivePrefix": {
+          "establishing": "热成像时间层叠",
+          "action": "时间流速感知",
+          "reveal": "光暗韵律解码",
+          "climax": "昼夜边界共鸣",
+          "resolution": "远古时间记忆",
+          "ending": "热成像余震"
+        }
+      },
+      "narrativeCore": {
+        "want": "维持昼夜的秩序，守护时间的边界",
+        "need": "体验一次无法预知的未来",
+        "ghost": "所有未来都已被看见，没有任何惊喜",
+        "lie": "我掌控时间，我不需要惊喜"
+      },
+      "soundSignature": {
+        "style": "宏大而缓慢，像恒星的心跳",
+        "signatureExpression": "沉默是常态，开口时像远古的雷鸣",
+        "silencePreference": "在人类做出意外选择时沉默——他在学习"
+      },
+      "coreImagery": {
+        "description": "闭上的眼睛里，有整个宇宙的星空在流转",
+        "prePlanting": [
+          "眼睛的光暗变化决定昼夜",
+          "眼睛里有时光流动的痕迹",
+          "闭眼时周围的世界变暗"
+        ],
+        "bloomMoment": "最后一秒，烛龙闭上眼睛，但在他闭上的眼睑内，观众看到整个宇宙的星空在流转——他在梦里终于看见了未知的未来"
+      }
+    },
+    "diJiang": {
+      "name": "帝江",
+      "nameEn": "DiJiang",
+      "species": "混沌形态",
+      "sensoryBlueprint": {
+        "primarySense": "整体场域感知",
+        "secondarySense": "边缘波动",
+        "blindSpot": "细节/个体",
+        "hyperZone": "秩序与混沌的边界"
+      },
+      "vocabulary": {
+        "see": "整体场域的光暗潮汐",
+        "hear": "秩序的破裂声像玻璃碎裂",
+        "touch": "混沌的触感像温水流动",
+        "smell": "无——混沌没有气味",
+        "fear": "秩序突然固化，像水结成冰",
+        "warmth": "混沌边缘的柔和过渡",
+        "loneliness": "场域中缺少一个不和谐频率",
+        "memory": "场域中某个区域突然变稠密",
+        "death": "场域完全均匀，没有任何波动",
+        "legacy": "一个孩子记住了混沌的形状",
+        "anger": "场域突然收缩，像一个愤怒的漩涡",
+        "sadness": "场域某处出现空洞，像缺失的牙齿",
+        "hope": "一个新的频率在混沌中出现，不稳定但真实",
+        "time": "混沌中没有时间，只有变化",
+        "perspectivePrefix": {
+          "establishing": "整体场域光暗潮汐",
+          "action": "混沌边缘感知",
+          "reveal": "秩序破裂解码",
+          "climax": "混沌秩序共鸣",
+          "resolution": "远古混沌记忆",
+          "ending": "场域余震"
+        }
+      },
+      "narrativeCore": {
+        "want": "维持混沌，不被秩序定义",
+        "need": "被赋予一个形状，哪怕只是片刻",
+        "ghost": "从未被真正看见，因为从未有过确定的形态",
+        "lie": "我不需要形状，混沌就是自由"
+      },
+      "soundSignature": {
+        "style": "没有固定的声音，像风声的变化",
+        "signatureExpression": "沉默和喧嚣的交替，没有中间态",
+        "silencePreference": "当人类试图描述他的形状时沉默——他在听"
+      },
+      "coreImagery": {
+        "description": "一个孩子画出了帝江的样子，画纸上的线条开始发光",
+        "prePlanting": [
+          "帝江周围的光影不断变化",
+          "人类的眼睛试图捕捉他的轮廓",
+          "光影中偶尔出现类似面孔的图案"
+        ],
+        "bloomMoment": "最后一秒，孩子画出的帝江在画纸上发光，而真实的帝江第一次有了一个确定的轮廓——哪怕只有一秒钟"
+      }
+    },
+    "baize": {
+      "name": "白泽",
+      "nameEn": "BaiZe",
+      "species": "智慧形态",
+      "sensoryBlueprint": {
+        "primarySense": "知识光谱/真理波长",
+        "secondarySense": "谎言的杂音",
+        "blindSpot": "无知的美好/单纯",
+        "hyperZone": "未知领域/未解之谜"
+      },
+      "vocabulary": {
+        "see": "知识的光谱分层",
+        "hear": "真理的谐波/谎言的杂音",
+        "touch": "认知的质地——真理光滑，谎言粗糙",
+        "smell": "知识的陈年香气",
+        "fear": "遇到无法解读的频率",
+        "warmth": "一个知识被理解时的共振",
+        "loneliness": "知道一切，但无人可分享",
+        "memory": "知识的考古层",
+        "death": "一个问题永远没有答案",
+        "legacy": "一个问题被提出，比被解答更重要",
+        "anger": "谎言的杂音突然放大",
+        "sadness": "一个曾经确定的真理开始模糊",
+        "hope": "一个从未见过的问题出现",
+        "time": "一万年只是一次深呼吸",
+        "perspectivePrefix": {
+          "establishing": "知识光谱分层",
+          "action": "真理谐波感知",
+          "reveal": "谎言杂音解码",
+          "climax": "智慧场域共鸣",
+          "resolution": "远古知识记忆",
+          "ending": "光谱余震"
+        }
+      },
+      "narrativeCore": {
+        "want": "解答所有问题，消除所有未知",
+        "need": "遇到一个自己无法解答的问题",
+        "ghost": "从未被问住过，从未体验过未知的惊喜",
+        "lie": "我知道一切，未知是弱点"
+      },
+      "soundSignature": {
+        "style": "清晰而古老，像图书馆的回声",
+        "signatureExpression": "每个词都经过精确计算，但偶尔有一个词会颤抖",
+        "silencePreference": "当遇到不知道答案的问题时沉默——他在兴奋"
+      },
+      "coreImagery": {
+        "description": "一个问题比答案更亮",
+        "prePlanting": [
+          "白泽眼中的光芒在回答问题时会变亮",
+          "一个问题出现时，光芒会闪烁",
+          "答案的光芒是金色，问题的光芒是白色"
+        ],
+        "bloomMoment": "最后一秒，白泽说'我不知道'，他眼中的光芒从金色变成纯白——比任何答案都亮"
+      }
+    }
+  },
+  "sensoryTemplates": {
+    "narrativeConversion": {
+      "humanCentric": "一个孩子走进峡谷",
+      "beastCentric": "一个频率穿透地脉，轻得像谎言，却真实得像记忆"
+    },
+    "emotionBodyMap": {
+      "loneliness": "{vocabulary.loneliness}",
+      "anger": "{vocabulary.anger}",
+      "sadness": "{vocabulary.sadness}",
+      "fear": "{vocabulary.fear}",
+      "warmth": "{vocabulary.warmth}",
+      "hope": "{vocabulary.hope}"
+    },
+    "coreImageryFormula": {
+      "prePlanting": "前50秒通过{vocabulary.see}/{vocabulary.hear}预埋{coreImagery.prePlanting.join('、')}",
+      "bloom": "最后10秒静默绽放：{coreImagery.bloomMoment}"
+    }
+  }
+}

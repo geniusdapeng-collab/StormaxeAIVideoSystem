@@ -1,0 +1,406 @@
+{
+  "total": 40,
+  "success": 40,
+  "failed": 0,
+  "details": [
+    {
+      "id": "baihu",
+      "name": "白虎",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "feline",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "baize",
+      "name": "白泽",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "draconic",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "bashe",
+      "name": "巴蛇",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "bifang",
+      "name": "毕方",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "chongming",
+      "name": "重明鸟",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "fei",
+      "name": "蜚",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "feiyi",
+      "name": "肥遗",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "avian",
+      "limbCount": 6,
+      "tailCount": 1,
+      "wingCount": 4
+    },
+    {
+      "id": "fenghuang",
+      "name": "凤凰",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "fuzhu",
+      "name": "夫诸",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "gudiao",
+      "name": "蛊雕",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "huashe",
+      "name": "化蛇",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "hundun",
+      "name": "混沌",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 6,
+      "tailCount": 1,
+      "wingCount": 4
+    },
+    {
+      "id": "huodou",
+      "name": "祸斗",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "jiuweihu",
+      "name": "九尾狐",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "vulpine",
+      "limbCount": 4,
+      "tailCount": 9,
+      "wingCount": 0
+    },
+    {
+      "id": "kui",
+      "name": "夔",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "kunpeng",
+      "name": "鲲鹏",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "luoyu",
+      "name": "蠃鱼",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "lushu",
+      "name": "鹿蜀",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "feline",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "luwu",
+      "name": "陆吾",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 9,
+      "wingCount": 0
+    },
+    {
+      "id": "menghuai",
+      "name": "孟槐",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "qilin",
+      "name": "麒麟",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "feline",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "qinglong",
+      "name": "青龙",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "qiongqi",
+      "name": "穷奇",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "feline",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "suanni",
+      "name": "狻猊",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "feline",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "suanyu",
+      "name": "酸与",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 4
+    },
+    {
+      "id": "taotie",
+      "name": "饕餮",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "taowu",
+      "name": "梼杌",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "tiangou",
+      "name": "天狗",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "vulpine",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "wenyaoyu",
+      "name": "文鳐鱼",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "xiangliu",
+      "name": "相柳",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "xiezhi",
+      "name": "獬豸",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "xuanwu",
+      "name": "玄武",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "xuanyuan",
+      "name": "旋龟",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "yinglong",
+      "name": "应龙",
+      "status": "✅ 已填充",
+      "bodyShape": "draconic",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "yingzhao",
+      "name": "英招",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "zheng",
+      "name": "狰",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "zhujian",
+      "name": "诸犍",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "humanoid",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "zhulong",
+      "name": "烛龙",
+      "status": "✅ 已填充",
+      "bodyShape": "serpentine",
+      "headType": "humanoid",
+      "limbCount": 0,
+      "tailCount": 1,
+      "wingCount": 0
+    },
+    {
+      "id": "zhuque",
+      "name": "朱雀",
+      "status": "✅ 已填充",
+      "bodyShape": "avian",
+      "headType": "avian",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 2
+    },
+    {
+      "id": "zhuyan",
+      "name": "朱厌",
+      "status": "✅ 已填充",
+      "bodyShape": "therian",
+      "headType": "",
+      "limbCount": 4,
+      "tailCount": 1,
+      "wingCount": 0
+    }
+  ]

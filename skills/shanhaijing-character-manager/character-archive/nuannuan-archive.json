@@ -1,0 +1,34 @@
+{
+  "characterId": "nuannuan",
+  "name": "暖暖（帝江）",
+  "species": "Nirath云絮生物",
+  "world": "nirath",
+  "episode": "E05-帝江传",
+  "createdAt": "2026-05-22",
+  "references": {
+    "front": {
+      "file": "nuannuan-front.png",
+      "angle": "正面全身",
+      "version": "v3"
+    },
+    "side": {
+      "file": "nuannuan-side.png",
+      "angle": "侧面翼结构",
+      "version": "v4"
+    },
+    "withCompanion": {
+      "file": "nuannuan-with-xiaoG.png",
+      "angle": "与小G同框比例",
+      "version": "v3"
+    }
+  },
+  "visualAnchors": {
+    "size": "1米直径（绵羊大小）",
+    "color": "暖黄2700K-3500K",
+    "wings": "4片半透明丝质翼",
+    "legs": "6只小足蜷于身下",
+    "face": "无面部特征",
+    "floatHeight": "离地半米（胸高）"
+  },
+  "apiKeyRef": "ark-0e6994f7-bf34-4f3a-9e78-0fc02aa5fc92-42751",
+  "model": "doubao-seedream-5-0-260128"

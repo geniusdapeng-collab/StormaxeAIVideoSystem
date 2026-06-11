@@ -1,0 +1,77 @@
+{
+  "name": "刑天",
+  "species": "上古战神",
+  "features": [
+    "无头",
+    "以乳为目",
+    "以脐为口",
+    "肌肉发达",
+    "赤铜色皮肤",
+    "上古战甲残片"
+  ],
+  "signature": "左手持干(盾),右手持戚(斧),干为青铜方盾带獠牙装饰,戚为双面青铜巨斧带火焰纹路",
+  "style": "CG超写实,史诗级质感,电影级照明",
+  "originalText": "刑天与帝争神，帝断其首，葬之常羊之山，乃以乳为目，以脐为口，操干戚以舞",
+  "isBeast": true,
+  "beastType": "战神",
+  "referencePhotos": [
+    {
+      "type": "正面全身",
+      "angle": "front_fullbody",
+      "filename": "刑天-正面全身.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "侧面全身",
+      "angle": "side_profile",
+      "filename": "刑天-侧面全身.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "背面全身",
+      "angle": "back_fullbody",
+      "filename": "刑天-背面全身.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "45度半身",
+      "angle": "three_quarter",
+      "filename": "刑天-45度半身.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "面部特写",
+      "angle": "face_closeup",
+      "filename": "刑天-面部特写.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "动作奔跑",
+      "angle": "action_running",
+      "filename": "刑天-动作奔跑.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "动作坐姿",
+      "angle": "action_sitting",
+      "filename": "刑天-动作坐姿.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    },
+    {
+      "type": "手部特写",
+      "angle": "hand_detail",
+      "filename": "刑天-手部特写.png",
+      "status": "success",
+      "url": "[TOS_CDN_URL_REDACTED]"
+    }
+  ],
+  "generatedAt": "2026-05-30T07:45:24.215Z",
+  "model": "doubao-seedream-5-0-260128",
+  "version": "v4.0-Peng"

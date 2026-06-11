@@ -1,0 +1,101 @@
+{
+  "characters": [
+    {
+      "characterId": "nuannuan",
+      "name": "暖暖（帝江）",
+      "species": "Nirath云絮生物",
+      "world": "nirath",
+      "episode": "E05-帝江传",
+      "createdAt": "2026-05-22",
+      "styleGuide": {
+        "approach": "CG超写实",
+        "exclude": ["皮克斯风格", "动画风格", "卡通化"],
+        "skinDetail": "真实皮肤纹理，可见毛孔和细微绒毛",
+        "lighting": "自然光照明，柔和侧光，体积光散射"
+      },
+      "references": {
+        "front": { "file": "nuannuan-front.png", "angle": "正面全身", "version": "v3" },
+        "side": { "file": "nuannuan-side.png", "angle": "侧面翼结构", "version": "v4" },
+        "withCompanion": { "file": "nuannuan-with-xiaoG.png", "angle": "与小G同框比例", "version": "v3" }
+      },
+      "visualAnchors": {
+        "size": "1米直径（绵羊大小）",
+        "color": "暖黄2700K-3500K",
+        "wings": "4片半透明丝质翼",
+        "legs": "6只小足蜷于身下",
+        "face": "无面部特征",
+        "floatHeight": "离地半米（胸高）",
+        "material": "云絮半透明，次表面散射"
+      }
+    },
+    {
+      "characterId": "xiaoG",
+      "name": "小G",
+      "species": "人类男孩",
+      "ethnicity": "中国人",
+      "world": "nirath",
+      "episode": "E05-帝江传",
+      "createdAt": "2026-05-22",
+      "styleGuide": {
+        "approach": "CG超写实",
+        "exclude": ["皮克斯风格", "动画风格", "卡通化", "西方特征"],
+        "skinDetail": "真实皮肤纹理，可见毛孔和细微绒毛，东亚肤色",
+        "facialFeatures": "中国人特征，黑发棕眼",
+        "lighting": "自然光照明，柔和侧光"
+      },
+      "references": {
+        "front": { "file": "xiaoG-front-v3.png", "angle": "正面全身", "version": "v3", "style": "CG超写实数字人 UE5 Metahuman" },
+        "side": { "file": "xiaoG-side-v3.png", "angle": "侧面", "version": "v3", "style": "CG超写实数字人 UE5 Metahuman" },
+        "withCompanion": { "file": "xiaoG-with-nuannuan-v3.png", "angle": "与暖暖同框", "version": "v3", "style": "CG超写实数字人 UE5 Metahuman" }
+      },
+      "visualAnchors": {
+        "age": "8岁",
+        "height": "1.2m",
+        "ethnicity": "中国人",
+        "hair": "黑色短发",
+        "eyes": "棕色大眼睛",
+        "skin": "东亚肤色，真实毛孔纹理",
+        "clothing": "亮黄色短款户外冲锋衣（及腰长度，拉链微开），深蓝色直筒牛仔裤",
+        "footwear": "白色低帮运动鞋，干净简洁",
+        "accessories": "脖子挂着黄铜指南针（皮革挂绳，胸口位置），腰间右侧军绿色水壶（圆柱形，帆布套），冲锋衣左胸口袋露出半截黑色手电筒（LED头灯，带挂绳）",
+        "style": "CG超写实，接近真人比例，探险者风格"
+      }
+    }
+  ],
+  "beastGenerationRules": {
+    "pureBeastOnly": true,
+    "noHumanCharacters": true,
+    "noTechnology": true,
+    "noSciFi": true,
+    "noModernElements": true,
+    "shanhaijingFidelity": true,
+    "nirathFusion": true,
+    "negativeConstraints": [
+      "NO human characters",
+      "NO child, NO boy, NO girl, NO person",
+      "NO human face",
+      "NO xiaoG",
+      "NO technology",
+      "NO sci-fi",
+      "NO modern elements",
+      "NO mechanical parts",
+      "NO robots",
+      "NO cyberpunk",
+      "NO metal armor",
+      "NO electronic devices",
+      "NO glowing artificial lights",
+      "NO plastic",
+      "NO synthetic materials"
+    ],
+    "styleGuide": "纯异兽本体，超写实CG渲染，Nirath原生星球生态融合山海经古典志怪美学，原始野性，生物发光，无人类，无科技元素，非机械，非科幻，纯粹神话生物"
+  },
+  "globalStyleRules": [
+    "所有人类角色必须是中国人特征（黑发/棕眼/东亚肤色）",
+    "所有角色采用CG超写实风格",
+    "禁止皮克斯/动画/卡通风格",
+    "皮肤必须有真实毛孔和细微绒毛纹理",
+    "照明采用自然光+柔和侧光+体积光散射"
+  ],
+  "apiKeyRef": "ark-0e6994f7-bf34-4f3a-9e78-0fc02aa5fc92-42751",
+  "model": "doubao-seedream-5-0-260128",
+  "archivePath": "./skills/shanhaijing-character-manager/character-archive/"

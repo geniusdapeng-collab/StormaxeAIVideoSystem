@@ -1,0 +1,79 @@
+{
+  "pipelineVersion": "v6.11-Peng-fix2",
+  "startTime": "2026-06-03T05:17:34.351Z",
+  "stages": [
+    {
+      "stage": "pipeline_start",
+      "timestamp": "2026-06-03T05:17:34.351Z",
+      "sourceMethod": "pipeline_start",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "userInput": {
+        "title": "未命名",
+        "outline": "",
+        "type": "action",
+        "duration": 60
+      }
+    },
+    {
+      "stage": "stage1_start",
+      "timestamp": "2026-06-03T05:17:34.351Z",
+      "sourceMethod": "stage1_start",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "action": "PRD生成开始"
+    },
+    {
+      "stage": "stage1_end",
+      "timestamp": "2026-06-03T05:18:04.077Z",
+      "sourceMethod": "stage1_end",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "status": "success"
+    },
+    {
+      "stage": "stage2_start",
+      "timestamp": "2026-06-03T05:18:04.077Z",
+      "sourceMethod": "stage2_start",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "action": "需求对齐开始"
+    },
+    {
+      "stage": "stage2_end",
+      "timestamp": "2026-06-03T05:19:38.845Z",
+      "sourceMethod": "stage2_end",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "status": "success"
+    },
+    {
+      "stage": "stage3_start",
+      "timestamp": "2026-06-03T05:19:38.845Z",
+      "sourceMethod": "stage3_start",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "action": "Schema校验开始"
+    },
+    {
+      "stage": "stage3_end",
+      "timestamp": "2026-06-03T05:21:10.495Z",
+      "sourceMethod": "stage3_end",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "status": "success"
+    },
+    {
+      "stage": "stage4_start",
+      "timestamp": "2026-06-03T05:21:10.495Z",
+      "sourceMethod": "stage4_start",
+      "sourceFile": "director-pipeline.js",
+      "pipelineVersion": "v6.11-Peng-fix2",
+      "action": "故事板校验开始"
+    }
+  ],
+  "isRealPipeline": true,
+  "sourceFile": "director-pipeline.js",
+  "constructorName": "DirectorPipeline",
+  "antiCheatingEnabled": true,
+  "productionDir": "pre-production"

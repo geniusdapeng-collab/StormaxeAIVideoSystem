@@ -1,0 +1,300 @@
+{
+  "version": "2.6.3-Peng",
+  "releaseDate": "2026-05-14",
+  "codename": "CinePrompt V2 — 闸机精度+契约注入版",
+  "summary": "闸机评分57→90分优化：关键词提取重写+需求契约场景/核心词注入提示词+同义词容差匹配+5个流转断点修复",
+  "modules": [
+    {
+      "name": "seedance-director",
+      "version": "v2.6.2-Peng",
+      "role": "9阶段流水线总指挥",
+      "scripts": 9
+    },
+    {
+      "name": "seedance-story-engine",
+      "version": "v2.6.1-Peng",
+      "role": "故事规划+张力曲线+叙事桥接",
+      "scripts": 4
+    },
+    {
+      "name": "seedance-character-manager",
+      "version": "v2.2.0-Peng",
+      "role": "角色锚定管线",
+      "scripts": 1
+    },
+    {
+      "name": "seedance-dialogue-engine",
+      "version": "v2.1.0-Peng",
+      "role": "台词对白+TTS",
+      "scripts": 1
+    },
+    {
+      "name": "seedance-post-production",
+      "version": "v1.2.0-Peng",
+      "role": "后期合成（音画+调色+字幕）",
+      "scripts": 1
+    },
+    {
+      "name": "seedance-sound-design",
+      "version": "v1.0.0",
+      "role": "声音设计",
+      "scripts": 2
+    },
+    {
+      "name": "seedance-micromotion",
+      "version": "v1.1.0",
+      "role": "微动作增强渲染",
+      "scripts": 7
+    },
+    {
+      "name": "seedance-bid-eval",
+      "version": "v1.1.0-Peng",
+      "role": "竞标评估+Prompt Quality维度",
+      "scripts": 6
+    },
+    {
+      "name": "seedance-choreography",
+      "version": "v2.0.0-Peng",
+      "role": "动作编排+15种世界舞蹈库+Eye-Story引擎",
+      "scripts": 1
+    },
+    {
+      "name": "seedance-shot-design",
+      "version": "v1.0.0",
+      "role": "镜头语言参考库",
+      "scripts": 0
+    },
+    {
+      "name": "byted-ark-seedance-skill",
+      "version": "v1.2.0",
+      "role": "Seedance API封装",
+      "scripts": 2
+    },
+    {
+      "name": "seedance-render-engine",
+      "version": "v0.1.0",
+      "role": "渲染引擎（独立拆分中）",
+      "scripts": 1
+    }
+  ],
+  "pipeline": {
+    "phases": [
+      "Phase0:角色定妆照",
+      "Phase1:故事规划",
+      "Phase1.2:钩子注入",
+      "Phase2:角色锚定",
+      "Phase2.5:台词对白",
+      "Phase3:镜头提示词+需求契约注入",
+      "Phase3.5:微动作增强",
+      "Phase3.7:比稿评估",
+      "Phase4:批量渲染",
+      "Phase5.5:声音设计",
+      "Phase6:后期合成",
+      "Phase7:汇总交付"
+    ],
+    "totalPhases": 12
+  },
+  "subsystems": {
+    "PersonaVault": {
+      "role": "角色灵魂铸造",
+      "status": "integrated"
+    },
+    "VoiceCraft": {
+      "role": "声音铸造",
+      "status": "integrated"
+    },
+    "MicroMotion": {
+      "role": "微动作增强渲染",
+      "status": "integrated"
+    }
+  },
+  "testResults": {
+    "mockTestRounds": 5,
+    "types": [
+      "action",
+      "drama",
+      "educational",
+      "commercial",
+      "documentary"
+    ],
+    "passRate": "100%",
+    "gateScoreImprovement": "57→90 (+33分)",
+    "date": "2026-05-14"
+  },
+  "v262Changes": [
+    {
+      "id": "V262-001",
+      "type": "bugfix",
+      "severity": "P0",
+      "desc": "关键词提取重写：废弃滑动窗口2-6字正则，改用三策略（角色道具特征词+标点切分首尾2字+四字成语），过滤垃圾片段'神在天宫展开''撞三尖两'等，关键词命中率38%→83%"
+    },
+    {
+      "id": "V262-002",
+      "type": "enhancement",
+      "severity": "P0",
+      "desc": "需求契约注入提示词：Phase3构建RequirementContract，generateShotPrompt强制注入场景名+核心动作词到environment段，解决'天宫''金箍棒''火眼金睛'等关键词在流转中丢失的问题"
+    },
+    {
+      "id": "V262-003",
+      "type": "enhancement",
+      "severity": "P1",
+      "desc": "情节匹配同义词容差：新增synonymMap同义词映射表，'对决'≈'交锋'、'碰撞'≈'对撞'、'天崩地裂'≈'崩裂/震动'，匹配率67%→100%"
+    },
+    {
+      "id": "V262-004",
+      "type": "bugfix",
+      "severity": "P1",
+      "desc": "场景提取正则修复：最小匹配1字+后缀（如'天宫'），增加'郎神'等角色名过滤，避免'郎神在天宫'被误提为场景名"
+    },
+    {
+      "id": "V262-005",
+      "type": "enhancement",
+      "severity": "P2",
+      "desc": "闸机评分从57分提升至90分（+33分），Pre-render闸机评分提升路径：21(v2.6.0)→57(v2.6.1)→90(v2.6.2)"
+    },
+    {
+      "id": "V262-006",
+      "type": "bugfix",
+      "severity": "P0",
+      "desc": "默认风格硬编码消除：'3D国漫CG渲染,UnrealEngine5'→'写实风格，自然光'（director.js + seedream-wrapper.js）"
+    },
+    {
+      "id": "V262-007",
+      "type": "enhancement",
+      "severity": "P0",
+      "desc": "seedance-wrapper模型名常量化：MODEL_STANDARD/FAST/PRO + SEEDANCE_MODEL_*环境变量覆盖，消除10+处硬编码"
+    },
+    {
+      "id": "V262-008",
+      "type": "bugfix",
+      "severity": "P0",
+      "desc": "director.js模型fallback ID修正：doubao-seedance-1-5-pro-250528→250428，与config/system.json对齐"
+    },
+    {
+      "id": "V262-009",
+      "type": "enhancement",
+      "severity": "P1",
+      "desc": "闸机阈值配置化：AlignmentGate构造函数支持options.thresholds传入，不再硬编码40/30"
+    },
+    {
+      "id": "V262-010",
+      "type": "enhancement",
+      "severity": "P1",
+      "desc": "BidEval权重环境变量化：BID_WEIGHT_NEED/SCRIPT/COMPLIANCE/ARTISTIC/PROMPT，默认值不变"
+    },
+    {
+      "id": "V262-011",
+      "type": "enhancement",
+      "severity": "P2",
+      "desc": "超时/断路器阈值环境变量化：CB_THRESHOLD/CB_TIMEOUT_MS/AGENT_PLAN_TIMEOUT_MS"
+    }
+  ],
+  "v261Changes": [
+    {
+      "id": "V261-001",
+      "type": "bugfix",
+      "severity": "P0",
+      "desc": "比稿winner prompts未重新生成：winner plan替换后重新调用phase3ShotDesign生成新prompts"
+    },
+    {
+      "id": "V261-002",
+      "type": "enhancement",
+      "severity": "P1",
+      "desc": "BidEval新增Prompt Quality评估维度(15%权重)+evaluators/prompt-quality.js"
+    },
+    {
+      "id": "V261-003",
+      "type": "bugfix",
+      "severity": "P2",
+      "desc": "distributeCharacters按幕结构智能分配(起独角→承双角→转全员→合收尾)"
+    },
+    {
+      "id": "V261-004",
+      "type": "bugfix",
+      "severity": "P3",
+      "desc": "删除3条误伤动作词的压缩规则(高速交手→交手等)"
+    },
+    {
+      "id": "V261-005",
+      "type": "enhancement",
+      "severity": "P4",
+      "desc": "AlignmentGate评分<40阻断+--force-continue=true强制继续"
+    }
+  ],
+  "v260Changes": [
+    {
+      "id": "V260-001",
+      "type": "feature",
+      "severity": "P0",
+      "desc": "CinePrompt V2 世界奔放舞蹈音乐库: 15种舞蹈+心理学映射+Seedance音频描述"
+    },
+    {
+      "id": "V260-002",
+      "type": "feature",
+      "severity": "P0",
+      "desc": "Eye-Story眼神特写叙事引擎: 20个触发词检测+情绪-技术词映射+面部稳定性强制词"
+    },
+    {
+      "id": "V260-003",
+      "type": "enhancement",
+      "severity": "P0",
+      "desc": "导演提示词负面约束增强: 人类角色追加face distortion/unnatural proportions防御"
+    },
+    {
+      "id": "V260-004",
+      "type": "enhancement",
+      "severity": "P1",
+      "desc": "人类角色subject段注入面部稳定性词"
+    },
+    {
+      "id": "V260-005",
+      "type": "feature",
+      "severity": "P1",
+      "desc": "LOTR史诗运镜库+Matrix科幻运镜库"
+    },
+    {
+      "id": "V260-006",
+      "type": "feature",
+      "severity": "P1",
+      "desc": "舞蹈-运镜跨文化融合公式"
+    }
+  ],
+  "v263Changes": [
+    {
+      "id": "V263-001",
+      "type": "bugfix",
+      "severity": "P0",
+      "desc": "角色解析兼容中英文标点：parseCharacters和gate模块同时支持中文逗号/冒号，修复'孙悟空:...，紫霞仙子:...'只解析出1个角色"
+    },
+    {
+      "id": "V263-002",
+      "type": "enhancement",
+      "severity": "P0",
+      "desc": "签名武器注入优化：Phase3后续镜头强制注入角色signature（金箍棒/三尖两刃刀），覆盖率22%→100%"
+    },
+    {
+      "id": "V263-003",
+      "type": "enhancement",
+      "severity": "P0",
+      "desc": "天崩地裂成语提取+注入：独立4字成语排mustHaveKeywords最前，长段中也能正确提取，覆盖率0%→100%"
+    },
+    {
+      "id": "V263-004",
+      "type": "bugfix",
+      "severity": "P1",
+      "desc": "噪音词过滤：finalFilter增加'孙悟空与''金箍棒化'等跨段片段，避免抢占成语槽位"
+    },
+    {
+      "id": "V263-005",
+      "type": "bugfix",
+      "severity": "P1",
+      "desc": "场景词完整注入：'盘丝洞''火焰山'不再被截断为2字，覆盖率0%→100%"
+    },
+    {
+      "id": "V263-006",
+      "type": "enhancement",
+      "severity": "P2",
+      "desc": "场景正则增强：scenePatterns支持1-3字地标前缀+动词后缀匹配"
+    }
+  ]
+}

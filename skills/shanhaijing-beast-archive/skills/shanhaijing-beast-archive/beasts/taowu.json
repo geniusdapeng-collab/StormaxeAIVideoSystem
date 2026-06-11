@@ -1,0 +1,40 @@
+{
+  "id": "taowu",
+  "name": "梼杌",
+  "nameEn": "Taowu",
+  "category": "四大凶兽",
+  "no": 9,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "状如虎而犬毛，长二尺，人面，虎足，猪口牙，尾长一丈八尺",
+    "body": "主体像老虎，体型庞大壮硕，浑身覆盖长达二尺的狗毛，粗硬如鬃，根根倒竖",
+    "head": "在那具虎躯之上，赫然长着一张人脸——充满倔强、叛逆和暴虐之气",
+    "eyes": "双目圆睁如火炭，嘴角永远向下撇着，仿佛对整个世界充满不屑与愤怒",
+    "skin": "虎身覆盖灰褐色狗毛，长达二尺，根根倒竖如钢针",
+    "special": "尾巴长达一丈八尺（约5.4米），几乎有身长的九倍，粗如人的大腿"
+  },
+  "abilities": [
+    "力量强大",
+    "搅乱荒野",
+    "顽固不化",
+    "挑拨作恶",
+    "不分善恶",
+    "长尾鞭击"
+  ],
+  "habitat": {
+    "location": "Nirath星球北半球三危荒原",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "中型（米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }
