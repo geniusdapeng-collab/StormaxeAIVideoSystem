@@ -1,15 +1,16 @@
-# LATEST.md — ShanhaiStory Director Pipeline
-**当前版本**: v6.37-Peng
-**发布日期**: 2026-06-12
-**入口文件**: scripts/director-pipeline.js
+# RELEASE-v6.37-Peng.md
 
-## 核心变更 (v6.37-Peng)
+**版本**: v6.37-Peng
+**发布日期**: 2026-06-12
+**Pipeline**: ShanhaiStory Forge v2.44-Peng
+
+## 核心变更
 
 ### 🎵 背景音效生成器 — 通用化重构 v1.0-Peng
 
 **背景**: `_buildBackgroundSoundLocal` 硬编码了 Nirath/山海经/异兽/光脉等世界特定关键词，LLM prompt 也写死了 "ShanhaiStory Forge set on planet Nirath"。StormaxeAIVideoSystem 是通用视频制作系统，音效模块不应绑定单一世界观。
 
-**重构方案**: 新建 `background-sound-designer.js`（通用核心，582行），原 `prompt-final-normalizer.js` 改为薄适配层。
+**重构方案**: 新建 `background-sound-designer.js`（通用核心），原 `prompt-final-normalizer.js` 改为薄适配层。
 
 #### 新模块引入的专业框架
 
@@ -38,6 +39,13 @@
 #### 测试结果
 
 4 个场景全部通过：山海经/刑天（fantasy/mountain）、太空站逃生（scifi/space）、黑色电影暗巷（noir/urban）、维多利亚鬼宅（horror/indoor）。LLM 输出质量显著提升——每个场景都有 5 层音效 + 频率分配 + 叙事功能描述。
+
+### 文件变更
+
+| 文件 | 变更 |
+|------|------|
+| `background-sound-designer.js` | **新增** — 582行通用背景音效设计核心模块 |
+| `prompt-final-normalizer.js` | **重构** — 145行变更（+51/-94），委托给通用模块 |
 
 ## 历史版本
 

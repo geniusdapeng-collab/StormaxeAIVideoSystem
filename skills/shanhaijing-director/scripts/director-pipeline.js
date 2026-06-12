@@ -572,7 +572,7 @@ const {
 } = require('./platform-preset');
 
 // ============ 配置 ============
-const PIPELINE_VERSION = 'v6.36-Peng';
+const PIPELINE_VERSION = 'v6.37-Peng';
 const STAGES = [
   'prd-generation',
   'requirement-alignment',
@@ -862,7 +862,7 @@ class DirectorPipeline {
       this._selfCheckAntiCheating();
     }
 
-    console.log(`\n🎬 ShanhaiStory Forge v2.43-Peng | Director Pipeline ${PIPELINE_VERSION}`);
+    console.log(`\n🎬 ShanhaiStory Forge v2.44-Peng | Director Pipeline ${PIPELINE_VERSION}`);
     console.log(`📁 生产目录: ${this.productionDir}`);
     console.log(`🔧 模式: ${this.preProductionMode ? '预生产模式' : '生产渲染'}`);
     console.log('=' .repeat(60));

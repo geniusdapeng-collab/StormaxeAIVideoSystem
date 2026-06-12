@@ -31,6 +31,7 @@
 
 const path = require('path');
 const { LLMReasoningLayer } = require('./llm-reasoning-layer');
+const { designBackgroundSound } = require('./background-sound-designer');
 
 // v6.31-Peng-fix: 同时支持大写和小写字段名（LLM可能生成小写格式）
 const FINAL_PROMPT_FIELDS = [
@@ -38,6 +39,9 @@ const FINAL_PROMPT_FIELDS = [
   'Timeline',
   'Dialogue',
   'AudioLayer',
+  // 🆕 v6.36-Peng-fix41: TitleOverlay (S00片头标题元数据) + BackgroundSound (全镜头背景音效)
+  'TitleOverlay',
+  'BackgroundSound',
   'Character',
   'Action',
   'Scene',
@@ -52,6 +56,8 @@ const FIELD_ALIASES = {
   'timeline': 'Timeline',
   'dialogue': 'Dialogue',
   'audiolayer': 'AudioLayer',
+  'titleoverlay': 'TitleOverlay',
+  'backgroundsound': 'BackgroundSound',
   'action': 'Action',
   'scene': 'Scene',
   'mood': 'Mood',
@@ -150,6 +156,9 @@ const DEFAULT_FIELD_VALUES = {
   Timeline: 'Duration 5 seconds.',
   Dialogue: 'SPEAKER: Character | TYPE: dialogue | EMOTION: neutral | TEXT: "..." | LIP_SYNC: YES',
   AudioLayer: 'Natural ambient sound design.',
+  // 🆕 v6.36-Peng-fix41: TitleOverlay + BackgroundSound defaults
+  TitleOverlay: 'MAIN_TITLE: "Episode Title" | SUBTITLE: "Series Name" | PRODUCER: "by Genius" | TITLE_ANIM: fade-in 3.0-5.0s',
+  BackgroundSound: 'AMBIENT: environmental atmosphere, subtle wind, distant nature sounds | INTENSITY: steady throughout',
   Character: 'Primary character in frame.',
   Action: 'Primary action unfolds clearly on screen.',
   Scene: 'Cinematic environment with readable spatial depth.',
@@ -256,7 +265,7 @@ function extractDialogueFromShot(shot, storyPlan) {
 /**
  * 构建 S00 专用字段
  */
-function buildOpeningTitleFields(shot, storyPlan, options = {}) {
+async function buildOpeningTitleFields(shot, storyPlan, options = {}) {
   const titleConfig = shot?._titleConfig || options.openingTitle || {};
   const titlePrompt = safeString(titleConfig.seedancePrompt || shot?.description || '');
 
@@ -287,11 +296,18 @@ function buildOpeningTitleFields(shot, storyPlan, options = {}) {
   const camera = stripChinese(safeString(titleConfig.camera || shot?.camera || 'wide-angle low-angle cinematic sweep'));
   const lighting = 'Dual-sunset purple-gold light, bioluminescent cyan accents, dramatic rim lighting.';
 
+  // 🆕 v6.36-Peng-fix41: TitleOverlay — 片头标题元数据
+  const titleOverlay = _buildTitleOverlay(shot, storyPlan, titleConfig);
+  // 🆕 v6.36-Peng-fix41: BackgroundSound — S00片头背景音效
+  const backgroundSound = await buildBackgroundSound(shot, storyPlan, 'opening_title');
+
   return {
     CharacterRef: characterRef,
     Timeline: timeline,
     Dialogue: dialogue,
     AudioLayer: audioLayer,
+    TitleOverlay: titleOverlay,
+    BackgroundSound: backgroundSound,
     Character: character,
     Action: action,
     Scene: scene,
@@ -304,8 +320,11 @@ function buildOpeningTitleFields(shot, storyPlan, options = {}) {
 /**
  * 构建普通镜头字段
  */
-function buildNormalShotFields(shot, storyPlan, options = {}) {
+async function buildNormalShotFields(shot, storyPlan, options = {}) {
   const originalPrompt = safeString(shot?._generatedPrompt || shot?._finalPrompt || shot?.prompt || '');
+
+  // 🆕 v6.36-Peng-fix41: BackgroundSound for normal shots
+  const backgroundSound = await buildBackgroundSound(shot, storyPlan, shot?.type || 'normal');
 
   const fields = {
     CharacterRef:
@@ -321,6 +340,8 @@ function buildNormalShotFields(shot, storyPlan, options = {}) {
     AudioLayer:
       extractFieldValue(originalPrompt, 'AudioLayer') ||
       safeString(shot?._audioLayer?.englishDesc || ''),
+    TitleOverlay: '', // normal shots don't have title overlay
+    BackgroundSound: backgroundSound,
     Character:
       safeString(shot?.Character || shot?.character || extractFieldValue(originalPrompt, 'Character')),
     Action:
@@ -338,6 +359,137 @@ function buildNormalShotFields(shot, storyPlan, options = {}) {
   return fields;
 }
 
+// ==================== 🆕 v6.36-Peng-fix41: 新字段生成器 ====================
+
+/**
+ * 构建 TitleOverlay 字段 — S00片头标题元数据
+ * 从 shot._titleOverlay / shot._titleConfig / shot._titleEffect 提取结构化数据
+ */
+function _buildTitleOverlay(shot, storyPlan, titleConfig) {
+  const overlay = shot?._titleOverlay || {};
+  const mainTitle = overlay.mainTitle || storyPlan?.title || 'Untitled';
+  const subTitle = overlay.subTitle || '山海经异兽系列 · Nirath星球探险';
+  const producer = overlay.producer || 'by Genius';
+
+  // 标题动效: 从 _titleEffect 提取
+  const titleEffect = shot?._titleEffect || titleConfig?.titleEffect || {};
+  const titleAnim = titleEffect?.titleEffect?.concept || 'cinematic title reveal';
+  const titleStart = titleEffect?.titleEffect?.start || 3.0;
+  const titleEnd = titleEffect?.titleEffect?.end || 5.0;
+  const subtitleAnim = titleEffect?.subtitleEffect?.concept || 'subtitle fade-in';
+  const subtitleStart = titleEffect?.subtitleEffect?.start || 4.0;
+  const subtitleEnd = titleEffect?.subtitleEffect?.end || 5.5;
+
+  // 神兽出场动效
+  const beastEntrance = shot?._beastEntrance || titleConfig?.beastEntrance || {};
+  const beastAnim = beastEntrance?.concept || 'beast emergence';
+  const beastStart = beastEntrance?.start || 0.0;
+  const beastEnd = beastEntrance?.end || 3.0;
+
+  // 小G入镜动效
+  const xiaoGEntrance = shot?._xiaoGEntrance || titleConfig?.xiaoGEntrance || {};
+  const xiaoGAnim = xiaoGEntrance?.concept || 'xiaoG entrance';
+
+  return `MAIN_TITLE: "${mainTitle}" | SUBTITLE: "${subTitle}" | PRODUCER: "${producer}" | TITLE_ANIM: ${titleAnim} ${titleStart.toFixed(1)}-${titleEnd.toFixed(1)}s | SUBTITLE_ANIM: ${subtitleAnim} ${subtitleStart.toFixed(1)}-${subtitleEnd.toFixed(1)}s | BEAST_ENTRANCE: ${beastAnim} ${beastStart.toFixed(1)}-${beastEnd.toFixed(1)}s | XIAOG_ENTRANCE: ${xiaoGAnim}`;
+}
+
+/**
+ * 🆕 v1.0-Peng (2026-06-12): 委托给通用背景音效设计器
+ * 保留此函数作为向后兼容的适配器，内部调用 background-sound-designer.js
+ */
+async function buildBackgroundSound(shot, storyPlan, shotType) {
+  return designBackgroundSound({
+    shot,
+    storyPlan,
+    shotType,
+    shotId: shot?.id
+  });
+}
+
+/**
+ * 本地正则规则降级 — 保留作为 director-pipeline.js _enforceSingleShotFields 的安全网
+ * 委托给通用模块的本地规则
+ */
+function _buildBackgroundSoundLocal(shot, storyPlan, shotType) {
+  // 同步调用通用模块的本地规则（不经过 LLM）
+  const { ENVIRONMENT_LIBRARY, NARRATIVE_FUNCTIONS, GENRE_SOUND_PALETTE } = require('./background-sound-designer');
+
+  const scene = safeString(shot?.Scene || shot?.scene || shot?.description || '');
+  const mood = safeString(shot?.Mood || shot?.mood || shot?.emotion || '');
+  const action = safeString(shot?.Action || shot?.action || '');
+  const camera = safeString(shot?.Camera || shot?.camera || '');
+  const character = safeString(shot?.Character || shot?.character || '');
+  const duration = shot?.duration || 6;
+  const combined = `${scene} ${mood} ${action}`.toLowerCase();
+
+  // 推断 genre (山海经 → fantasy)
+  const videoType = (storyPlan?.videoType || '').toLowerCase();
+  const genre = (videoType === 'shanhaijing' || videoType === 'fantasy') ? 'fantasy' : 'drama';
+  const genrePalette = GENRE_SOUND_PALETTE[genre] || GENRE_SOUND_PALETTE['drama'];
+
+  // 推断 environment
+  let environment = null;
+  const envPatterns = {
+    forest: /forest|woods|jungle|tree|grove|林|森|丛林/,
+    mountain: /mountain|cliff|canyon|peak|ridge|山|崖|峰|峡谷/,
+    urban: /city|urban|street|alley|building|城|街|楼|巷/,
+    underwater: /underwater|ocean|sea|deep|submarine|海|洋|潜/,
+    desert: /desert|sand|dune|arid|沙|漠|荒/,
+    cave: /cave|cavern|tunnel|underground|洞|穴|隧道/,
+    arctic: /ice|snow|arctic|frozen|glacier|冰|雪|冻/,
+    space: /space|spaceship|orbit|asteroid|太空|飞船|星/,
+    indoor: /room|house|hall|corridor|indoor|室|房|厅|廊/,
+    battlefield: /battle|war|combat|fight|战|斗/,
+    coastal: /coast|beach|shore|ocean|harbor|岸|滩|港/
+  };
+  for (const [env, pattern] of Object.entries(envPatterns)) {
+    if (pattern.test(combined)) { environment = env; break; }
+  }
+
+  const envData = (environment && ENVIRONMENT_LIBRARY[environment]) ? ENVIRONMENT_LIBRARY[environment] : null;
+  const ambientLayers = [];
+
+  if (envData) {
+    ambientLayers.push(...envData.layers);
+  } else {
+    ambientLayers.push(
+      `${genre} atmosphere, environmental foundation with spatial depth`,
+      `subtle ${genrePalette.signature.split(',')[0].trim()}, ambient texture layer`
+    );
+  }
+
+  // 类型音效增强
+  ambientLayers.push(`genre texture: ${genrePalette.lowEnd.split(',')[0].trim()}`);
+
+  // 空间音频
+  let spatial = envData?.spatial || 'stereo ambient field, subtle panning with camera movement';
+  if (/pan|sweep|dolly|track|orbit|环绕|摇|推/.test(combined + camera)) {
+    spatial = '3D spatial audio panning synchronized with camera movement, dynamic L-R balance';
+  }
+
+  // 强度曲线
+  let intensity = 'steady ambient throughout';
+  if (duration >= 8) {
+    intensity = `crescendo 0-${Math.floor(duration * 0.3)}s, peak ${Math.floor(duration * 0.3)}-${Math.floor(duration * 0.7)}s, decay ${Math.floor(duration * 0.7)}-${duration}s`;
+  } else if (duration >= 5) {
+    intensity = `crescendo 0-${Math.floor(duration * 0.4)}s, peak ${Math.floor(duration * 0.4)}-${Math.floor(duration * 0.8)}s, quick decay ${Math.floor(duration * 0.8)}-${duration}s`;
+  }
+
+  // 情绪驱动增强
+  if (/epic|tension|紧张|史诗|震撼/.test(combined)) {
+    ambientLayers.push('sub-bass rumble 20-60Hz, dramatic orchestral undertone, tension-building drone');
+  } else if (/mysterious|神秘|curious|探索/.test(combined)) {
+    ambientLayers.push('subtle mystery ambience, quiet tension, occasional distant echo, sparse atmospheric pads');
+  } else if (/calm|peaceful|宁静|serene/.test(combined)) {
+    ambientLayers.push('gentle ambient pads, soft wind, peaceful nature sounds, delicate chime accents');
+  }
+
+  const ambient = ambientLayers.slice(0, 4).join(' | ');
+  return `AMBIENT: ${ambient} | SPATIAL: ${spatial} | INTENSITY: ${intensity}`;
+}
+
+// ==================== 字段处理 ====================
+
 /**
  * 非 Dialogue 字段强制英文清洗
  */
@@ -347,7 +499,7 @@ function enforceEnglishOutsideDialogue(fields) {
   // 🆕 v6.35-Peng-fix42: CharacterRef 包含中文文件名（如 白泽-正面全身.png），
   // stripChinese 会损坏角色名和文件名，导致 "白泽: 白泽-45.png" → ": -45.png"
   // CharacterRef 是元数据字段，不参与 Seedance 视觉生成，保留中文不影响渲染
-  const CHINESE_SAFE_FIELDS = new Set(['CharacterRef', 'Dialogue']);
+  const CHINESE_SAFE_FIELDS = new Set(['CharacterRef', 'Dialogue', 'TitleOverlay']);
 
   for (const key of FINAL_PROMPT_FIELDS) {
     if (CHINESE_SAFE_FIELDS.has(key)) continue;
@@ -522,12 +674,12 @@ async function _normalizeWithLLM(shot, storyPlan, options = {}) {
 /**
  * 本地规则规范化（原normalizeShotPromptFields逻辑）
  */
-function _normalizeLocal(shot, storyPlan, options = {}) {
+async function _normalizeLocal(shot, storyPlan, options = {}) {
   const isOpening = isOpeningTitleShot(shot);
 
   let fields = isOpening
-    ? buildOpeningTitleFields(shot, storyPlan, options)
-    : buildNormalShotFields(shot, storyPlan, options);
+    ? await buildOpeningTitleFields(shot, storyPlan, options)
+    : await buildNormalShotFields(shot, storyPlan, options);
 
   fields = enforceEnglishOutsideDialogue(fields);
   fields = applyDefaults(fields, shot, storyPlan);
@@ -598,6 +750,12 @@ module.exports = {
   truncateByFinalLimits,
   checkFinalTenFields,
   composeFinalPrompt,
+
+  // 🆕 v6.36-Peng-fix41: 新字段生成器
+  _buildTitleOverlay,
+  // 🆕 v6.37-Peng: LLM驱动背景音效 + 本地降级
+  buildBackgroundSound,
+  _buildBackgroundSoundLocal,
 
   normalizeShotPromptFields,
   normalizeAllShots
