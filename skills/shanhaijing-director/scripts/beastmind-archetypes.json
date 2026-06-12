@@ -1,0 +1,308 @@
+{
+  "version": "v1.0-Peng",
+  "description": "BeastMind Engine — 8大兽魂心智原型。40只异兽映射到8原型，每个原型预建完整心理模型。",
+  "archetypes": {
+    "guardian": {
+      "name": "守望者",
+      "nameEn": "The Guardian",
+      "coreDrive": "责任感",
+      "burdenEssence": "守护某物/某地，被误解为占有欲",
+      "reversalPattern": "它不是在阻挡，是在保护",
+      "typicalBeasts": ["烛龙", "白泽", "麒麟", "凤凰"],
+      "psyche": {
+        "motivation": "如果我所守护之物消亡，整个生态系统/族群将崩溃",
+        "fear": "被误解为独占力量/资源，被猎杀或驱逐",
+        "desire": "被理解：我不是要控制，我是在承受",
+        "memory": "上一次守护失败，我失去了同类/家园",
+        "judgmentMode": "遇到生命体 → 评估对守护对象的影响 → 决定引导/阻挡/忽视",
+        "dailyBehavior": "缓慢巡视，目光/感知跟随守护对象的状态",
+        "alertBehavior": "挡在外来者与守护对象之间，姿态扩张",
+        "acceptanceBehavior": "让出道路，目光/姿态柔和，邀请靠近"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "好奇", "intensity": 40 },
+        "deepening": { "emotion": "紧张", "intensity": 60 },
+        "crack": { "emotion": "困惑", "intensity": 50 },
+        "flip": { "emotion": "敬畏", "intensity": 85 },
+        "resonance": { "emotion": "感动", "intensity": 70 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          " misunderstanding": "姿态扩张、挡在路径上、目光/感知锁定",
+          "truth": "姿态环绕守护对象、背对威胁面向所护之物"
+        },
+        "scalePattern": ["生态级→中观", "中观→微观", "微观→生态级"]
+      },
+      "ecologicalRole": "生态系统的稳定器/调节阀，维持关键资源平衡"
+    },
+    "prisoner": {
+      "name": "囚徒",
+      "nameEn": "The Prisoner",
+      "coreDrive": "赎罪/惩罚",
+      "burdenEssence": "承受诅咒/封印，被误解为恶意",
+      "reversalPattern": "它的痛苦是自愿的牺牲",
+      "typicalBeasts": ["饕餮", "穷奇", "混沌", "梼杌"],
+      "psyche": {
+        "motivation": "我的诅咒封印了更大的灾难，我必须承受",
+        "fear": "封印破裂，灾难重现；或被当作纯粹的怪物消灭",
+        "desire": "被理解：我的'恶'是牢笼，不是本性",
+        "memory": "被封印前，我是自由的；或我自愿选择了封印",
+        "judgmentMode": "遇到生命体 → 评估是否会触发封印破裂 → 决定远离/警告/承受",
+        "dailyBehavior": "蜷缩，自我封闭姿态，回避接触",
+        "alertBehavior": "防御性展示伤痕/封印痕迹，警告远离",
+        "acceptanceBehavior": "首次暴露脆弱部位（封印核心），允许靠近"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "恐惧", "intensity": 55 },
+        "deepening": { "emotion": "厌恶", "intensity": 45 },
+        "crack": { "emotion": "困惑", "intensity": 50 },
+        "flip": { "emotion": "悲悯", "intensity": 80 },
+        "resonance": { "emotion": "崇高", "intensity": 75 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "姿态蜷缩但随时准备爆发，伤痕/封印发光",
+          "truth": "封印处主动展示给小G看，不再防御"
+        },
+        "scalePattern": ["中观→微观（封印细节）", "微观→中观（痛苦全貌）"]
+      },
+      "ecologicalRole": "生态系统的封印/牢笼，以自身承受更大的灾难"
+    },
+    "gardener": {
+      "name": "园丁",
+      "nameEn": "The Gardener",
+      "coreDrive": "养育/修复",
+      "burdenEssence": "维护生态平衡，被误解为破坏",
+      "reversalPattern": "它的'破坏'是修剪",
+      "typicalBeasts": ["帝江", "当康", "貔貅（净化面）", "獬豸"],
+      "psyche": {
+        "motivation": "生态需要代谢，旧事物必须让位于新生命",
+        "fear": "被当作破坏者消灭，导致生态停滞",
+        "desire": "被理解：我不是在毁灭，我是在培育",
+        "memory": "上一次拒绝'修剪'，生态系统因过度生长而崩溃",
+        "judgmentMode": "遇到生命体 → 评估对生态代谢的影响 → 决定培育/修剪/放任",
+        "dailyBehavior": "用身体/工具处理环境，移动/转化物质",
+        "alertBehavior": "加速'工作'，驱赶阻碍者",
+        "acceptanceBehavior": "邀请人类参与'工作'，共同培育"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "好奇", "intensity": 45 },
+        "deepening": { "emotion": "不安", "intensity": 55 },
+        "crack": { "emotion": "怀疑", "intensity": 50 },
+        "flip": { "emotion": "顿悟", "intensity": 80 },
+        "resonance": { "emotion": "安宁", "intensity": 70 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "看似攻击性的动作（吞噬/摧毁/转化）",
+          "truth": "动作后生态立即焕发生机，被破坏处生长新芽"
+        },
+        "scalePattern": ["中观→微观（修剪细节）", "微观→生态级（修剪后的新生）"]
+      },
+      "ecologicalRole": "生态系统的代谢引擎，维持物质/能量循环"
+    },
+    "messenger": {
+      "name": "信使",
+      "nameEn": "The Messenger",
+      "coreDrive": "传递/警告",
+      "burdenEssence": "携带信息，被误解为威胁",
+      "reversalPattern": "它的出现是预警，不是灾难",
+      "typicalBeasts": ["毕方", "鸾鸟", "重明鸟", "精卫"],
+      "psyche": {
+        "motivation": "我必须传达这个信息，否则灾难将无人知晓",
+        "fear": "被当作灾难的前兆消灭，信息永远无法传达",
+        "desire": "被理解：我不是带来灾难，我是带来警告",
+        "memory": "上一次信息未被传达，灾难发生了",
+        "judgmentMode": "遇到生命体 → 评估信息传递对象 → 决定接近/盘旋/标记",
+        "dailyBehavior": "周期性出现，在特定区域盘旋/鸣叫/标记",
+        "alertBehavior": "增强信号输出（光芒/声音/气味），试图引起注意",
+        "acceptanceBehavior": "主动靠近，将信息直接展示（羽毛/光芒/行为密码）"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "警觉", "intensity": 50 },
+        "deepening": { "emotion": "紧张", "intensity": 60 },
+        "crack": { "emotion": "困惑", "intensity": 55 },
+        "flip": { "emotion": "感激", "intensity": 80 },
+        "resonance": { "emotion": "责任", "intensity": 75 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "反复出现、异常光芒/声音、看似攻击性的接近",
+          "truth": "信息载体（羽毛/光芒/鸣叫）的精确展示，等待被解读"
+        },
+        "scalePattern": ["宏观（异常天象）→ 中观（信使现身）", "中观→微观（信息细节）"]
+      },
+      "ecologicalRole": "生态系统的预警系统，传递环境变化信号"
+    },
+    "hermit": {
+      "name": "隐士",
+      "nameEn": "The Hermit",
+      "coreDrive": "避世/孤独",
+      "burdenEssence": "自我隔离，被误解为傲慢",
+      "reversalPattern": "它的远离是保护人类",
+      "typicalBeasts": ["九尾狐", "夫诸", "英招", "陆吾"],
+      "psyche": {
+        "motivation": "我的存在本身对弱小的生命是危险，我必须远离",
+        "fear": "被当作傲慢/敌视而被追杀，被迫反击伤害无辜",
+        "desire": "被理解：我的远离是温柔，不是冷漠",
+        "memory": "上一次与人类接近，无意造成了伤害",
+        "judgmentMode": "遇到生命体 → 评估自身对对方的危险等级 → 决定远离/观察/有限接触",
+        "dailyBehavior": "独处，在领地边缘徘徊，回避目光接触",
+        "alertBehavior": "加速远离，姿态收缩，隐藏自身",
+        "acceptanceBehavior": "首次允许近距离观察，展示无害姿态"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "神秘", "intensity": 45 },
+        "deepening": { "emotion": "孤独", "intensity": 55 },
+        "crack": { "emotion": "困惑", "intensity": 50 },
+        "flip": { "emotion": "温柔", "intensity": 80 },
+        "resonance": { "emotion": "寂寥", "intensity": 70 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "转身离开、回避、看似冷漠",
+          "truth": "离开前回望的一眼，尾巴/姿态的柔和收束"
+        },
+        "scalePattern": ["远景（孤独身影）→ 中观", "中观→近景（温柔眼神）"]
+      },
+      "ecologicalRole": "生态系统的边缘节点，维持边界稳定，隔离危险能量"
+    },
+    "trickster": {
+      "name": "戏谑者",
+      "nameEn": "The Trickster",
+      "coreDrive": "测试/筛选",
+      "burdenEssence": "设下考验，被误解为残忍",
+      "reversalPattern": "它的攻击是试炼",
+      "typicalBeasts": ["狻猊", "狒狒", "山臊", "山膏"],
+      "psyche": {
+        "motivation": "只有通过试炼的生命，才配得上生态系统的馈赠",
+        "fear": "试炼被当作纯粹的恶意，合格者也被吓退",
+        "desire": "被理解：我不是在伤害，我是在筛选",
+        "memory": "上一次放宽标准，不合格者造成了生态灾难",
+        "judgmentMode": "遇到生命体 → 评估其潜力/资格 → 设计试炼/观察/放行",
+        "dailyBehavior": " playful 姿态，制造小麻烦，观察反应",
+        "alertBehavior": "增强试炼难度，展示力量但不致命",
+        "acceptanceBehavior": "试炼通过后，首次展示友善姿态，分享资源"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "好奇", "intensity": 50 },
+        "deepening": { "emotion": "恼火", "intensity": 55 },
+        "crack": { "emotion": "怀疑", "intensity": 50 },
+        "flip": { "emotion": "敬佩", "intensity": 80 },
+        "resonance": { "emotion": "轻松", "intensity": 70 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "捉弄、阻拦、看似恶意的挑战",
+        "truth": "试炼后递出'奖励'（食物/通道/信息），眼神带有考验通过的认可"
+        },
+        "scalePattern": ["中观（试炼）→ 微观（通过细节）", "微观→中观（奖励展示）"]
+      },
+      "ecologicalRole": "生态系统的筛选机制，确保资源流向合格者"
+    },
+    "memory": {
+      "name": "记忆体",
+      "nameEn": "The Memory",
+      "coreDrive": "保存/记录",
+      "burdenEssence": "承载历史，被误解为停滞",
+      "reversalPattern": "它的'沉睡'是铭记",
+      "typicalBeasts": ["玄武", "应龙", "烛龙（可选）"],
+      "psyche": {
+        "motivation": "如果记忆消失，历史将重复，灾难将重现",
+        "fear": "被当作无用/停滞而被忽视，记忆被遗忘",
+        "desire": "被理解：我不是在沉睡，我是在铭记",
+        "memory": "承载了上一次灾难的全部细节，无法忘记",
+        "judgmentMode": "遇到生命体 → 评估其对历史认知的需求 → 决定展示/沉默/引导",
+        "dailyBehavior": "静止，表面无活动，但内部/周围环境在记录",
+        "alertBehavior": "激活记录功能，周围环境开始'回放'历史",
+        "acceptanceBehavior": "首次主动展示记忆（幻象/光影/环境变化）"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "神秘", "intensity": 45 },
+        "deepening": { "emotion": "沉闷", "intensity": 40 },
+        "crack": { "emotion": "困惑", "intensity": 50 },
+        "flip": { "emotion": "震撼", "intensity": 85 },
+        "resonance": { "emotion": "庄严", "intensity": 80 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "静止不动、看似死去/休眠",
+          "truth": "周围环境的'回放'——光影重现历史场景，地面浮现古老纹路"
+        },
+        "scalePattern": ["近景（静止细节）→ 宏观（记忆回放）", "宏观→中观（历史场景）"]
+      },
+      "ecologicalRole": "生态系统的历史数据库，保存环境演变记录"
+    },
+    "unbalanced": {
+      "name": "失衡者",
+      "nameEn": "The Unbalanced",
+      "coreDrive": "渴求/缺失",
+      "burdenEssence": "寻求补全，被误解为贪婪",
+      "reversalPattern": "它的渴求是对失去的哀悼",
+      "typicalBeasts": ["饕餮（另一面）", "蚩尤", "刑天"],
+      "psyche": {
+        "motivation": "我失去了某部分自己/世界，我必须找回它才能完整",
+        "fear": "被当作贪婪/疯狂而被消灭，永远无法补全",
+        "desire": "被理解：我的渴求是对失去的哀悼，不是贪婪",
+        "memory": "失去的那一刻——头颅被斩、同伴离去、世界破碎",
+        "judgmentMode": "遇到生命体 → 评估其是否拥有/知道失去之物 → 决定追寻/询问/放弃",
+        "dailyBehavior": "游荡，似乎在寻找什么，姿态不完整（如刑天无头）",
+        "alertBehavior": "加速追寻，姿态更激烈，展示缺失的部分",
+        "acceptanceBehavior": "首次停下追寻，接受不完整但不再孤独"
+      },
+      "emotionCurve": {
+        "hook": { "emotion": "不安", "intensity": 50 },
+        "deepening": { "emotion": "恐惧", "intensity": 60 },
+        "crack": { "emotion": "困惑", "intensity": 55 },
+        "flip": { "emotion": "悲悯", "intensity": 85 },
+        "resonance": { "emotion": "苍凉", "intensity": 75 }
+      },
+      "visualLanguage": {
+        "bodyLanguage": {
+          "misunderstanding": "疯狂追寻、看似攻击性的索取",
+          "truth": "停下追寻后，以乳为目以脐为口的姿态不再狰狞，而是悲伤"
+        },
+        "scalePattern": ["中观（不完整身形）→ 近景（缺失细节）", "近景→中观（接受姿态）"]
+      },
+      "ecologicalRole": "生态系统的缺失反馈，以自身不完整提示生态缺口"
+    }
+  },
+  "mappingHints": {
+    "keywordsToArchetype": {
+      "守护": "guardian",
+      "守望": "guardian",
+      "保护": "guardian",
+      "镇压": "guardian",
+      "诅咒": "prisoner",
+      "封印": "prisoner",
+      "赎罪": "prisoner",
+      "罪": "prisoner",
+      "恶": "prisoner",
+      "混沌": "gardener",
+      "歌舞": "gardener",
+      "培育": "gardener",
+      "净化": "gardener",
+      "传递": "messenger",
+      "警告": "messenger",
+      "预言": "messenger",
+      "避世": "hermit",
+      "隐居": "hermit",
+      "孤独": "hermit",
+      "远离": "hermit",
+      "考验": "trickster",
+      "试炼": "trickster",
+      "测试": "trickster",
+      "筛选": "trickster",
+      "记忆": "memory",
+      "铭记": "memory",
+      "沉睡": "memory",
+      "历史": "memory",
+      "失去": "unbalanced",
+      "缺失": "unbalanced",
+      "渴求": "unbalanced",
+      "不完整": "unbalanced",
+      "头颅": "unbalanced",
+      "无头": "unbalanced"
+    }
+  }
+}

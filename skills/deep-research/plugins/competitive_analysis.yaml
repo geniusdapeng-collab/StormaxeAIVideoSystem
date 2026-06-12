@@ -1,0 +1,94 @@
+# 领域插件：竞品分析
+plugin_id: competitive_analysis
+name: "竞品分析"
+description: "产品竞品对比、优劣势分析、市场定位"
+version: 1.0.0
+match_keywords: ["竞品", "对比", "PK", "比较", "vs", "同类产品", "竞争"]
+
+dimensions:
+  - id: market_positioning
+    name: "市场定位"
+    weight: 0.10
+    description: "目标用户、定位策略、差异化"
+    keywords:
+      core: ["{topic}市场定位", "{topic} target audience", "{topic} positioning"]
+      extended: ["{topic}用户画像", "{topic}目标市场", "{topic}差异化"]
+      supplementary: ["{topic}品牌策略", "{topic}市场细分"]
+
+  - id: feature_comparison
+    name: "功能对比"
+    weight: 0.25
+    description: "核心功能、功能差异、独特卖点"
+    keywords:
+      core: ["{topic}功能对比", "{topic} vs", "{topic} comparison"]
+      extended: ["{topic}功能列表", "{topic}特色功能", "{topic} unique feature"]
+      supplementary: ["{topic}路线图", "{topic}即将发布"]
+
+  - id: tech_architecture
+    name: "技术架构"
+    weight: 0.15
+    description: "技术栈、架构差异、性能对比"
+    keywords:
+      core: ["{topic}技术架构", "{topic} architecture", "{topic} tech stack"]
+      extended: ["{topic}性能对比", "{topic}基准测试", "{topic} benchmark"]
+      supplementary: ["{topic}扩展性", "{topic}稳定性"]
+
+  - id: pricing_strategy
+    name: "定价策略"
+    weight: 0.10
+    description: "定价模式、套餐对比、性价比"
+    keywords:
+      core: ["{topic}定价", "{topic} pricing", "{topic}价格对比"]
+      extended: ["{topic}套餐", "{topic}免费版", "{topic} enterprise pricing"]
+      supplementary: ["{topic}性价比", "{topic}折扣策略"]
+
+  - id: user_experience
+    name: "用户体验"
+    weight: 0.10
+    description: "界面设计、易用性、用户满意度"
+    keywords:
+      core: ["{topic}用户体验", "{topic} UX", "{topic} usability"]
+      extended: ["{topic}界面设计", "{topic}用户反馈", "{topic} review"]
+      supplementary: ["{topic}用户评价", "{topic} NPS"]
+
+  - id: user_reviews
+    name: "用户评价"
+    weight: 0.10
+    description: "用户口碑、社区评价、专业评测"
+    keywords:
+      core: ["{topic}用户评价", "{topic} review", "{topic}口碑"]
+      extended: ["{topic} G2 rating", "{topic} Product Hunt", "{topic}评测"]
+      supplementary: ["{topic}用户投诉", "{topic}满意度调查"]
+
+  - id: business_model
+    name: "商业模式"
+    weight: 0.10
+    description: "收入模式、客户获取、增长策略"
+    keywords:
+      core: ["{topic}商业模式", "{topic} revenue model", "{topic}盈利"]
+      extended: ["{topic}获客成本", "{topic} LTV", "{topic}增长策略"]
+      supplementary: ["{topic}合作伙伴", "{topic}生态策略"]
+
+  - id: swot_analysis
+    name: "SWOT 分析"
+    weight: 0.10
+    description: "优劣势、机会、威胁"
+    keywords:
+      core: ["{topic} SWOT", "{topic}优势劣势", "{topic} strengths weaknesses"]
+      extended: ["{topic}机会", "{topic}威胁", "{topic}竞争壁垒"]
+      supplementary: ["{topic}护城河", "{topic}替代风险"]
+
+preferred_sources:
+  - producthunt.com
+  - g2.com
+  - capterra.com
+  - gartner.com/magic-quadrant
+  - 36kr.com
+  - latepost.com
+
+chart_suggestions:
+  - "功能对比矩阵"
+  - "雷达图（多章节对比）"
+  - "定价对比表"
+  - "市场份额饼图"
+  - "用户满意度对比"

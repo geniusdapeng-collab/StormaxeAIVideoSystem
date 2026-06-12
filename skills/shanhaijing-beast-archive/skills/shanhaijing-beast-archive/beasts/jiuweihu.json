@@ -1,0 +1,40 @@
+{
+  "id": "jiuweihu",
+  "name": "九尾狐",
+  "nameEn": "Jiuweihu",
+  "category": "亦正亦邪",
+  "no": 10,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "状如狐而九尾，其音如婴儿，能食人",
+    "body": "体型比普通狐狸大上数倍，身长可达丈余，姿态优雅灵动，行动时如行云流水",
+    "head": "面部比凡狐更加精致，轮廓如美人般秀美，嘴角微微上扬",
+    "eyes": "深邃的琥珀色或妖异的碧绿色，瞳孔在黑暗中会发出微光，仿佛两颗宝石",
+    "skin": "全身覆盖浓密柔滑的毛发，上古时期多为纯白色，如雪似玉",
+    "special": "九条尾巴从臀部优雅地散开，如同一把华丽的羽毛扇，每条都修长蓬松"
+  },
+  "abilities": [
+    "魅惑人心",
+    "通灵变化",
+    "预知未来",
+    "辟邪驱毒",
+    "长寿延年",
+    "食人"
+  ],
+  "habitat": {
+    "location": "Nirath星球东半球青丘群岛",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "中型（米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

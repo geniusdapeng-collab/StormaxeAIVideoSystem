@@ -1,0 +1,40 @@
+{
+  "id": "qilin",
+  "name": "麒麟",
+  "nameEn": "Qilin",
+  "category": "仁德之兽",
+  "no": 4,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "狮头鹿角，虎眼麋身，龙鳞牛尾，覆盖五彩鳞片",
+    "body": "身形矫健如鹿，体态修长优雅，步伐轻盈从容",
+    "head": "头部像龙又像羊，前额圆润饱满，生着一对狮子般的威武鬃毛",
+    "eyes": "温润如玉，透出仁慈之光",
+    "skin": "层层叠叠的五彩鳞片，每一片都如同精心雕琢的玉片，流转青赤黄白黑五色光芒",
+    "special": "头顶生有一对带肉的独角，角表面覆盖细密鳞片，散发温润玉质光泽"
+  },
+  "abilities": [
+    "吐火鸣雷",
+    "食害虫",
+    "择土而践",
+    "行步中规",
+    "音中律吕",
+    "预示圣人"
+  ],
+  "habitat": {
+    "location": "Nirath星球中纬度百兽草原",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "大型（十米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

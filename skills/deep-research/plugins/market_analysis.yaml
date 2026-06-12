@@ -1,0 +1,86 @@
+# 领域插件：市场分析
+plugin_id: market_analysis
+name: "市场分析"
+description: "市场规模、用户分析、增长机会、竞争格局"
+version: 1.0.0
+match_keywords: ["市场", "用户", "增长", "规模", "渗透率", "消费者"]
+
+dimensions:
+  - id: market_size
+    name: "市场规模"
+    weight: 0.20
+    description: "当前规模、增长预测、细分市场"
+    keywords:
+      core: ["{topic}市场规模", "{topic} market size", "{topic}行业规模"]
+      extended: ["{topic}增长率", "{topic} CAGR", "{topic} TAM"]
+      supplementary: ["{topic}细分市场规模", "{topic}区域市场"]
+
+  - id: user_profile
+    name: "用户画像"
+    weight: 0.15
+    description: "目标用户、用户特征、消费行为"
+    keywords:
+      core: ["{topic}用户画像", "{topic} user profile", "{topic}目标用户"]
+      extended: ["{topic}用户特征", "{topic}消费行为", "{topic} demographics"]
+      supplementary: ["{topic}用户增长", "{topic}留存率"]
+
+  - id: demand_analysis
+    name: "需求分析"
+    weight: 0.15
+    description: "用户需求、痛点、未满足需求"
+    keywords:
+      core: ["{topic}需求分析", "{topic} pain points", "{topic}用户需求"]
+      extended: ["{topic}用户痛点", "{topic}未满足需求", "{topic}使用场景"]
+      supplementary: ["{topic}需求趋势", "{topic}用户调研"]
+
+  - id: competitive_landscape
+    name: "竞争格局"
+    weight: 0.15
+    description: "竞争者、市场份额、竞争策略"
+    keywords:
+      core: ["{topic}竞争格局", "{topic} competitors", "{topic}市场份额"]
+      extended: ["{topic}竞争者分析", "{topic}市场集中度", "{topic} CR5"]
+      supplementary: ["{topic}竞争策略", "{topic}差异化"]
+
+  - id: growth_drivers
+    name: "增长驱动"
+    weight: 0.15
+    description: "增长因素、政策驱动、技术驱动"
+    keywords:
+      core: ["{topic}增长驱动", "{topic} growth drivers", "{topic}驱动因素"]
+      extended: ["{topic}政策利好", "{topic}技术驱动", "{topic}消费升级"]
+      supplementary: ["{topic}宏观环境", "{topic}PEST分析"]
+
+  - id: trend_forecast
+    name: "趋势预测"
+    weight: 0.10
+    description: "未来趋势、行业走向、预测模型"
+    keywords:
+      core: ["{topic}趋势预测", "{topic} forecast", "{topic}未来趋势"]
+      extended: ["{topic}行业走向", "{topic}预测 2027", "{topic}预测 2030"]
+      supplementary: ["{topic}情景分析", "{topic}关键变量"]
+
+  - id: opportunities_risks
+    name: "机会与风险"
+    weight: 0.10
+    description: "市场机会、潜在风险、应对策略"
+    keywords:
+      core: ["{topic}市场机会", "{topic} opportunities", "{topic}风险"]
+      extended: ["{topic}潜在风险", "{topic}应对策略", "{topic}挑战"]
+      supplementary: ["{topic}黑天鹅", "{topic}灰犀牛"]
+
+preferred_sources:
+  - 国家统计局
+  - 艾瑞咨询
+  - 易观分析
+  - QuestMobile
+  - CNNIC
+  - 行业白皮书
+  - 券商研究报告
+
+chart_suggestions:
+  - "市场规模增长曲线"
+  - "用户画像雷达图"
+  - "市场份额饼图"
+  - "PEST 分析矩阵"
+  - "趋势预测折线图"

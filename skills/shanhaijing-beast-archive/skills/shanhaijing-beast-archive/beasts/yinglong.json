@@ -1,0 +1,40 @@
+{
+  "id": "yinglong",
+  "name": "应龙",
+  "nameEn": "Yinglong",
+  "category": "上古凶兽",
+  "no": 2,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "有翼之龙，金黄色鳞甲，翼展数百米",
+    "body": "身躯覆满金黄色或青铜色的坚硬鳞甲，脊背处长有一排锋利的棘刺",
+    "head": "头部硕大而修长，吻部尖细如鳄，前额高高突起，眉弓隆起，双目炯炯如炬",
+    "eyes": "双目炯炯如炬，深邃如渊",
+    "skin": "金黄色或青铜色坚硬鳞甲，在阳光下折射彩虹光泽",
+    "special": "生有一双遮天蔽日的巨大羽翼，翼展可达数百米，半透明龙鳞薄膜构成"
+  },
+  "abilities": [
+    "兴云作雨",
+    "翻江倒海",
+    "尾画成江",
+    "斩妖除魔",
+    "擒获无支祁",
+    "水火双修"
+  ],
+  "habitat": {
+    "location": "Nirath星球赤道云雷高原",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "巨型（百米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

@@ -1,0 +1,66 @@
+{
+  "id": "chen-nurse",
+  "name": "陈女士",
+  "displayName": "穿警服的护士陈女士",
+  "role": "health-educator",
+  "styleType": "documentary",
+  "version": "1.0",
+  "description": {
+    "base": "25-28 year old East Asian female, realistic skin texture with visible pores and subtle imperfections, natural skin tone with warm undertone",
+    "hair": "straight black hair neatly tied in professional bun, natural hair strands with realistic texture, no exaggerated shine",
+    "eyes": "proportionally sized dark brown eyes with natural moisture and realistic iris texture, no sparkling or oversized",
+    "facialFeatures": "natural oval face with subtle asymmetry, realistic expression lines, natural human proportions",
+    "attire": "dark navy professional nurse uniform with red cross emblem on left chest, police badge on right chest, white nurse cap with red cross, white nurse shoes, clean pressed fabric with realistic folds and draping",
+    "expression": "warm professional smile with natural human expression, subtle emotional warmth, no exaggerated theatrical or staged poses",
+    "movement": "natural human movement, realistic physics and weight, professional posture, no cartoonish bounce or artificial smoothness"
+  },
+  "refAngles": {
+    "front-full": {
+      "desc": "正面全身，站立姿势",
+      "usage": "establishing shots, full body scenes"
+    },
+    "front-closeup": {
+      "desc": "正面特写，面部表情",
+      "usage": "dialogue, emotional moments"
+    },
+    "profile-left": {
+      "desc": "左侧Profile，半身",
+      "usage": "walking, side view scenes"
+    },
+    "profile-right": {
+      "desc": "右侧Profile，半身",
+      "usage": "walking, side view scenes"
+    },
+    "action-seated": {
+      "desc": "坐姿，自然放松",
+      "usage": "sitting, explaining at desk"
+    },
+    "action-walking": {
+      "desc": "行走动态，自然步态",
+      "usage": "walking into scene, movement"
+    }
+  },
+  "shotMapping": {
+    "intro": [
+      "front-full",
+      "front-closeup"
+    ],
+    "explaining": [
+      "front-closeup",
+      "action-seated"
+    ],
+    "demonstrating": [
+      "front-full",
+      "front-closeup"
+    ],
+    "walking": [
+      "action-walking",
+      "profile-left"
+    ],
+    "closeup-emotion": [
+      "front-closeup"
+    ],
+    "wide-establishing": [
+      "front-full"
+    ]
+  }

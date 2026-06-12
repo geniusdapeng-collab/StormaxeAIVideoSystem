@@ -1,0 +1,34 @@
+{
+  "system": "Seedance Video Production System",
+  "version": "3.2.0-Peng",
+  "releaseDate": "2026-06-06",
+  "releaseNote": "v6.20-fix4: PromptAssembler开头逗号+重复前缀+SmartTruncator空字段三处修复，烛龙预生产利用率69%→94%",
+  "modules": {
+    "shanhaijing-director": {
+      "version": "3.2.0-Peng",
+      "path": "shanhaijing-director/scripts/director-pipeline.js",
+      "changes": ["v6.20-fix3: 最终合规检查980→988对齐", "v6.20-fix4: PromptParser/normalizeShotLLMJson链路完善（0/9字段问题排查中）"]
+    },
+    "seedance-render-engine": {
+      "version": "3.2.0-Peng",
+      "path": "seedance-render-engine/scripts/seedance-render-engine.js",
+      "changes": ["v6.20-fix3: fillPromptToTarget/appendUntilTarget真实字符数", "v6.20-fix4: PromptAssembler开头逗号修复+重复P0前缀去除+SmartTruncator空字段过滤"]
+    },
+    "prompt-engine-v2": {
+      "version": "3.2.0-Peng",
+      "path": "seedance-render-engine/scripts/prompt-engine-v2.js",
+      "changes": ["v6.20-fix4: PromptAssembler.generate()末尾新增三处清理（开头逗号/重复P0前缀/多余管道符）", "v6.20-fix4: SmartTruncator禁用截断模式join前新增filter过滤空字符串"]
+    }
+  },
+  "v620_benchmark": {
+    "烛龙预生产6镜头": {
+      "v618_avg": "688字符/69.7%",
+      "v620fix2_avg": "926字符/93.7%",
+      "v620fix3": "全部镜头≤988，无超限"
+    }
+  },
+  "supportedVideoTypes": ["action", "drama", "educational", "commercial", "documentary"],
+  "supportedModes": ["story-engine", "screenplay-craft"],
+  "supportedCurveTypes": ["standard", "fakeClimax", "emotionalBounce", "doublePeak", "mShape", "rollercoaster", "slowBurn"],
+  "skipRenderSupported": true
+}

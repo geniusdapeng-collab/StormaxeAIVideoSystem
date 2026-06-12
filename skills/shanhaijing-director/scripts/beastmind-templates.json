@@ -1,0 +1,306 @@
+{
+  "version": "v1.0-Peng",
+  "description": "BeastMind Engine — 自适应时长节拍模板。根据目标时长自动生成叙事节拍结构和时长分配。",
+  "templates": {
+    "30s": {
+      "duration": 30,
+      "beatCount": 3,
+      "reversalMode": "partial",
+      "reversalDescription": "部分断裂：观众意识到'它可能不是我想的那样'，但不完全推翻",
+      "beats": [
+        {
+          "id": "B1",
+          "type": "hook",
+          "name": "钩子",
+          "duration": 10,
+          "durationRange": [8, 12],
+          "purpose": "建立异兽的初始印象（通常负面/神秘）",
+          "mustInclude": ["异兽标志性特征", "Nirath环境", "人类（小G）的出现"],
+          "visualScale": "宏观→中观",
+          "emotionalTarget": { "emotion": "好奇/不安", "intensity": 40 },
+          "misunderstandingLayers": {
+            "audience": "这是什么？危险吗？",
+            "human": "那是什么？要避开还是靠近？",
+            "beast": "有人类。评估威胁等级。",
+            "ecosystem": "正常能量流动"
+          }
+        },
+        {
+          "id": "B2",
+          "type": "crack",
+          "name": "裂缝",
+          "duration": 10,
+          "durationRange": [8, 12],
+          "purpose": "出现矛盾信号，初始印象开始动摇",
+          "mustInclude": ["异兽行为不符合'威胁'逻辑", "生态级细节暗示真相", "小G的困惑反应"],
+          "visualScale": "中观→微观",
+          "emotionalTarget": { "emotion": "困惑", "intensity": 50 },
+          "misunderstandingLayers": {
+            "audience": "它的行为不太对……",
+            "human": "它不是在攻击我？",
+            "beast": "这个人类不怕我。奇怪。",
+            "ecosystem": "能量流向发生变化"
+          }
+        },
+        {
+          "id": "B3",
+          "type": "flip",
+          "name": "翻转",
+          "duration": 10,
+          "durationRange": [8, 12],
+          "purpose": "部分揭示兽负，观众理解'它可能是在保护'",
+          "mustInclude": ["兽负的暗示（非完全揭示）", "小G的理解萌芽", "情绪转向"],
+          "visualScale": "微观→宏观",
+          "emotionalTarget": { "emotion": "敬畏", "intensity": 70 },
+          "misunderstandingLayers": {
+            "audience": "它可能不是坏兽……",
+            "human": "它是在……保护我？",
+            "beast": "他好像理解了。",
+            "ecosystem": "新的平衡正在形成"
+          }
+        }
+      ],
+      "notes": "30秒版本无'深入'和'余韵'节拍，直接钩子→裂缝→翻转，节奏极快。适合短视频平台。"
+    },
+    "60s": {
+      "duration": 60,
+      "beatCount": 5,
+      "reversalMode": "partial",
+      "reversalDescription": "部分断裂：前24秒的理解被重新框架化，观众不觉得自己'错了'，而是'只看到一半'",
+      "beats": [
+        {
+          "id": "B1",
+          "type": "hook",
+          "name": "钩子",
+          "duration": 8,
+          "durationRange": [6, 10],
+          "purpose": "建立异兽的初始印象，引入小G",
+          "mustInclude": ["异兽标志性特征", "Nirath专属环境描述", "小G的出现/行动"],
+          "visualScale": "生态级→中观",
+          "emotionalTarget": { "emotion": "好奇", "intensity": 40 },
+          "misunderstandingLayers": {
+            "audience": "这是什么生物？看起来危险。",
+            "human": "那是什么？我要小心。",
+            "beast": "有人类闯入。警戒模式。",
+            "ecosystem": "外来生命体进入领地"
+          }
+        },
+        {
+          "id": "B2",
+          "type": "deepening",
+          "name": "深入",
+          "duration": 10,
+          "durationRange": [8, 12],
+          "purpose": "深入展示异兽行为，强化初始印象",
+          "mustInclude": ["异兽'威胁性'行为展示", "Nirath环境反应", "小G的恐惧/退缩"],
+          "visualScale": "中观→微观",
+          "emotionalTarget": { "emotion": "紧张", "intensity": 60 },
+          "misunderstandingLayers": {
+            "audience": "它在展示力量，这是威胁。",
+            "human": "它在警告我，我要后退。",
+            "beast": "他后退了。正常的恐惧反应。",
+            "ecosystem": "领地边界被确认"
+          }
+        },
+        {
+          "id": "B3",
+          "type": "crack",
+          "name": "裂缝",
+          "duration": 12,
+          "durationRange": [10, 14],
+          "purpose": "出现矛盾信号，初始印象开始裂缝",
+          "mustInclude": ["异兽行为不符合'威胁'逻辑（如保护姿态、温柔动作）", "生态级细节暗示真相", "小G的困惑/迟疑"],
+          "visualScale": "微观→中观",
+          "emotionalTarget": { "emotion": "困惑", "intensity": 50 },
+          "misunderstandingLayers": {
+            "audience": "等等，它的行为不太对……它是在保护什么？",
+            "human": "它没有追来……它是在挡在我和什么之间？",
+            "beast": "他停下来了。他没有继续逃跑。",
+            "ecosystem": "能量流向发生变化——从对抗转向共生"
+          }
+        },
+        {
+          "id": "B4",
+          "type": "flip",
+          "name": "翻转",
+          "duration": 18,
+          "durationRange": [15, 22],
+          "purpose": "部分揭示兽负，重新框架化前24秒的理解",
+          "mustInclude": ["兽负的暗示性揭示（非完全解释）", "小G的理解萌芽", "生态级视觉隐喻", "情绪转向"],
+          "visualScale": "中观→生态级",
+          "emotionalTarget": { "emotion": "敬畏", "intensity": 85 },
+          "misunderstandingLayers": {
+            "audience": "原来它不是在威胁……它是在承受。",
+            "human": "我明白了……它不是在阻挡我，是在保护我。",
+            "beast": "他好像开始理解了。第一次。",
+            "ecosystem": "新的共生关系正在建立"
+          }
+        },
+        {
+          "id": "B5",
+          "type": "resonance",
+          "name": "余韵",
+          "duration": 12,
+          "durationRange": [10, 14],
+          "purpose": "情感共振，观众与异兽建立情感连接",
+          "mustInclude": ["小G与异兽的和解姿态", "Nirath环境的和谐反应", "兽负的温柔回响", "开放式结局暗示"],
+          "visualScale": "生态级定格",
+          "emotionalTarget": { "emotion": "感动", "intensity": 70 },
+          "misunderstandingLayers": {
+            "audience": "它的孤独……它的承担……",
+            "human": "我不会再怕你了。",
+            "beast": "终于……有人看见了。",
+            "ecosystem": "共生关系确立，能量循环恢复"
+          }
+        }
+      ],
+      "notes": "60秒标准版。裂缝节拍不可省略，翻转节拍不可缩短。余韵节拍确保情感落地。"
+    },
+    "90s": {
+      "duration": 90,
+      "beatCount": 7,
+      "reversalMode": "progressive",
+      "reversalDescription": "渐进断裂：多层反转，每层揭开一部分，'原来如此……但还有更多'",
+      "beats": [
+        {
+          "id": "B1",
+          "type": "hook",
+          "name": "钩子",
+          "duration": 8,
+          "durationRange": [6, 10],
+          "purpose": "建立异兽初始印象",
+          "mustInclude": ["异兽标志性特征", "Nirath专属环境", "小G出现"],
+          "visualScale": "生态级→中观",
+          "emotionalTarget": { "emotion": "好奇", "intensity": 40 },
+          "misunderstandingLayers": {
+            "audience": "这是什么？",
+            "human": "那是什么？",
+            "beast": "有人类。",
+            "ecosystem": "正常"
+          }
+        },
+        {
+          "id": "B2",
+          "type": "daily",
+          "name": "日常",
+          "duration": 8,
+          "durationRange": [6, 10],
+          "purpose": "展示异兽的日常行为，建立'正常状态'基准",
+          "mustInclude": ["异兽日常行为（原型对应）", "Nirath环境互动", "无人类在场的平静时刻"],
+          "visualScale": "中观",
+          "emotionalTarget": { "emotion": "平静", "intensity": 30 },
+          "misunderstandingLayers": {
+            "audience": "它的日常……看起来也没那么可怕。",
+            "human": "（尚未出现或远距离观察）",
+            "beast": "平静的时刻。守护/修剪/记录/……",
+            "ecosystem": "稳态维持中"
+          }
+        },
+        {
+          "id": "B3",
+          "type": "deepening",
+          "name": "深入",
+          "duration": 10,
+          "durationRange": [8, 12],
+          "purpose": "小G介入，冲突升级",
+          "mustInclude": ["小G与异兽的首次接触", "误解发生", "'威胁'行为展示"],
+          "visualScale": "中观→微观",
+          "emotionalTarget": { "emotion": "紧张", "intensity": 60 },
+          "misunderstandingLayers": {
+            "audience": "冲突要爆发了。",
+            "human": "它在攻击我！",
+            "beast": "他误解了。我需要阻止他/保护他。",
+            "ecosystem": "能量扰动"
+          }
+        },
+        {
+          "id": "B4",
+          "type": "crack",
+          "name": "裂缝",
+          "duration": 12,
+          "durationRange": [10, 14],
+          "purpose": "矛盾信号出现，第一层裂缝",
+          "mustInclude": ["不符合威胁逻辑的行为", "生态级细节暗示", "小G迟疑"],
+          "visualScale": "微观→中观",
+          "emotionalTarget": { "emotion": "困惑", "intensity": 50 },
+          "misunderstandingLayers": {
+            "audience": "等等，不太对……",
+            "human": "它没追来？",
+            "beast": "他停下了。",
+            "ecosystem": "能量流向变化"
+          }
+        },
+        {
+          "id": "B5",
+          "type": "flip",
+          "name": "翻转",
+          "duration": 20,
+          "durationRange": [18, 24],
+          "purpose": "第一层揭示，但留有余地",
+          "mustInclude": ["兽负部分揭示", "小G理解萌芽", "生态隐喻", "但……"],
+          "visualScale": "中观→生态级",
+          "emotionalTarget": { "emotion": "敬畏", "intensity": 80 },
+          "misunderstandingLayers": {
+            "audience": "原来它在保护……但为什么？",
+            "human": "你……你在保护我？",
+            "beast": "他看见了。但还不够。",
+            "ecosystem": "共生关系萌芽"
+          }
+        },
+        {
+          "id": "B6",
+          "type": "revelation",
+          "name": "揭示",
+          "duration": 15,
+          "durationRange": [12, 18],
+          "purpose": "第二层揭示，完整兽负展现",
+          "mustInclude": ["完整兽负揭示", "生态级真相", "小G的完整理解", "情感高潮"],
+          "visualScale": "生态级→微观→生态级",
+          "emotionalTarget": { "emotion": "震撼", "intensity": 90 },
+          "misunderstandingLayers": {
+            "audience": "天啊……它一直在承受这一切。",
+            "human": "我明白了。你一直在……为了我们。",
+            "beast": "终于……全部都被看见了。",
+            "ecosystem": "真相大白，能量循环完整"
+          }
+        },
+        {
+          "id": "B7",
+          "type": "resonance",
+          "name": "余韵",
+          "duration": 17,
+          "durationRange": [15, 20],
+          "purpose": "情感共振，开放式结局",
+          "mustInclude": ["和解姿态", "环境和谐反应", "兽负温柔回响", "传承/延续暗示"],
+          "visualScale": "生态级定格",
+          "emotionalTarget": { "emotion": "感动", "intensity": 75 },
+          "misunderstandingLayers": {
+            "audience": "它的故事还在继续……",
+            "human": "我会记住你。",
+            "beast": "终于不孤独了。",
+            "ecosystem": "共生关系确立"
+          }
+        }
+      ],
+      "notes": "90秒版本增加'日常'和'揭示'节拍。渐进断裂：第一层翻转→第二层揭示，层层递进。"
+    },
+    "120s": {
+      "duration": 120,
+      "beatCount": 9,
+      "reversalMode": "complete",
+      "reversalDescription": "完全断裂：彻底推翻前48秒的理解，'我完全误解了它'。StoryCraft级别的反转。",
+      "beats": [
+        { "id": "B1", "type": "hook", "name": "钩子", "duration": 8, "durationRange": [6, 10], "visualScale": "生态级→中观", "emotionalTarget": { "emotion": "好奇", "intensity": 40 } },
+        { "id": "B2", "type": "daily", "name": "日常", "duration": 8, "durationRange": [6, 10], "visualScale": "中观", "emotionalTarget": { "emotion": "平静", "intensity": 30 } },
+        { "id": "B3", "type": "deepening", "name": "深入", "duration": 10, "durationRange": [8, 12], "visualScale": "中观→微观", "emotionalTarget": { "emotion": "紧张", "intensity": 65 } },
+        { "id": "B4", "type": "crack", "name": "裂缝", "duration": 12, "durationRange": [10, 14], "visualScale": "微观→中观", "emotionalTarget": { "emotion": "困惑", "intensity": 55 } },
+        { "id": "B5", "type": "flip", "name": "翻转", "duration": 20, "durationRange": [18, 24], "visualScale": "中观→生态级", "emotionalTarget": { "emotion": "敬畏", "intensity": 85 } },
+        { "id": "B6", "type": "cost", "name": "代价", "duration": 12, "durationRange": [10, 14], "visualScale": "中观→微观", "emotionalTarget": { "emotion": "痛苦", "intensity": 70 }, "purpose": "揭示兽负的代价，加深情感冲击", "mustInclude": ["兽负的代价展示", "异兽的脆弱时刻", "小G的共情反应"] },
+        { "id": "B7", "type": "revelation", "name": "揭示", "duration": 18, "durationRange": [15, 22], "visualScale": "生态级→微观→生态级", "emotionalTarget": { "emotion": "震撼", "intensity": 95 }, "purpose": "完整真相揭示，所有误解彻底推翻" },
+        { "id": "B8", "type": "inheritance", "name": "传承", "duration": 15, "durationRange": [12, 18], "visualScale": "生态级→中观", "emotionalTarget": { "emotion": "庄严", "intensity": 80 }, "purpose": "兽负的传承/延续，开放式史诗感", "mustInclude": ["兽负的传承暗示", "小G的角色转变", "Nirath的宏大时空感"] },
+        { "id": "B9", "type": "resonance", "name": "余韵", "duration": 17, "durationRange": [15, 20], "visualScale": "生态级定格", "emotionalTarget": { "emotion": "感动", "intensity": 80 } }
+      ],
+      "notes": "120秒+史诗版。增加'代价'和'传承'节拍，完整断裂+史诗余韵。适合系列开篇/收官。"
+    }
+  }
+}

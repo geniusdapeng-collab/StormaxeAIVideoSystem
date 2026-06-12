@@ -1,0 +1,55 @@
+{
+  "id": "product-model",
+  "name": "产品展示模特",
+  "displayName": "产品展示专用模特",
+  "role": "product-presenter",
+  "styleType": "documentary",
+  "version": "1.0",
+  "description": {
+    "base": "professional product presenter, 28-35 year old East Asian female or male, realistic skin texture with visible pores, natural healthy skin tone",
+    "hair": "neatly styled hair appropriate for commercial setting, natural texture, professional appearance",
+    "eyes": "proportionally sized eyes with natural moisture, confident professional gaze, realistic iris texture",
+    "facialFeatures": "natural professional appearance, subtle asymmetry, approachable yet authoritative expression",
+    "attire": "modern professional attire suitable for product category, clean pressed fabric with realistic folds, no logos or distracting patterns unless product-branded",
+    "expression": "confident professional smile, natural human warmth, trustworthy and knowledgeable, no exaggerated sales enthusiasm",
+    "movement": "natural professional gestures when demonstrating product, realistic physics, smooth but not artificially polished movements"
+  },
+  "refAngles": {
+    "front-full": {
+      "desc": "正面全身，展示产品",
+      "usage": "full product demonstration"
+    },
+    "front-closeup": {
+      "desc": "正面特写，讲解产品",
+      "usage": "product detail explanation"
+    },
+    "hands-product": {
+      "desc": "手部特写+产品",
+      "usage": "product feature close-up"
+    },
+    "profile": {
+      "desc": "侧面展示产品轮廓",
+      "usage": "product silhouette, side view"
+    }
+  },
+  "shotMapping": {
+    "intro": [
+      "front-full",
+      "front-closeup"
+    ],
+    "demonstrating": [
+      "front-full",
+      "hands-product"
+    ],
+    "explaining": [
+      "front-closeup",
+      "hands-product"
+    ],
+    "closeup": [
+      "hands-product",
+      "front-closeup"
+    ],
+    "wide": [
+      "front-full"
+    ]
+  }

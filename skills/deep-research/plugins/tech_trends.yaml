@@ -1,0 +1,96 @@
+# 领域插件：科技趋势
+plugin_id: tech_trends
+name: "科技趋势"
+description: "科技行业趋势、技术演进、创新方向、开源生态"
+version: 1.0.0
+match_keywords: ["技术", "AI", "软件", "互联网", "科技", "开源", "大模型", "算法"]
+
+dimensions:
+  - id: market_overview
+    name: "市场概况"
+    weight: 0.15
+    description: "市场规模、增长率、驱动因素"
+    keywords:
+      core: ["{topic}市场规模 2026", "{topic} industry size", "{topic}增长率"]
+      extended: ["{topic}细分市场", "{topic}产业链", "{topic} TAM SAM SOM"]
+      supplementary: ["{topic}市场预测 2027 2028", "{topic}区域市场分布"]
+
+  - id: tech_trends
+    name: "技术趋势"
+    weight: 0.25
+    description: "技术演进方向、创新突破、技术瓶颈"
+    keywords:
+      core: ["{topic}技术趋势 2026", "{topic}最新进展", "{topic} technology roadmap"]
+      extended: ["{topic}技术架构", "{topic}开源框架", "{topic}性能对比"]
+      supplementary: ["{topic}技术瓶颈", "{topic}未来方向", "{topic}技术成熟度"]
+
+  - id: competitive_landscape
+    name: "竞争格局"
+    weight: 0.15
+    description: "主要玩家、产品对比、市场份额"
+    keywords:
+      core: ["{topic}竞品对比", "{topic}主要公司", "{topic} competition"]
+      extended: ["{topic}市场份额", "{topic}产品评测", "{topic}差异化"]
+      supplementary: ["{topic}新进入者", "{topic}并购动态"]
+
+  - id: application_scenarios
+    name: "应用场景"
+    weight: 0.15
+    description: "落地场景、最佳实践、用户反馈"
+    keywords:
+      core: ["{topic}应用场景", "{topic}实际案例", "{topic} use cases"]
+      extended: ["{topic}企业落地", "{topic}最佳实践", "{topic}用户评价"]
+      supplementary: ["{topic}行业应用", "{topic}个人应用"]
+
+  - id: open_source_ecosystem
+    name: "开源生态"
+    weight: 0.10
+    description: "开源项目、开发者社区、生态活跃度"
+    keywords:
+      core: ["{topic}开源项目", "{topic} github", "{topic} open source"]
+      extended: ["{topic}开发者社区", "{topic}生态建设", "{topic}框架对比"]
+      supplementary: ["{topic}Stars趋势", "{topic}贡献者活跃度"]
+
+  - id: investment_opportunities
+    name: "投资机会"
+    weight: 0.10
+    description: "融资趋势、热门赛道、投资逻辑"
+    keywords:
+      core: ["{topic}投资趋势 2026", "{topic}融资", "{topic} investment"]
+      extended: ["{topic}赛道", "{topic}创业方向", "{topic}估值"]
+      supplementary: ["{topic}IPO", "{topic}并购"]
+
+  - id: risks_challenges
+    name: "风险与挑战"
+    weight: 0.05
+    description: "技术风险、监管风险、市场风险"
+    keywords:
+      core: ["{topic}安全风险", "{topic}监管政策", "{topic} regulation"]
+      extended: ["{topic}局限性", "{topic}挑战", "{topic} controversy"]
+      supplementary: ["{topic}伦理问题", "{topic}数据隐私"]
+
+  - id: developer_community
+    name: "开发者社区"
+    weight: 0.05
+    description: "社区活跃度、学习资源、开发者增长"
+    keywords:
+      core: ["{topic}开发者工具", "{topic}社区", "{topic} tutorial"]
+      extended: ["{topic}学习资源", "{topic}开发文档", "{topic}SDK"]
+      supplementary: ["{topic}开发者增长", "{topic}会议活动"]
+
+preferred_sources:
+  - arxiv.org
+  - github.com/trending
+  - techcrunch.com
+  - 36kr.com
+  - infoq.com
+  - news.ycombinator.com
+  - venturebeat.com
+  - theverge.com
+
+chart_suggestions:
+  - "技术成熟度曲线（Gartner Hype Cycle）"
+  - "技术演进时间线"
+  - "GitHub Stars 趋势图"
+  - "竞品功能对比矩阵"
+  - "市场规模增长柱状图"

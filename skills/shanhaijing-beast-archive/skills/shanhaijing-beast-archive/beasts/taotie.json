@@ -1,0 +1,40 @@
+{
+  "id": "taotie",
+  "name": "饕餮",
+  "nameEn": "Taotie",
+  "category": "四大凶兽",
+  "no": 6,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "羊身人面，目在腋下，虎齿人爪，有首无身",
+    "body": "主体是一具羊身或牛身，庞大壮硕，皮肤呈现死灰色或暗褐色，散发着腐败气息",
+    "head": "一张极度扭曲变形的人脸，充满贪婪与暴虐的表情，眼睛生在腋下",
+    "eyes": "双眼生在腋下，两大团凸出的眼球在腋窝里诡异转动，透出饥饿的凶光",
+    "skin": "头颅占了身体一半以上，身体其余部分日渐萎缩，因为贪欲无度把自己身体都吃掉了",
+    "special": "发出婴儿般的啼哭声引诱路人靠近，然后张开血盆大口将其吞噬"
+  },
+  "abilities": [
+    "吞噬万物",
+    "行动迅疾",
+    "迷惑人心",
+    "贪食无厌",
+    "自我吞噬",
+    "无限食欲"
+  ],
+  "habitat": {
+    "location": "Nirath星球北纬钩吾废墟",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "大型（十米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }
