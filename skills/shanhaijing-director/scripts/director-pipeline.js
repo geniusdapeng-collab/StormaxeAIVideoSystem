@@ -572,7 +572,7 @@ const {
 } = require('./platform-preset');
 
 // ============ 配置 ============
-const PIPELINE_VERSION = 'v6.36-Peng';
+const PIPELINE_VERSION = 'v6.37-Peng';
 const STAGES = [
   'prd-generation',
   'requirement-alignment',
@@ -862,7 +862,7 @@ class DirectorPipeline {
       this._selfCheckAntiCheating();
     }
 
-    console.log(`\n🎬 ShanhaiStory Forge v2.43-Peng | Director Pipeline ${PIPELINE_VERSION}`);
+    console.log(`\n🎬 ShanhaiStory Forge v2.44-Peng | Director Pipeline ${PIPELINE_VERSION}`);
     console.log(`📁 生产目录: ${this.productionDir}`);
     console.log(`🔧 模式: ${this.preProductionMode ? '预生产模式' : '生产渲染'}`);
     console.log('=' .repeat(60));
@@ -3367,6 +3367,24 @@ ${prompt.substring(0, 5500)}...
         fixCount++;
       }
     }
+    // 🆕 v6.36-Peng-fix41: 注入TitleOverlay字段(S00片头标题元数据)
+    if (shot.type === 'opening_title' && !fieldStandard.hasField(prompt, 'TitleOverlay')) {
+      const { _buildTitleOverlay } = require('./prompt-final-normalizer');
+      const titleOverlayText = _buildTitleOverlay(shot, storyPlan, shot._titleConfig || {});
+      if (titleOverlayText) {
+        accumulatedInjection += (accumulatedInjection.length > 0 ? ' | ' : '') + `【TitleOverlay】 ${titleOverlayText}`;
+        fixCount++;
+      }
+    }
+    // 🆕 v6.36-Peng-fix41: 注入BackgroundSound字段(全镜头背景音效)
+    if (!fieldStandard.hasField(prompt, 'BackgroundSound')) {
+      const { _buildBackgroundSoundLocal } = require('./prompt-final-normalizer');
+      const bgSoundText = _buildBackgroundSoundLocal(shot, storyPlan, shot.type || 'normal');
+      if (bgSoundText) {
+        accumulatedInjection += (accumulatedInjection.length > 0 ? ' | ' : '') + `【BackgroundSound】 ${bgSoundText}`;
+        fixCount++;
+      }
+    }
     // 🆕 fix15-v12: 注入Mood/Camera/Lighting到accumulatedInjection (P1级,如缺失则补充)
     if (shot.mood && !fieldStandard.hasField(prompt, 'Mood')) {
       const moodText = `【Mood】 ${shot.mood.substring(0, 60)}`;
@@ -3426,7 +3444,8 @@ ${prompt.substring(0, 5500)}...
         // 删除 | CharacterRef: xxx
         .replace(/\|\s*CharacterRef:[\s\S]*?(?=\|\s*P\d+\s+|\|\s*P0\s+|\|$)/g, '')
         // 删除 | Timeline: xxx, | AudioLayer: xxx, | Mood: xxx, | Camera: xxx, | Lighting: xxx
-        .replace(/\|\s*(Timeline|AudioLayer|Mood|Camera|Lighting):[\s\S]*?(?=\|\s*P\d+\s+|\|\s*P0\s+|\|$)/g, '')
+        // 🆕 v6.36-Peng-fix41: 也清理 TitleOverlay / BackgroundSound
+        .replace(/\|\s*(Timeline|AudioLayer|Mood|Camera|Lighting|TitleOverlay|BackgroundSound):[\s\S]*?(?=\|\s*P\d+\s+|\|\s*P0\s+|\|$)/g, '')
         // 清理多余 |
         .replace(/\s+\|\s*/g, ' | ')
         .replace(/\|+$/, '')
@@ -3438,7 +3457,10 @@ ${prompt.substring(0, 5500)}...
         /^\s*【?P0\s+Character:/i, /^\s*【?Character】?/i, /^\s*Ref\s+Images:/i,
         /^\s*CharacterRef:/i, /^\s*Timeline:/i, /^\s*AudioLayer:/i,
         /^\s*Mood:/i, /^\s*Camera:/i, /^\s*Lighting:/i, /^\s*Action:/i, /^\s*Scene:/i, /^\s*Dialogue:/i,
+        // 🆕 v6.36-Peng-fix41: TitleOverlay + BackgroundSound
+        /^\s*TitleOverlay:/i, /^\s*BackgroundSound:/i,
         /^\s*【Character】/, /^\s*【Action】/, /^\s*【Scene】/, /^\s*【Mood】/, /^\s*【Camera】/, /^\s*【Lighting】/, /^\s*【Timeline】/, /^\s*【AudioLayer】/, /^\s*【Dialogue】/, /^\s*【CharacterRef】/,
+        /^\s*【TitleOverlay】/, /^\s*【BackgroundSound】/,
       ];
       const keptSegments = segments.filter(seg => {
         const trimmed = seg.trim();
