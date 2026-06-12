@@ -1,0 +1,641 @@
+{
+  "title": "杨戟大闘天宫",
+  "totalDuration": 88,
+  "totalShots": 10,
+  "segments": 3,
+  "styleManifesto": "写实",
+  "lightingThreeLayer": "自然光+补光+轮廓光",
+  "videoType": "",
+  "outline": "杨戟为救哪吒，率草根天神起兵天宫。天庭十万天兵镇压，杨戟独闯南天门，与哪吒父子战场上刀锋相见，天崩地裂，最终打破天庭千年铁序。天宫场景，封神神话设定。",
+  "characters": [
+    {
+      "id": "C01",
+      "name": "南天门，",
+      "role": "protagonist"
+    },
+    {
+      "id": "C02",
+      "name": "哪吒父子",
+      "role": "deuteragonist"
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "act": "起/Setup",
+      "actIndex": 1,
+      "duration": 8,
+      "timeRange": "0-8s",
+      "timeRangeAbsolute": "0-8",
+      "type": "发展",
+      "description": "中景镜头，固定，人物互动，开场铺垫",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "平静",
+      "emotionEnd": "紧张",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "淡入淡出",
+      "handoffType": "动作冻结",
+      "notes": "环境/氛围",
+      "lighting": "从平静到不安",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "中景构图，固定运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S02",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S02",
+      "act": "起/Setup",
+      "actIndex": 1,
+      "duration": 8,
+      "timeRange": "8-16s",
+      "timeRangeAbsolute": "8-16",
+      "type": "高潮",
+      "description": "特写镜头，快速推进，情感爆发，开场铺垫",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "平静",
+      "emotionEnd": "紧张",
+      "tension": 65,
+      "camera": "环绕180度拍摄,仰拍低角度,快速推进",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从平静到不安",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "镜子",
+        "meaning": "破碎",
+        "description": "镜面碎裂，碎片散落，映像分裂",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：镜子象征破碎 — 镜面碎裂，碎片散落，映像分裂"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 65,
+        "camera": "特写构图，快速推进运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S03",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "环绕,仰拍,推进"
+    },
+    {
+      "id": "S03",
+      "act": "起/Setup",
+      "actIndex": 1,
+      "duration": 10,
+      "timeRange": "16-26s",
+      "timeRangeAbsolute": "16-26",
+      "type": "高潮",
+      "description": "特写镜头，快速推进，情感爆发，干扰事件",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "平静",
+      "emotionEnd": "紧张",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从平静到不安",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "特写构图，快速推进运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S04",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 10,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S04",
+      "act": "承/Confrontation",
+      "actIndex": 2,
+      "duration": 10,
+      "timeRange": "26-36s",
+      "timeRangeAbsolute": "26-36",
+      "type": "建置",
+      "description": "全景镜头，缓慢推轨，环境展示，冲突升级",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从希望",
+      "emotionEnd": "绝望",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从希望到绝望",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "全景构图，缓慢推轨运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S05",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 10,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S05",
+      "act": "承/Confrontation",
+      "actIndex": 2,
+      "duration": 8,
+      "timeRange": "36-44s",
+      "timeRangeAbsolute": "36-44",
+      "type": "建置",
+      "description": "全景镜头，缓慢推轨，环境展示，局势转折",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从希望",
+      "emotionEnd": "绝望",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "淡入淡出",
+      "handoffType": "动作冻结",
+      "notes": "环境/氛围",
+      "lighting": "从希望到绝望",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "全景构图，缓慢推轨运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S06",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S06",
+      "act": "承/Confrontation",
+      "actIndex": 2,
+      "duration": 8,
+      "timeRange": "44-52s",
+      "timeRangeAbsolute": "44-52",
+      "type": "发展",
+      "description": "中景镜头，固定，人物互动，局势转折",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从希望",
+      "emotionEnd": "绝望",
+      "tension": 65,
+      "camera": "环绕180度拍摄,仰拍低角度,快速推进",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从希望到绝望",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "镜子",
+        "meaning": "破碎",
+        "description": "镜面碎裂，碎片散落，映像分裂",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：镜子象征破碎 — 镜面碎裂，碎片散落，映像分裂"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 65,
+        "camera": "中景构图，固定运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S07",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "环绕,仰拍,推进"
+    },
+    {
+      "id": "S07",
+      "act": "转/Resolution",
+      "actIndex": 3,
+      "duration": 8,
+      "timeRange": "52-60s",
+      "timeRangeAbsolute": "52-60",
+      "type": "建置",
+      "description": "全景镜头，缓慢推轨，环境展示，力量集结",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从低谷",
+      "emotionEnd": "觉醒",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "淡入淡出",
+      "handoffType": "动作冻结",
+      "notes": "环境/氛围",
+      "lighting": "从低谷到觉醒",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "全景构图，缓慢推轨运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S08",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S08",
+      "act": "转/Resolution",
+      "actIndex": 3,
+      "duration": 8,
+      "timeRange": "60-68s",
+      "timeRangeAbsolute": "60-68",
+      "type": "发展",
+      "description": "中景镜头，固定，人物互动，力量集结",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从低谷",
+      "emotionEnd": "觉醒",
+      "tension": 65,
+      "camera": "环绕180度拍摄,仰拍低角度,快速推进",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从低谷到觉醒",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "镜子",
+        "meaning": "破碎",
+        "description": "镜面碎裂，碎片散落，映像分裂",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：镜子象征破碎 — 镜面碎裂，碎片散落，映像分裂"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 65,
+        "camera": "中景构图，固定运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S09",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 8,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "环绕,仰拍,推进"
+    },
+    {
+      "id": "S09",
+      "act": "转/Resolution",
+      "actIndex": 3,
+      "duration": 10,
+      "timeRange": "68-78s",
+      "timeRangeAbsolute": "68-78",
+      "type": "建置",
+      "description": "全景镜头，缓慢推轨，环境展示，逼近核心",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从低谷",
+      "emotionEnd": "觉醒",
+      "tension": 50,
+      "camera": "侧面跟拍,中全景,快速横移",
+      "handoff": "淡入淡出",
+      "handoffType": "动作冻结",
+      "notes": "环境/氛围",
+      "lighting": "从低谷到觉醒",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "水",
+        "meaning": "平静",
+        "description": "静水深流，表面波澜不惊，深处暗涌",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：水象征平静 — 静水深流，表面波澜不惊，深处暗涌"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 50,
+        "camera": "全景构图，缓慢推轨运镜，写实风格"
+      },
+      "pov": null,
+      "transitionTo": "S10",
+      "transitionType": "cut",
+      "transitionDuration": 0.5,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 10,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "跟随,对抗,横移"
+    },
+    {
+      "id": "S10",
+      "act": "转/Resolution",
+      "actIndex": 3,
+      "duration": 10,
+      "timeRange": "78-88s",
+      "timeRangeAbsolute": "78-88",
+      "type": "发展",
+      "description": "中景镜头，固定，人物互动，逼近核心",
+      "characters": [
+        "南天门，"
+      ],
+      "emotionStart": "从低谷",
+      "emotionEnd": "觉醒",
+      "tension": 65,
+      "camera": "环绕180度拍摄,仰拍低角度,快速推进",
+      "handoff": "硬切",
+      "handoffType": "动作冻结",
+      "notes": "人物面部/关键动作",
+      "lighting": "从低谷到觉醒",
+      "culturalContext": {
+        "style": "direct_expression",
+        "expression": "直接展示",
+        "modifier": "",
+        "culture": "western"
+      },
+      "visualMetaphor": {
+        "symbol": "镜子",
+        "meaning": "破碎",
+        "description": "镜面碎裂，碎片散落，映像分裂",
+        "culturalAdaptation": "",
+        "seedanceCue": "视觉隐喻：镜子象征破碎 — 镜面碎裂，碎片散落，映像分裂"
+      },
+      "timePerception": {
+        "type": "normal",
+        "description": "正常流速",
+        "seedanceCue": "",
+        "tension": 65,
+        "camera": "中景构图，固定运镜，写实风格"
+      },
+      "pov": null,
+      "rhythm": {
+        "factor": 0.8,
+        "originalDuration": 10,
+        "pacingStyle": "normal"
+      },
+      "dialogues": [],
+      "dialogue": null,
+      "dialogueSpeaker": null,
+      "seedanceCameraCue": "环绕,仰拍,推进"
+    }
+  ],
+  "emotionCurve": [
+    {
+      "time": 0,
+      "tension": 50
+    },
+    {
+      "time": 6,
+      "tension": 65
+    },
+    {
+      "time": 12,
+      "tension": 50
+    },
+    {
+      "time": 20,
+      "tension": 50
+    },
+    {
+      "time": 28,
+      "tension": 50
+    },
+    {
+      "time": 34,
+      "tension": 65
+    },
+    {
+      "time": 40,
+      "tension": 50
+    },
+    {
+      "time": 46,
+      "tension": 65
+    },
+    {
+      "time": 52,
+      "tension": 50
+    },
+    {
+      "time": 60,
+      "tension": 65
+    },
+    {
+      "time": 68,
+      "tension": 20
+    }
+  ],
+  "characterTimeline": [
+    {
+      "character": "南天门，",
+      "firstAppearance": "S01",
+      "firstAct": "起/Setup",
+      "firstTime": "0-8s"
+    }
+  ],
+  "nonlinearBeats": [],
+  "nonlinearEngineVersion": "v5.1-Peng",
+  "culturalContext": {
+    "culture": "western",
+    "style": "direct_expression",
+    "name": "西方外放",
+    "expression": "直接展示"
+  },
+  "narrativeValidation": {
+    "passed": false,
+    "score": 60,
+    "errors": [
+      "结构缺失：缺少起、承、转、合幕"
+    ],
+    "warnings": [
+      "未检测到高潮时刻(张力≥80)，故事可能缺乏高潮",
+      "时长偏差：目标90s，实际68s"
+    ],
+    "info": [
+      "角色\"null\"首次出现在S01(起/Setup幕)",
+      "✅ 情绪曲线起伏正常(范围45)",
+      "✅ 镜头数量合理(10)"
+    ],
+    "summary": "❌ 叙事完整性校验失败(1错误，2警告)"
+  },
+  "targetDuration": 90
+}

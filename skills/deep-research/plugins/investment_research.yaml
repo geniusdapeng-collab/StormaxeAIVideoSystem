@@ -1,0 +1,93 @@
+# 领域插件：投资研究
+plugin_id: investment_research
+name: "投资研究"
+description: "行业投资分析、公司估值、融资趋势、退出路径"
+version: 1.0.0
+match_keywords: ["投资", "融资", "估值", "赛道", "IPO", "并购", "创投"]
+
+dimensions:
+  - id: industry_overview
+    name: "行业概览"
+    weight: 0.10
+    description: "行业定义、发展历程、产业链"
+    keywords:
+      core: ["{topic}行业概览", "{topic} industry overview", "{topic}产业链"]
+      extended: ["{topic}发展历程", "{topic}行业定义", "{topic}价值链"]
+      supplementary: ["{topic}政策环境", "{topic}监管框架"]
+
+  - id: market_size
+    name: "市场规模"
+    weight: 0.15
+    description: "TAM/SAM/SOM、增长率、细分市场"
+    keywords:
+      core: ["{topic}市场规模", "{topic} market size", "{topic} TAM SAM SOM"]
+      extended: ["{topic}增长率", "{topic} CAGR", "{topic}细分市场规模"]
+      supplementary: ["{topic}市场预测", "{topic}渗透率"]
+
+  - id: financing_trends
+    name: "融资趋势"
+    weight: 0.15
+    description: "投资事件、融资轮次、金额趋势"
+    keywords:
+      core: ["{topic}融资趋势 2026", "{topic} investment", "{topic} funding"]
+      extended: ["{topic}投资事件", "{topic}融资轮次", "{topic}领投方"]
+      supplementary: ["{topic}早期投资", "{topic}成长期投资"]
+
+  - id: key_companies
+    name: "重点公司"
+    weight: 0.20
+    description: "头部公司分析、业务模式、核心竞争力"
+    keywords:
+      core: ["{topic}头部公司", "{topic} top companies", "{topic}独角兽"]
+      extended: ["{topic}公司分析", "{topic}业务模式", "{topic}核心竞争力"]
+      supplementary: ["{topic}团队背景", "{topic}融资历程"]
+
+  - id: valuation_analysis
+    name: "估值分析"
+    weight: 0.15
+    description: "估值方法、估值水平、对标分析"
+    keywords:
+      core: ["{topic}估值", "{topic} valuation", "{topic}估值倍数"]
+      extended: ["{topic}对标公司", "{topic} PE PS", "{topic}估值模型"]
+      supplementary: ["{topic}估值趋势", "{topic}一级市场估值"]
+
+  - id: investment_logic
+    name: "投资逻辑"
+    weight: 0.10
+    description: "投资 thesis、赛道逻辑、关键驱动"
+    keywords:
+      core: ["{topic}投资逻辑", "{topic}投资 thesis", "{topic}赛道分析"]
+      extended: ["{topic}关键驱动因素", "{topic}投资回报", "{topic} ROI"]
+      supplementary: ["{topic}机构观点", "{topic}投资框架"]
+
+  - id: exit_paths
+    name: "退出路径"
+    weight: 0.10
+    description: "IPO、并购、二级市场表现"
+    keywords:
+      core: ["{topic} IPO", "{topic}并购退出", "{topic} exit"]
+      extended: ["{topic}上市", "{topic}二级市场", "{topic}估值回归"]
+      supplementary: ["{topic} SPAC", "{topic}战略收购"]
+
+  - id: risk_factors
+    name: "风险提示"
+    weight: 0.05
+    description: "投资风险、行业风险、宏观风险"
+    keywords:
+      core: ["{topic}投资风险", "{topic} risk factors", "{topic}不确定性"]
+      extended: ["{topic}政策风险", "{topic}市场风险", "{topic}流动性风险"]
+      supplementary: ["{topic}黑天鹅", "{topic}尾部风险"]
+
+preferred_sources:
+  - crunchbase.com
+  - pitchbook.com
+  - IT桔子 (itjuzi.com)
+  - 36kr.com
+  - latepost.com
+
+chart_suggestions:
+  - "融资趋势图（年度融资额/事件数）"
+  - "估值对比柱状图"
+  - "投资事件地图"
+  - "融资历程时间线"
+  - "估值倍数散点图"

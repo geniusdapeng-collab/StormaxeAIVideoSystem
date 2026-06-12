@@ -1,0 +1,77 @@
+{
+  "name": "饕餮",
+  "species": "羊身人面凶兽",
+  "features": [
+    "死灰色皮肤",
+    "腋下眼球",
+    "大嘴利齿",
+    "前肢人掌",
+    "后肢畸形",
+    "短尾残桩"
+  ],
+  "signature": "口腔黑色漩涡吞噬",
+  "style": "CG超写实数字生物恐怖美学Nirath钩吾废墟",
+  "originalText": "",
+  "isBeast": true,
+  "beastType": "",
+  "referencePhotos": [
+    {
+      "type": "正面全身",
+      "angle": "front_fullbody",
+      "filename": "饕餮-正面全身.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "侧面全身",
+      "angle": "side_profile",
+      "filename": "饕餮-侧面全身.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "背面全身",
+      "angle": "back_fullbody",
+      "filename": "饕餮-背面全身.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "45度半身",
+      "angle": "three_quarter",
+      "filename": "饕餮-45度半身.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "面部特写",
+      "angle": "face_closeup",
+      "filename": "饕餮-面部特写.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "动作奔跑",
+      "angle": "action_running",
+      "filename": "饕餮-动作奔跑.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "动作坐姿",
+      "angle": "action_sitting",
+      "filename": "饕餮-动作坐姿.png",
+      "status": "failed",
+      "url": null
+    },
+    {
+      "type": "手部特写",
+      "angle": "hand_detail",
+      "filename": "饕餮-手部特写.png",
+      "status": "failed",
+      "url": null
+    }
+  ],
+  "generatedAt": "2026-05-23T12:28:54.866Z",
+  "model": "doubao-seedream-5-0-260128",
+  "version": "v4.0-Peng"

@@ -1,0 +1,77 @@
+{
+  "name": "刑天",
+  "species": "上古战神",
+  "features": [
+    "无头",
+    "以乳为目",
+    "以脐为口",
+    "肌肉发达",
+    "赤铜色皮肤",
+    "上古战甲残片"
+  ],
+  "signature": "左手持干(盾),右手持戚(斧),干为青铜方盾带獠牙装饰,戚为双面青铜巨斧带火焰纹路",
+  "style": "CG超写实,史诗级质感,电影级照明",
+  "originalText": "刑天与帝争神，帝断其首，葬之常羊之山，乃以乳为目，以脐为口，操干戚以舞",
+  "isBeast": true,
+  "beastType": "战神",
+  "referencePhotos": [
+    {
+      "type": "正面全身",
+      "angle": "front_fullbody",
+      "filename": "刑天-正面全身.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126649580e5a28e690e46fb89f5282dc2ed6e94ab7eec59_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T073815Z&X-Tos-Expires=86400&X-Tos-Signature=9cc093c393a334e256e859012b2a1b59187f963f0be07d3988f82f54bd0fe3ce&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "侧面全身",
+      "angle": "side_profile",
+      "filename": "刑天-侧面全身.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126701331ccf5b8319d03f62f675ca8fce44c02e747fb75_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T073924Z&X-Tos-Expires=86400&X-Tos-Signature=5ec4bda07ad2b11ca752467760c98818f6ff04c7240600e1880ef2f067fdd163&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "背面全身",
+      "angle": "back_fullbody",
+      "filename": "刑天-背面全身.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126768596ccf5b8319d03f62f675ca8fce44c02e7611cd1_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074031Z&X-Tos-Expires=86400&X-Tos-Signature=f6b74e6244993fe960aee6c32c70b2971d646d3fb1858d9fe9ab01592a60e3ab&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "45度半身",
+      "angle": "three_quarter",
+      "filename": "刑天-45度半身.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126834942ccf5b8319d03f62f675ca8fce44c02e7f5de3c_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074122Z&X-Tos-Expires=86400&X-Tos-Signature=69d2d26b6af0d9aa476b972490905ad57c62e12969b395466444097519d33815&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "面部特写",
+      "angle": "face_closeup",
+      "filename": "刑天-面部特写.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126886563ccf5b8319d03f62f675ca8fce44c02e7dbdf59_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074227Z&X-Tos-Expires=86400&X-Tos-Signature=374d0bc2fe031c35ac11add913ba1cd0a3d1677c5196b4785503d833d9e32249&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "动作奔跑",
+      "angle": "action_running",
+      "filename": "刑天-动作奔跑.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780126951418ccf5b8319d03f62f675ca8fce44c02e75ded91_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074329Z&X-Tos-Expires=86400&X-Tos-Signature=6fa81dfb564fb2a12016da81235235aca72d66ed42cff4dc80f21c60b334c0fd&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "动作坐姿",
+      "angle": "action_sitting",
+      "filename": "刑天-动作坐姿.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780127012974ccf5b8319d03f62f675ca8fce44c02e7aa7bd3_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074426Z&X-Tos-Expires=86400&X-Tos-Signature=0cf171b0369d80bb20883400ae9cf678f71178d07ada7fae92fd4b9d2d51f3c4&X-Tos-SignedHeaders=host"
+    },
+    {
+      "type": "手部特写",
+      "angle": "hand_detail",
+      "filename": "刑天-手部特写.png",
+      "status": "success",
+      "url": "https://ark-acg-cn-beijing.tos-cn-beijing.volces.com/doubao-seedream-5-0/021780127070384ccf5b8319d03f62f675ca8fce44c02e7213f71_0.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLT_REDACTED%2F20260530%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260530T074520Z&X-Tos-Expires=86400&X-Tos-Signature=b116cd9d53f30df72134b2ef8ff8a3df4363330a2c1542a9869f4119a5e08e2c&X-Tos-SignedHeaders=host"
+    }
+  ],
+  "generatedAt": "2026-05-30T07:45:24.215Z",
+  "model": "doubao-seedream-5-0-260128",
+  "version": "v4.0-Peng"

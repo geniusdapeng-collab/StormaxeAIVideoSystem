@@ -1,0 +1,499 @@
+{
+  "title": "孙悟空三打白骨精",
+  "totalDuration": 60,
+  "totalShots": 14,
+  "segments": 4,
+  "styleManifesto": "商业级产品摄影风格,高光质感,品牌色调统一,视觉冲击力强",
+  "lightingThreeLayer": "产品高光+品牌色环境光+动态光效,明亮通透+重点打亮+质感表现,品牌主色调+对比强调色+中性过渡色",
+  "videoType": "commercial",
+  "outline": "唐僧师徒四人来到一座高山前。山中住着一个白骨精，她听说吃了唐僧肉能长生不老，就三次变化成人形欺骗唐僧。孙悟空火眼金睛，识破妖怪伎俩三次打跑白骨精。但唐僧肉眼凡胎，以为悟空打死了无辜百姓，盛怒之下将孙悟空赶走。悟空含泪拜别师父，回到花果山继续修炼。",
+  "characters": [
+    "孙悟空",
+    "唐僧",
+    "白骨精"
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "act": "起",
+      "actIndex": 1,
+      "duration": 4,
+      "timeRange": "0-4s",
+      "timeRangeAbsolute": "0-4",
+      "type": "痛点呈现",
+      "description": "孙悟空遭遇白骨精，痛点浮现",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空"
+      ],
+      "emotionStart": "好奇",
+      "emotionEnd": "好奇",
+      "tension": 20,
+      "camera": "手持微晃,真实感强",
+      "handoff": "困扰定格,引发共鸣",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S02",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S02",
+      "act": "起",
+      "actIndex": 1,
+      "duration": 5,
+      "timeRange": "4-9s",
+      "timeRangeAbsolute": "4-9",
+      "type": "吸引力钩子",
+      "description": "白骨精出现，吸引力骤然拉满",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "兴趣",
+      "tension": 38,
+      "camera": "动态运镜,节奏快速",
+      "handoff": "悬念定格,好奇心",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S03",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S03",
+      "act": "起",
+      "actIndex": 1,
+      "duration": 6,
+      "timeRange": "9-15s",
+      "timeRangeAbsolute": "9-15",
+      "type": "吸引力钩子",
+      "description": "白骨精出现，吸引力骤然拉满",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "信服",
+      "tension": 55,
+      "camera": "动态运镜,节奏快速",
+      "handoff": "悬念定格,好奇心",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S04",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S04",
+      "act": "起",
+      "actIndex": 1,
+      "duration": 3,
+      "timeRange": "15-18s",
+      "timeRangeAbsolute": "15-18",
+      "type": "产品亮相",
+      "description": "孙悟空登场，白骨精亮相",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "信服",
+      "emotionEnd": "信服",
+      "tension": 73,
+      "camera": "360度环绕,产品高光",
+      "handoff": "产品高光定格,惊艳感",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S05",
+      "transitionType": "渐暗→渐亮",
+      "transitionDuration": 2
+    },
+    {
+      "id": "S05",
+      "act": "承",
+      "actIndex": 2,
+      "duration": 6,
+      "timeRange": "18-24s",
+      "timeRangeAbsolute": "18-24",
+      "type": "功能展示",
+      "description": "白骨精展示，特点逐一呈现",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "好奇",
+      "emotionEnd": "好奇",
+      "tension": 20,
+      "camera": "分屏多视角,信息叠加",
+      "handoff": "功能完成定格,清晰展示",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S06",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S06",
+      "act": "承",
+      "actIndex": 2,
+      "duration": 4,
+      "timeRange": "24-28s",
+      "timeRangeAbsolute": "24-28",
+      "type": "优势对比",
+      "description": "对比白骨精，优势明显",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "兴趣",
+      "tension": 43,
+      "camera": "左右对比分屏",
+      "handoff": "对比定格,差异突出",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S07",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S07",
+      "act": "承",
+      "actIndex": 2,
+      "duration": 5,
+      "timeRange": "28-33s",
+      "timeRangeAbsolute": "28-33",
+      "type": "场景应用",
+      "description": "白骨精应用，效果显著",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "信服",
+      "emotionEnd": "信服",
+      "tension": 67,
+      "camera": "手持跟拍,代入感",
+      "handoff": "应用定格,代入感强",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S08",
+      "transitionType": "渐暗→渐亮",
+      "transitionDuration": 2
+    },
+    {
+      "id": "S08",
+      "act": "转",
+      "actIndex": 3,
+      "duration": 4,
+      "timeRange": "33-37s",
+      "timeRangeAbsolute": "33-37",
+      "type": "效果验证",
+      "description": "白骨精得到验证",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧",
+        "白骨精"
+      ],
+      "emotionStart": "好奇",
+      "emotionEnd": "好奇",
+      "tension": 20,
+      "camera": "前后对比,数据可视化",
+      "handoff": "效果定格,信服力强",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S09",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S09",
+      "act": "转",
+      "actIndex": 3,
+      "duration": 7,
+      "timeRange": "37-44s",
+      "timeRangeAbsolute": "37-44",
+      "type": "用户见证",
+      "description": "白骨精印证品质",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧",
+        "白骨精"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "兴趣",
+      "tension": 43,
+      "camera": "访谈中景,真实感",
+      "handoff": "微笑定格,信任感",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S10",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S10",
+      "act": "转",
+      "actIndex": 3,
+      "duration": 4,
+      "timeRange": "44-48s",
+      "timeRangeAbsolute": "44-48",
+      "type": "价值升华",
+      "description": "白骨精升维，情感共鸣",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧",
+        "白骨精"
+      ],
+      "emotionStart": "信服",
+      "emotionEnd": "信服",
+      "tension": 67,
+      "camera": "航拍拉远,格局感",
+      "handoff": "格局定格,品牌高度",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S11",
+      "transitionType": "渐暗→渐亮",
+      "transitionDuration": 2
+    },
+    {
+      "id": "S11",
+      "act": "合",
+      "actIndex": 4,
+      "duration": 3,
+      "timeRange": "48-51s",
+      "timeRangeAbsolute": "48-51",
+      "type": "行动号召",
+      "description": "立即行动，白骨精不容错过",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空"
+      ],
+      "emotionStart": "好奇",
+      "emotionEnd": "好奇",
+      "tension": 20,
+      "camera": "快速剪辑,节奏紧迫",
+      "handoff": "紧迫感定格,CTA明确",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S12",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S12",
+      "act": "合",
+      "actIndex": 4,
+      "duration": 4,
+      "timeRange": "51-55s",
+      "timeRangeAbsolute": "51-55",
+      "type": "品牌定格",
+      "description": "孙悟空定格，品牌印记强化",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "兴趣",
+      "tension": 38,
+      "camera": "产品正面特写,Logo清晰",
+      "handoff": "Logo定格,记忆锚点",
+      "handoffType": "定格",
+      "notes": "",
+      "transitionTo": "S13",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S13",
+      "act": "合",
+      "actIndex": 4,
+      "duration": 3,
+      "timeRange": "55-58s",
+      "timeRangeAbsolute": "55-58",
+      "type": "记忆锚点",
+      "description": "白骨精记忆锚点植入",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空"
+      ],
+      "emotionStart": "兴趣",
+      "emotionEnd": "信服",
+      "tension": 55,
+      "camera": "标志性画面定格",
+      "handoff": "标志性定格,洗脑感",
+      "handoffType": "动作冻结",
+      "notes": "",
+      "transitionTo": "S14",
+      "transitionType": "硬切",
+      "transitionDuration": 0.5
+    },
+    {
+      "id": "S14",
+      "act": "合",
+      "actIndex": 4,
+      "duration": 2,
+      "timeRange": "58-60s",
+      "timeRangeAbsolute": "58-60",
+      "type": "结尾冲击",
+      "description": "白骨精收尾，震撼留存",
+      "scene": "花果山",
+      "characters": [
+        "孙悟空",
+        "唐僧"
+      ],
+      "emotionStart": "信服",
+      "emotionEnd": "信服",
+      "tension": 73,
+      "camera": "意外角度,反转构图",
+      "handoff": "反转定格,加深印象",
+      "handoffType": "动作冻结",
+      "notes": ""
+    }
+  ],
+  "emotionCurve": [
+    {
+      "time": 0,
+      "tension": 20
+    },
+    {
+      "time": 4,
+      "tension": 38
+    },
+    {
+      "time": 9,
+      "tension": 55
+    },
+    {
+      "time": 15,
+      "tension": 73
+    },
+    {
+      "time": 18,
+      "tension": 20
+    },
+    {
+      "time": 24,
+      "tension": 43
+    },
+    {
+      "time": 28,
+      "tension": 67
+    },
+    {
+      "time": 33,
+      "tension": 20
+    },
+    {
+      "time": 37,
+      "tension": 43
+    },
+    {
+      "time": 44,
+      "tension": 67
+    },
+    {
+      "time": 48,
+      "tension": 20
+    },
+    {
+      "time": 51,
+      "tension": 38
+    },
+    {
+      "time": 55,
+      "tension": 55
+    },
+    {
+      "time": 58,
+      "tension": 73
+    },
+    {
+      "time": 60,
+      "tension": 20
+    }
+  ],
+  "characterTimeline": {
+    "C01-孙悟空": {
+      "firstAppears": "S01",
+      "lastAppears": "S14",
+      "totalShots": 14,
+      "absentShots": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "keyMoments": [
+        "S04-产品亮相",
+        "S14-结尾冲击"
+      ]
+    },
+    "C02-唐僧": {
+      "firstAppears": "S03",
+      "lastAppears": "S14",
+      "totalShots": 10,
+      "absentShots": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "keyMoments": [
+        "S04-产品亮相",
+        "S14-结尾冲击"
+      ]
+    },
+    "C03-白骨精": {
+      "firstAppears": "S08",
+      "lastAppears": "S10",
+      "totalShots": 3,
+      "absentShots": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "keyMoments": []
+    }
+  }
+}

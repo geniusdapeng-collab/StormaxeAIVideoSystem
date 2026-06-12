@@ -1,0 +1,40 @@
+{
+  "id": "hundun",
+  "name": "混沌",
+  "nameEn": "Hundun",
+  "category": "四大凶兽",
+  "no": 8,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "状如黄囊，赤如丹火，六足四翼，浑敦无面目",
+    "body": "整体形状像个巨大的黄色口袋，直径约有数丈，全身赤红色如同凝固的丹火",
+    "head": "完全没有面目——没有眼睛、鼻子、嘴巴、耳朵，面部只是一片光滑的赤红色皮肤",
+    "eyes": "无目，却能 mysteriously 给人一种它在看着你的错觉",
+    "skin": "炽烈的赤红色，如同一团凝固的丹火，在黑暗中散发着温暖而诡异的红光",
+    "special": "没有五官，却懂得歌舞——歌声从身体内部发出，舞蹈是六足四翼的协调运动"
+  },
+  "abilities": [
+    "识歌舞",
+    "混沌之力",
+    "善恶颠倒",
+    "无形之体",
+    "时空穿梭",
+    "虚空无为"
+  ],
+  "habitat": {
+    "location": "Nirath星球核心区域天山空洞",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "巨型（百米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

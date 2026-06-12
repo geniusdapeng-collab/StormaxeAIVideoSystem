@@ -1,0 +1,207 @@
+{
+  "_description": "60秒感官叙事引擎 — 软性配置模板 (v2.0-Peng)",
+  "_note": "此文件为软性配置，不改动任何技术架构或数据字段",
+  "version": "v2.0-Peng",
+  "templates": {
+    "60s-sensory-narrative": {
+      "timeBudget": 60,
+      "actBreaks": [0, 12, 40, 60],
+      "beatsPerAct": {
+        "act1": 3,
+        "act2": 5,
+        "act3": 3
+      },
+      "silenceBudget": 8,
+      "diamondLinesMax": 3,
+      "humanLinesIdeal": 0,
+      "emotionalArc": "抵抗→好奇→震颤→退缩→沦陷→转变→余震",
+      "perspectiveMode": "beast-first-person-sensory",
+      "coreImageryRule": "一个核心意象在最后10秒静默绽放，承担角色弧光+主题点题+情感余韵",
+      "beatDefinitions": {
+        "act1": {
+          "name": "入侵",
+          "timeRange": "0-12秒",
+          "function": "感知钩子",
+          "beats": [
+            {
+              "id": "B1-1",
+              "name": "感知炸弹",
+              "time": "0-3秒",
+              "function": "一个强烈的感官印象，立刻建立异兽存在感",
+              "emotionalValue": "↑↑↑",
+              "sensoryAnchor": "主要感官",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B1-2",
+              "name": "世界规则",
+              "time": "3-8秒",
+              "function": "展示异兽如何感知世界（而非解释）",
+              "emotionalValue": "→",
+              "sensoryAnchor": "主要感官",
+              "dialogueQuota": "0或1"
+            },
+            {
+              "id": "B1-3",
+              "name": "入侵信号",
+              "time": "8-12秒",
+              "function": "异常闯入异兽感知系统，打破平衡",
+              "emotionalValue": "↑",
+              "sensoryAnchor": "超敏区",
+              "dialogueQuota": 0
+            }
+          ]
+        },
+        "act2": {
+          "name": "震颤",
+          "timeRange": "12-40秒",
+          "function": "情绪熔炉",
+          "beats": [
+            {
+              "id": "B2-1",
+              "name": "抵抗",
+              "time": "12-16秒",
+              "function": "维持现状，战意本能反应",
+              "emotionalValue": "↓↓",
+              "sensoryAnchor": "主要感官",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B2-2",
+              "name": "好奇",
+              "time": "16-20秒",
+              "function": "感知异常，发现不同",
+              "emotionalValue": "↑",
+              "sensoryAnchor": "次要感官",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B2-3",
+              "name": "震颤",
+              "time": "20-26秒",
+              "function": "情绪被触动，Need开始浮现",
+              "emotionalValue": "↑↑",
+              "sensoryAnchor": "超敏区",
+              "dialogueQuota": "0或1"
+            },
+            {
+              "id": "B2-4",
+              "name": "退缩",
+              "time": "26-32秒",
+              "function": "恐惧改变，内在冲突",
+              "emotionalValue": "↓",
+              "sensoryAnchor": "主要感官",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B2-5",
+              "name": "沦陷",
+              "time": "32-40秒",
+              "function": "Need完全浮出水面，钻石台词出现",
+              "emotionalValue": "↑↑↑",
+              "sensoryAnchor": "超敏区",
+              "dialogueQuota": "0或1（钻石台词）"
+            }
+          ]
+        },
+        "act3": {
+          "name": "蜕变",
+          "timeRange": "40-60秒",
+          "function": "意志余震",
+          "beats": [
+            {
+              "id": "B3-1",
+              "name": "转变",
+              "time": "40-46秒",
+              "function": "异兽完成心理转变，允许外物进入",
+              "emotionalValue": "→→",
+              "sensoryAnchor": "混合感知",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B3-2",
+              "name": "意志传递",
+              "time": "46-52秒",
+              "function": "核心意象绽放，角色弧光完成",
+              "emotionalValue": "↑↑↑↑",
+              "sensoryAnchor": "核心意象",
+              "dialogueQuota": 0
+            },
+            {
+              "id": "B3-3",
+              "name": "余震",
+              "time": "52-60秒",
+              "function": "静默高潮，情感余韵",
+              "emotionalValue": "→→→",
+              "sensoryAnchor": "静默",
+              "dialogueQuota": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "diamondLineRules": {
+    "maxCount": 3,
+    "standards": [
+      "多层含义：表面说A，暗里说B，情感里是C",
+      "不可替代：删掉这句，整个故事坍塌",
+      "声音签名：只有这个异兽在这种时刻会说这句话"
+    ],
+    "allocation": {
+      "act1": {
+        "quota": "可选",
+        "maxChars": 15,
+        "function": "世界观暗示"
+      },
+      "act2": {
+        "quota": "最多2句",
+        "maxChars": 10,
+        "function": "情感转折催化剂"
+      },
+      "act3": {
+        "quota": "最多1句",
+        "maxChars": 8,
+        "function": "余震引信，或零台词"
+      }
+    }
+  },
+  "silenceRules": {
+    "lastSegmentMinSeconds": 8,
+    "functions": [
+      "情感放大器：静默中，观众的心跳填补声音空缺",
+      "意义发生器：没有台词强制解释，观众自己创造意义",
+      "余韵容器：故事结束后，静默在观众心中继续"
+    ]
+  },
+  "coreImageryRules": {
+    "definition": "一个意象在最后10秒静默绽放，承担角色弧光+主题点题+情感余韵",
+    "requirements": [
+      "前50秒必须预埋线索（种子）",
+      "最后10秒静默绽放（开花）",
+      "功能三重：角色弧光完成 + 主题点题 + 情感余韵"
+    ],
+    "prePlantingChecklist": [
+      "第一幕是否有种子植入？",
+      "第二幕是否有线索强化？",
+      "第三幕是否有静默绽放？"
+    ]
+  },
+  "sensoryNarrativePrinciples": [
+    {
+      "name": "感知层",
+      "rule": "建立异化世界观——异兽感知到的世界是完全不同的宇宙",
+      "example": "不是'一个孩子走进峡谷'，而是'一个频率穿透地脉，轻得像谎言，却真实得像记忆'"
+    },
+    {
+      "name": "情绪层",
+      "rule": "展示而非告知——情绪 = 身体部位的非正常现象 + 异兽特有的感知语言",
+      "example": "不是'我很孤独'，而是'战魂的回声在峡谷中 bounced back，没有人接住'"
+    },
+    {
+      "name": "意志层",
+      "rule": "意象即台词——一个核心意象在最后10秒出现，承担所有叙事功能",
+      "example": "刑天的核心意象：火种被另一只手托住"
+    }
+  ]
+}

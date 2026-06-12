@@ -1,0 +1,148 @@
+{
+  "_backup_meta": {
+    "created_at": "2026-04-15T16:32:02.848Z"
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "bailian/qwen3.6-plus"
+      },
+      "imageModel": {
+        "primary": "miaoda/miaoda-auto-multimodal",
+        "fallbacks": []
+      },
+      "imageGenerationModel": {
+        "primary": "miaoda/miaoda-image-gen"
+      },
+      "models": {
+        "miaoda/miaoda-model-auto": {
+          "alias": "Miaoda Auto"
+        },
+        "miaoda/miaoda-auto-multimodal": {
+          "alias": "Miaoda Multimodal"
+        },
+        "miaoda/miaoda-model-flash": {
+          "alias": "Miaoda Flash"
+        },
+        "miaoda/glm-5": {
+          "alias": "GLM-5.1"
+        },
+        "miaoda/doubao-seed-2.0-pro": {
+          "alias": "豆包 Seed 2.0 Pro"
+        },
+        "miaoda/qwen-3.6-plus": {
+          "alias": "Qwen 3.6"
+        },
+        "miaoda/minimax-m2.7": {
+          "alias": "MiniMax M2.7"
+        }
+      },
+      "workspace": "/home/gem/workspace/agent/workspace",
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokensFloor": 50000
+      },
+      "verboseDefault": "off",
+      "blockStreamingCoalesce": {
+        "minChars": 20,
+        "maxChars": 800,
+        "idleMs": 300
+      },
+      "humanDelay": {
+        "mode": "off"
+      },
+      "heartbeat": {
+        "every": "4h",
+        "activeHours": {
+          "start": "08:00",
+          "end": "22:00"
+        },
+        "model": "miaoda/miaoda-model-flash"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "deny": [
+      "web_fetch",
+      "tts",
+      "agents_list",
+      "feishu_task_task",
+      "feishu_task_tasklist",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_bitable_app_table_view",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node",
+      "feishu_sheet"
+    ],
+    "web": {
+      "search": {
+        "provider": "miaoda"
+      }
+    },
+    "media": {
+      "image": {
+        "models": [
+          {
+            "provider": "miaoda"
+          }
+        ]
+      },
+      "audio": {
+        "models": [
+          {
+            "provider": "miaoda"
+          }
+        ]
+      }
+    },
+    "sessions": {
+      "visibility": "all"
+    }
+  }
+}

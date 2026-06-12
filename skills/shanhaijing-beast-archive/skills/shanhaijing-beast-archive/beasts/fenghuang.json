@@ -1,0 +1,40 @@
+{
+  "id": "fenghuang",
+  "name": "凤凰",
+  "nameEn": "Fenghuang",
+  "category": "百鸟之王",
+  "no": 3,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "五彩而文，鸡头蛇颈，燕颌龟背",
+    "body": "体型比普通雄鸡大数倍，身姿挺拔优雅，颈项修长如天鹅，气度雍容华贵",
+    "head": "鸡头，头顶翎羽呈炽烈朱红色，如同一顶燃烧的皇冠",
+    "eyes": "深邃明亮，蕴含王者之气",
+    "skin": "五彩羽毛：头顶朱红、背羽金黄、翅膀翠绿、胸部玉白、尾羽彩虹渐变",
+    "special": "尾羽修长飘逸，呈现彩虹渐变色彩，每根尾羽末端有eye-shaped眼状斑纹"
+  },
+  "abilities": [
+    "预示太平",
+    "自歌自舞",
+    "五德兼备",
+    "翱翔四海",
+    "浴火涅槃",
+    "预知吉凶"
+  ],
+  "habitat": {
+    "location": "Nirath星球赤道丹穴山脉",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "大型（十米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

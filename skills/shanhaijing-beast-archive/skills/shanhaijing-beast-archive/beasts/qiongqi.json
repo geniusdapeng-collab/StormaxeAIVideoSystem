@@ -1,0 +1,40 @@
+{
+  "id": "qiongqi",
+  "name": "穷奇",
+  "nameEn": "Qiongqi",
+  "category": "四大凶兽",
+  "no": 7,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "状如虎，有翼，食人从头始，善恶颠倒",
+    "body": "大小如牛犊，外貌如同凶猛斑纹猛虎，浑身皮毛深灰与黑色相间条纹",
+    "head": "外貌像虎，头部硕大，目光凶残",
+    "eyes": "铜铃般的双眼中燃烧着暴虐与疯狂的火焰",
+    "skin": "每一根毛发都坚硬如钢针，刀剑砍上去只会发出金属般的碰撞声",
+    "special": "生有一双巨大的翅膀，翼展可达十数米，翼膜呈半透明暗红色，布满粗大血管"
+  },
+  "abilities": [
+    "飞行",
+    "食人",
+    "知人言语",
+    "善恶颠倒",
+    "蛊惑人心",
+    "驱邪食蛊"
+  ],
+  "habitat": {
+    "location": "Nirath星球西半球邽山裂谷带",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "大型（十米级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

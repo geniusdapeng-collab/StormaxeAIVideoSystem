@@ -1,0 +1,84 @@
+# 领域插件：通用
+plugin_id: default
+name: "通用"
+description: "适用于未匹配到特定领域的通用调研框架"
+version: 1.0.0
+match_keywords: []
+
+dimensions:
+  - id: background
+    name: "背景与概述"
+    weight: 0.15
+    description: "课题背景、定义、发展历程"
+    keywords:
+      core: ["{topic}是什么", "{topic}概述", "{topic} overview"]
+      extended: ["{topic}定义", "{topic}发展历程", "{topic} background"]
+      supplementary: ["{topic}起源", "{topic}演变"]
+
+  - id: market_overview
+    name: "市场概况"
+    weight: 0.15
+    description: "市场规模、增长率、驱动因素"
+    keywords:
+      core: ["{topic}市场规模", "{topic} market size", "{topic}行业规模"]
+      extended: ["{topic}增长率", "{topic}增长趋势", "{topic} forecast"]
+      supplementary: ["{topic}细分市场", "{topic}区域分布"]
+
+  - id: core_analysis
+    name: "核心要素分析"
+    weight: 0.20
+    description: "课题核心要素、关键特征、内在逻辑"
+    keywords:
+      core: ["{topic}核心要素", "{topic}关键特征", "{topic} key features"]
+      extended: ["{topic}内在逻辑", "{topic}运作机制", "{topic} framework"]
+      supplementary: ["{topic}案例分析", "{topic}最佳实践"]
+
+  - id: competitive_landscape
+    name: "竞争格局"
+    weight: 0.15
+    description: "主要参与者、市场份额、竞争态势"
+    keywords:
+      core: ["{topic}竞争格局", "{topic}主要参与者", "{topic}竞争"]
+      extended: ["{topic}市场份额", "{topic}竞品对比", "{topic} vs"]
+      supplementary: ["{topic}新进入者", "{topic}行业集中度"]
+
+  - id: development_trends
+    name: "发展趋势"
+    weight: 0.15
+    description: "未来方向、趋势预测、创新机会"
+    keywords:
+      core: ["{topic}发展趋势", "{topic} trends", "{topic}未来"]
+      extended: ["{topic}预测", "{topic} forecast 2027", "{topic}创新"]
+      supplementary: ["{topic}颠覆性", "{topic}拐点"]
+
+  - id: opportunities_challenges
+    name: "机会与挑战"
+    weight: 0.10
+    description: "机遇、风险、应对策略"
+    keywords:
+      core: ["{topic}机会", "{topic}挑战", "{topic} opportunities challenges"]
+      extended: ["{topic}风险", "{topic}应对策略", "{topic}建议"]
+      supplementary: ["{topic}政策影响", "{topic}外部因素"]
+
+  - id: conclusion
+    name: "结论与建议"
+    weight: 0.10
+    description: "总结、行动建议、下一步"
+    keywords:
+      core: ["{topic}结论", "{topic}总结", "{topic} conclusion"]
+      extended: ["{topic}建议", "{topic} action items", "{topic}下一步"]
+      supplementary: ["{topic}展望", "{topic} final thoughts"]
+
+preferred_sources:
+  - 行业报告
+  - 权威媒体
+  - 学术论文
+  - 官方发布
+  - 知名博客/KOL
+
+chart_suggestions:
+  - "市场规模柱状图"
+  - "趋势折线图"
+  - "竞品对比表"
+  - "SWOT 分析矩阵"
+  - "时间线"

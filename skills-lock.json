@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "byted-ark-seedance-skill": {
+      "source": "skills.volces.com",
+      "sourceType": "well-known",
+      "computedHash": "5141be068410abab2faf7108e9491dfd8a7a7fb535516d209dcbb28e3366630f"
+    }
+  }
+}

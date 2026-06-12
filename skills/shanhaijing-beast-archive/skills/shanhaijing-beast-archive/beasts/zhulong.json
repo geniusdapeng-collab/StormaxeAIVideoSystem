@@ -1,0 +1,40 @@
+{
+  "id": "zhulong",
+  "name": "烛龙",
+  "nameEn": "Zhulong",
+  "category": "创世神祇",
+  "no": 1,
+  "origin": "《山海经》",
+  "appearance": {
+    "summary": "人面蛇身而赤，直目正乘，身长千里",
+    "body": "赤红色蛇身绵延千里，横亘于北方极寒天地之间",
+    "head": "人的面容，眉目深邃，目光如炬",
+    "eyes": "双眼竖直生长，炯炯有神，开合之间决定昼夜交替",
+    "skin": "赤红色鳞片或皮肤，在黑暗中散发灼灼光华，如同永不熄灭的熔岩之火",
+    "special": "口中衔持火精，永恒燃烧的神圣火焰，照亮西北无日之处的幽暗世界"
+  },
+  "abilities": [
+    "掌控昼夜",
+    "主宰四季",
+    "呼风唤雨",
+    "烛照九幽",
+    "化息为风",
+    "千里龙身"
+  ],
+  "habitat": {
+    "location": "Nirath星球北极圈永夜裂谷",
+    "climate": "待定",
+    "features": "待定"
+  },
+  "story": "待定",
+  "symbolism": "待定",
+  "visualStyle": "待定",
+  "cinema": {
+    "scale": "超巨型（千里级）",
+    "recommendedShots": [
+      "medium",
+      "wide"
+    ],
+    "lighting": "自然光",
+    "effects": ""
+  }

@@ -1,0 +1,91 @@
+{
+  "version": "2.5.0",
+  "api": {
+    "base_url": "https://ark.cn-beijing.volces.com",
+    "video_models": [
+      {
+        "name": "doubao-seedance-2.0",
+        "id": "doubao-seedance-2-0-260128",
+        "desc": "标准版，最高画质",
+        "type": "video",
+        "priority": 1,
+        "max_duration": 12,
+        "min_duration": 5,
+        "features": ["character_reference", "last_frame"]
+      },
+      {
+        "name": "doubao-seedance-2.0-fast",
+        "id": "doubao-seedance-2-0-fast-260128",
+        "desc": "快速版，速度优先",
+        "type": "video",
+        "priority": 2,
+        "max_duration": 12,
+        "min_duration": 5
+      },
+      {
+        "name": "doubao-seedance-1.5-pro",
+        "id": "doubao-seedance-1-5-pro-250428",
+        "desc": "低成本版，离线渲染",
+        "type": "video",
+        "priority": 3,
+        "max_duration": 12,
+        "min_duration": 2
+      },
+      {
+        "name": "doubao-seedream-5.0-lite",
+        "id": "doubao-seedream-5.0-lite",
+        "desc": "静态图兜底（视频全不可用时）",
+        "type": "image",
+        "priority": 4
+      }
+    ],
+    "fallback_errors": ["QuotaExceeded", "TooManyRequests", "429", "ModelNotAvailable", "ServiceUnavailable"]
+  },
+  "limits": {
+    "max_prompt_length": 500,
+    "target_prompt_min": 380,
+    "target_prompt_max": 450,
+    "max_concurrent": 1,
+    "max_retries_per_model": 2,
+    "retry_delay_ms": 5000,
+    "api_cooldown_ms": 30000
+  },
+  "pipeline": {
+    "post_production_timeout_ms": 600000,
+    "poll_interval_ms": 2000,
+    "first_appearance_anchor_max_chars": 80
+  },
+  "paths": {
+    "output_structure": {
+      "story_plan": "01-story-plan.json",
+      "shot_list": "02-shot-list.md",
+      "characters": "03-characters",
+      "prompts": "04-prompts",
+      "raw_shots": "05-raw-shots",
+      "dialogue_audio": "06-dialogue-audio",
+      "sound_design": "07-sound"
+    }
+  },
+  "video_types": {
+    "action": {
+      "default_lighting": "dramatic rim light, warm golden backlight",
+      "default_style": "cinematic film tone, 35mm, realistic"
+    },
+    "drama": {
+      "default_lighting": "soft golden hour lighting, gentle shadows",
+      "default_style": "cinematic, warm film tone, 35mm"
+    },
+    "educational": {
+      "default_lighting": "bright even lighting, clean background",
+      "default_style": "realistic, clear, professional"
+    },
+    "commercial": {
+      "default_lighting": "studio lighting, product highlight",
+      "default_style": "commercial photography, polished"
+    },
+    "documentary": {
+      "default_lighting": "natural lighting, available light",
+      "default_style": "documentary, handheld, authentic"
+    }
+  }
+}

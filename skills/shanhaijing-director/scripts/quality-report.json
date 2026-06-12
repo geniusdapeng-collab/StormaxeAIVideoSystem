@@ -1,0 +1,2055 @@
+{
+  "report": {
+    "totalShots": 9,
+    "passedShots": 0,
+    "passRate": "0.0",
+    "averageQuality": "57.5",
+    "totalCriticalMissing": 9,
+    "dimensionCoverage": {
+      "subject_description": {
+        "name": "主体描述",
+        "coverage": "100.0",
+        "presentCount": 9,
+        "totalCount": 9
+      },
+      "character_refs": {
+        "name": "角色定妆照引用",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "camera_control": {
+        "name": "运镜控制",
+        "coverage": "100.0",
+        "presentCount": 9,
+        "totalCount": 9
+      },
+      "visual_style": {
+        "name": "视觉风格",
+        "coverage": "100.0",
+        "presentCount": 9,
+        "totalCount": 9
+      },
+      "lighting": {
+        "name": "光影设置",
+        "coverage": "100.0",
+        "presentCount": 9,
+        "totalCount": 9
+      },
+      "emotion": {
+        "name": "情绪氛围",
+        "coverage": "55.6",
+        "presentCount": 5,
+        "totalCount": 9
+      },
+      "scene_grammar": {
+        "name": "场景专属运镜",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "continuity": {
+        "name": "承接叙事",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "dialogue": {
+        "name": "对白增强",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "negative_prompt": {
+        "name": "负面防护词",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "aspect_ratio": {
+        "name": "宽高比参数",
+        "coverage": "0.0",
+        "presentCount": 0,
+        "totalCount": 9
+      },
+      "style_signature": {
+        "name": "风格签名",
+        "coverage": "100.0",
+        "presentCount": 9,
+        "totalCount": 9
+      }
+    },
+    "stageEffectiveness": {
+      "stage0_Worldview": {
+        "effectiveness": "33.3",
+        "presentCount": 9,
+        "totalCount": 27,
+        "relatedDimensions": [
+          "视觉风格",
+          "负面防护词",
+          "宽高比参数"
+        ]
+      },
+      "stage1_Script": {
+        "effectiveness": "27.8",
+        "presentCount": 5,
+        "totalCount": 18,
+        "relatedDimensions": [
+          "情绪氛围",
+          "对白增强"
+        ]
+      },
+      "stage2_StoryPlanning": {
+        "effectiveness": "77.8",
+        "presentCount": 14,
+        "totalCount": 18,
+        "relatedDimensions": [
+          "主体描述",
+          "情绪氛围"
+        ]
+      },
+      "stage4_CharacterRefs": {
+        "effectiveness": "0.0",
+        "presentCount": 0,
+        "totalCount": 9,
+        "relatedDimensions": [
+          "角色定妆照引用"
+        ]
+      },
+      "stage5_ShotDesign": {
+        "effectiveness": "100.0",
+        "presentCount": 18,
+        "totalCount": 18,
+        "relatedDimensions": [
+          "主体描述",
+          "运镜控制"
+        ]
+      },
+      "stage6_ShotPlanning": {
+        "effectiveness": "0.0",
+        "presentCount": 0,
+        "totalCount": 9,
+        "relatedDimensions": [
+          "承接叙事"
+        ]
+      },
+      "stage7_VisualStyle": {
+        "effectiveness": "75.0",
+        "presentCount": 27,
+        "totalCount": 36,
+        "relatedDimensions": [
+          "视觉风格",
+          "光影设置",
+          "负面防护词",
+          "风格签名"
+        ]
+      },
+      "stage8_Cinematography": {
+        "effectiveness": "50.0",
+        "presentCount": 9,
+        "totalCount": 18,
+        "relatedDimensions": [
+          "运镜控制",
+          "场景专属运镜"
+        ]
+      },
+      "stage9_Render": {
+        "effectiveness": "0.0",
+        "presentCount": 0,
+        "totalCount": 9,
+        "relatedDimensions": [
+          "宽高比参数"
+        ]
+      }
+    },
+    "results": [
+      {
+        "shotId": "01",
+        "promptLength": 493,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": true,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "情绪氛围",
+          "风格签名"
+        ],
+        "score": 4.15,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "61.5"
+      },
+      {
+        "shotId": "02",
+        "promptLength": 480,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": false,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "情绪氛围",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "风格签名"
+        ],
+        "score": 3.5500000000000007,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "52.6"
+      },
+      {
+        "shotId": "03",
+        "promptLength": 493,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": true,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "情绪氛围",
+          "风格签名"
+        ],
+        "score": 4.15,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "61.5"
+      },
+      {
+        "shotId": "04",
+        "promptLength": 493,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": true,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "情绪氛围",
+          "风格签名"
+        ],
+        "score": 4.15,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "61.5"
+      },
+      {
+        "shotId": "05",
+        "promptLength": 479,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": false,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "情绪氛围",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "风格签名"
+        ],
+        "score": 3.5500000000000007,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "52.6"
+      },
+      {
+        "shotId": "06",
+        "promptLength": 470,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": false,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "情绪氛围",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "风格签名"
+        ],
+        "score": 3.5500000000000007,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "52.6"
+      },
+      {
+        "shotId": "07",
+        "promptLength": 493,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": true,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "情绪氛围",
+          "风格签名"
+        ],
+        "score": 4.15,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "61.5"
+      },
+      {
+        "shotId": "08",
+        "promptLength": 480,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": false,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "情绪氛围",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "风格签名"
+        ],
+        "score": 3.5500000000000007,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "52.6"
+      },
+      {
+        "shotId": "09",
+        "promptLength": 493,
+        "dimensions": {
+          "subject_description": {
+            "name": "主体描述",
+            "present": true,
+            "required": true,
+            "weight": 1,
+            "severity": "critical",
+            "sourceStages": [
+              "stage2_StoryPlanning",
+              "stage5_ShotDesign"
+            ]
+          },
+          "character_refs": {
+            "name": "角色定妆照引用",
+            "present": false,
+            "required": true,
+            "weight": 0.9,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          "camera_control": {
+            "name": "运镜控制",
+            "present": true,
+            "required": true,
+            "weight": 0.85,
+            "severity": "critical",
+            "sourceStages": [
+              "stage5_ShotDesign",
+              "stage8_Cinematography"
+            ]
+          },
+          "visual_style": {
+            "name": "视觉风格",
+            "present": true,
+            "required": true,
+            "weight": 0.8,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "lighting": {
+            "name": "光影设置",
+            "present": true,
+            "required": true,
+            "weight": 0.7,
+            "severity": "warning",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          },
+          "emotion": {
+            "name": "情绪氛围",
+            "present": true,
+            "required": false,
+            "weight": 0.6,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script",
+              "stage2_StoryPlanning"
+            ]
+          },
+          "scene_grammar": {
+            "name": "场景专属运镜",
+            "present": false,
+            "required": false,
+            "weight": 0.5,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          "continuity": {
+            "name": "承接叙事",
+            "present": false,
+            "required": false,
+            "weight": 0.4,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          "dialogue": {
+            "name": "对白增强",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          "negative_prompt": {
+            "name": "负面防护词",
+            "present": false,
+            "required": false,
+            "weight": 0.3,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          "aspect_ratio": {
+            "name": "宽高比参数",
+            "present": false,
+            "required": false,
+            "weight": 0.2,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          },
+          "style_signature": {
+            "name": "风格签名",
+            "present": true,
+            "required": false,
+            "weight": 0.2,
+            "severity": "info",
+            "sourceStages": [
+              "stage7_VisualStyle"
+            ]
+          }
+        },
+        "missing": [
+          {
+            "name": "角色定妆照引用",
+            "required": true,
+            "severity": "critical",
+            "sourceStages": [
+              "stage4_CharacterRefs"
+            ]
+          },
+          {
+            "name": "场景专属运镜",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage8_Cinematography"
+            ]
+          },
+          {
+            "name": "承接叙事",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage6_ShotPlanning"
+            ]
+          },
+          {
+            "name": "对白增强",
+            "required": false,
+            "severity": "info",
+            "sourceStages": [
+              "stage1_Script"
+            ]
+          },
+          {
+            "name": "负面防护词",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage7_VisualStyle"
+            ]
+          },
+          {
+            "name": "宽高比参数",
+            "required": false,
+            "severity": "warning",
+            "sourceStages": [
+              "stage0_Worldview",
+              "stage9_Render"
+            ]
+          }
+        ],
+        "present": [
+          "主体描述",
+          "运镜控制",
+          "视觉风格",
+          "光影设置",
+          "情绪氛围",
+          "风格签名"
+        ],
+        "score": 4.15,
+        "maxScore": 6.75,
+        "pass": false,
+        "quality": "61.5"
+      }
+    ]
+  },
+  "fixes": [
+    {
+      "stage": "stage4_CharacterRefs",
+      "priority": "critical",
+      "problem": "角色定妆照引用 覆盖率仅 0.0% — 关键维度大面积缺失",
+      "action": "修复 stage4_CharacterRefs → generateShotPrompt 的字段传递",
+      "relatedDimensions": [
+        "角色定妆照引用"
+      ]
+    },
+    {
+      "stage": "stage0_Worldview",
+      "priority": "high",
+      "problem": "stage0_Worldview 有效性仅 33.3% — 产出未传递到最终prompt",
+      "action": "检查 stage0_Worldview → 输出字段名 → prompt组装链路",
+      "relatedDimensions": [
+        "视觉风格",
+        "负面防护词",
+        "宽高比参数"
+      ]
+    },
+    {
+      "stage": "stage1_Script",
+      "priority": "high",
+      "problem": "stage1_Script 有效性仅 27.8% — 产出未传递到最终prompt",
+      "action": "检查 stage1_Script → 输出字段名 → prompt组装链路",
+      "relatedDimensions": [
+        "情绪氛围",
+        "对白增强"
+      ]
+    },
+    {
+      "stage": "stage4_CharacterRefs",
+      "priority": "high",
+      "problem": "stage4_CharacterRefs 有效性仅 0.0% — 产出未传递到最终prompt",
+      "action": "检查 stage4_CharacterRefs → 输出字段名 → prompt组装链路",
+      "relatedDimensions": [
+        "角色定妆照引用"
+      ]
+    },
+    {
+      "stage": "stage6_ShotPlanning",
+      "priority": "high",
+      "problem": "stage6_ShotPlanning 有效性仅 0.0% — 产出未传递到最终prompt",
+      "action": "检查 stage6_ShotPlanning → 输出字段名 → prompt组装链路",
+      "relatedDimensions": [
+        "承接叙事"
+      ]
+    },
+    {
+      "stage": "stage9_Render",
+      "priority": "high",
+      "problem": "stage9_Render 有效性仅 0.0% — 产出未传递到最终prompt",
+      "action": "检查 stage9_Render → 输出字段名 → prompt组装链路",
+      "relatedDimensions": [
+        "宽高比参数"
+      ]
+    },
+    {
+      "stage": "stage2_StoryPlanning",
+      "priority": "medium",
+      "problem": "stage2_StoryPlanning 有效性 77.8% — 部分产出未传递",
+      "action": "检查 stage2_StoryPlanning 的字段映射，确保所有产出都写入shot对象",
+      "relatedDimensions": [
+        "主体描述",
+        "情绪氛围"
+      ]
+    },
+    {
+      "stage": "stage7_VisualStyle",
+      "priority": "medium",
+      "problem": "stage7_VisualStyle 有效性 75.0% — 部分产出未传递",
+      "action": "检查 stage7_VisualStyle 的字段映射，确保所有产出都写入shot对象",
+      "relatedDimensions": [
+        "视觉风格",
+        "光影设置",
+        "负面防护词",
+        "风格签名"
+      ]
+    },
+    {
+      "stage": "stage8_Cinematography",
+      "priority": "medium",
+      "problem": "stage8_Cinematography 有效性 50.0% — 部分产出未传递",
+      "action": "检查 stage8_Cinematography 的字段映射，确保所有产出都写入shot对象",
+      "relatedDimensions": [
+        "运镜控制",
+        "场景专属运镜"
+      ]
+    }
+  ],
+  "timestamp": "2026-05-24T15:56:11.620Z"

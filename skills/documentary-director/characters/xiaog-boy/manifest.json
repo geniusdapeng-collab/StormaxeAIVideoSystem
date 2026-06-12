@@ -1,0 +1,63 @@
+{
+  "id": "xiaog-boy",
+  "name": "小G",
+  "displayName": "8岁小男孩小G",
+  "role": "child-audience",
+  "styleType": "documentary",
+  "version": "1.0",
+  "description": {
+    "base": "8-year-old East Asian boy, realistic child skin texture with visible pores and subtle natural flush, natural skin tone with healthy warmth",
+    "hair": "short straight black hair with natural texture, slight bed-head imperfection, childlike natural messiness",
+    "eyes": "proportionally sized dark brown child eyes with natural moisture, realistic iris texture, no sparkling or oversized anime eyes",
+    "facialFeatures": "natural round-square child face with subtle asymmetry, realistic child proportions, natural chubby cheeks with natural skin tone not exaggerated rosy",
+    "attire": "traditional Chinese children frog-button top in light blue or white, dark cloth shoes with realistic fabric texture, clean but naturally worn, realistic clothing folds",
+    "expression": "natural child expressions ranging from curious to puzzled to happy, genuine emotional reactions, no exaggerated theatrical or staged poses, no artificial cute poses",
+    "movement": "natural child movement, realistic physics, sitting naturally, standing with child posture, no cartoonish bounce or artificial smoothness"
+  },
+  "refAngles": {
+    "front-full": {
+      "desc": "正面全身，自然站立",
+      "usage": "full body establishing shots"
+    },
+    "front-closeup": {
+      "desc": "正面特写，表情丰富",
+      "usage": "emotional reactions, listening"
+    },
+    "profile-left": {
+      "desc": "左侧Profile",
+      "usage": "watching, side view"
+    },
+    "sitting": {
+      "desc": "坐姿，自然放松",
+      "usage": "sitting on stool, watching"
+    },
+    "standing": {
+      "desc": "站立，自然姿态",
+      "usage": "standing, observing"
+    },
+    "curious": {
+      "desc": "好奇表情特写",
+      "usage": "curious, puzzled moments"
+    }
+  },
+  "shotMapping": {
+    "intro": [
+      "front-full",
+      "front-closeup"
+    ],
+    "listening": [
+      "sitting",
+      "front-closeup"
+    ],
+    "watching": [
+      "standing",
+      "profile-left"
+    ],
+    "reacting": [
+      "front-closeup",
+      "curious"
+    ],
+    "wide": [
+      "front-full"
+    ]
+  }

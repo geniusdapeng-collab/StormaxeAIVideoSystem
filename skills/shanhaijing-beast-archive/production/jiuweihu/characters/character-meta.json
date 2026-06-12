@@ -1,0 +1,78 @@
+{
+  "character": "九尾狐 (Jiuweihu)",
+  "beastId": "jiuweihu",
+  "style": "CG超写实数字人",
+  "resolution": "1024x1024",
+  "format": "PNG",
+  "model": "doubao-seedream-5-0-260128",
+  "generatedAt": "2026-05-23T13:57:26.989Z",
+  "totalShots": 8,
+  "successCount": 8,
+  "failedCount": 0,
+  "shots": [
+    {
+      "id": "01-front-full",
+      "name": "正面全身",
+      "status": "success",
+      "filename": "jiuweihu-01-front-full.png",
+      "size": 3450194,
+      "error": null
+    },
+    {
+      "id": "02-front-half",
+      "name": "正面半身",
+      "status": "success",
+      "filename": "jiuweihu-02-front-half.png",
+      "size": 3962998,
+      "error": null
+    },
+    {
+      "id": "03-side-full",
+      "name": "侧面全身",
+      "status": "success",
+      "filename": "jiuweihu-03-side-full.png",
+      "size": 2758937,
+      "error": null
+    },
+    {
+      "id": "04-back-full",
+      "name": "背面全身",
+      "status": "success",
+      "filename": "jiuweihu-04-back-full.png",
+      "size": 3847379,
+      "error": null
+    },
+    {
+      "id": "05-tail-claw-closeup",
+      "name": "尾巴与爪子特写",
+      "status": "success",
+      "filename": "jiuweihu-05-tail-claw-closeup.png",
+      "size": 4854484,
+      "error": null
+    },
+    {
+      "id": "06-expression",
+      "name": "关键表情",
+      "status": "success",
+      "filename": "jiuweihu-06-expression.png",
+      "size": 6672632,
+      "error": null
+    },
+    {
+      "id": "07-dynamic-pose",
+      "name": "动态姿势",
+      "status": "success",
+      "filename": "jiuweihu-07-dynamic-pose.png",
+      "size": 3649613,
+      "error": null
+    },
+    {
+      "id": "08-special-ability",
+      "name": "特殊能力展示",
+      "status": "success",
+      "filename": "jiuweihu-08-special-ability.png",
+      "size": 4472546,
+      "error": null
+    }
+  ]
+}
