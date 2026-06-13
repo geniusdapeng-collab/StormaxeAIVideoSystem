@@ -454,7 +454,7 @@ function selectGeneralTemplate(config = {}) {
   // 基于内容类型自动选择
   if (contentType) {
     const ct = contentType.toLowerCase();
-    if (ct.includes('edu') || ct.includes('教育') || ct.includes('科普') || ct.includes('health') || ct.includes('健康') || ct.includes('tutorial') || ct.includes('教程')) {
+    if (ct.includes('edu') || ct.includes('教育') || ct.includes('科普') || ct.includes('health') || ct.includes('健康') || ct.includes('medical') || ct.includes('医疗') || ct.includes('tutorial') || ct.includes('教程')) {
       return GENERAL_TITLE_TEMPLATES.clean_typography;
     }
     if (ct.includes('doc') || ct.includes('纪录') || ct.includes('自然') || ct.includes('人文') || ct.includes('travel') || ct.includes('旅行')) {

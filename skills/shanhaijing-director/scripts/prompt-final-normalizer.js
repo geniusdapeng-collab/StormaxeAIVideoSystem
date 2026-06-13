@@ -215,11 +215,36 @@ function extractCharacterRefShort(shot) {
 }
 
 /**
- * 侦测主场角色（简单版）
+ * 侦测主场角色 v2.0-Peng-fix
+ * 🆕 v6.38-Peng-fix: 通用角色识别 — 不再硬编码白泽/小G
+ * 根因: 非山海经内容(教育/科普/医疗)的speaker可能是陈卓/医生/讲师/旁白等通用角色
+ * 旧逻辑只认白泽/小G,导致所有非山海经角色都被fallback为白泽
+ * 修复: 三层优先级 — 1)shot.dialogues显式speaker 2)storyPlan.characters 3)内容类型推断
  */
 function detectDominantRole(shot, storyPlan) {
   const text = `${safeString(shot?.Action)} ${safeString(shot?.Scene)} ${safeString(shot?.description)}`.toLowerCase();
 
+  // Layer 1: 从 shot.dialogues 显式 speaker 提取
+  const dialogues = shot?.dialogues || shot?.Dialogue || shot?.dialogue || [];
+  const dialogueArr = Array.isArray(dialogues) ? dialogues : [dialogues];
+  for (const d of dialogueArr) {
+    const speaker = d?.SPEAKER || d?.speaker || d?.character;
+    if (speaker && speaker !== '白泽' && speaker !== '小G') {
+      return speaker; // 显式指定的通用角色名(如陈卓/医生/讲师)
+    }
+  }
+
+  // Layer 2: 从 storyPlan.characters 提取非山海经角色
+  const chars = Array.isArray(storyPlan?.characters)
+    ? storyPlan.characters
+    : Object.values(storyPlan?.characters || {});
+  const generalChar = chars.find(c => {
+    const name = c?.name || '';
+    return name && name !== '白泽' && name !== '小G' && name !== 'baize' && name !== 'xiaoG';
+  });
+  if (generalChar?.name) return generalChar.name;
+
+  // Layer 3: 山海经角色识别(保留原有逻辑作为fallback)
   const baizeKw = ['白泽', 'baize', '竖眼', '三尾', '神兽'];
   const xiaogKw = ['小g', 'xiaog', '少年', '小男孩', '男孩'];
 
@@ -257,8 +282,14 @@ function extractDialogueFromShot(shot, storyPlan) {
     return `SPEAKER: ${speaker} | TYPE: ${type} | EMOTION: ${emotion} | TEXT: "${text}" | LIP_SYNC: YES`;
   }
 
-  const fallbackSpeaker = detectDominantRole(shot, storyPlan) === 'xiaoG' ? '小G' : '白泽';
-  const fallbackText = fallbackSpeaker === '小G' ? '我在。' : '吾名白泽，通晓万物之情。';
+  const fallbackSpeaker = detectDominantRole(shot, storyPlan);
+  // 🆕 v6.38-Peng-fix: 通用角色fallback台词不再硬编码白泽/小G
+  const fallbackTextMap = {
+    'xiaoG': '我在。',
+    '白泽': '吾名白泽，通晓万物之情。',
+    'baize': '吾名白泽，通晓万物之情。'
+  };
+  const fallbackText = fallbackTextMap[fallbackSpeaker] || '...';
   return `SPEAKER: ${fallbackSpeaker} | TYPE: dialogue | EMOTION: neutral | TEXT: "${fallbackText}" | LIP_SYNC: YES`;
 }
 

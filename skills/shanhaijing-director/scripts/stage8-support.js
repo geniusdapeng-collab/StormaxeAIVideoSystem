@@ -55,10 +55,38 @@ function localCinematography(shot, shotIndex, totalShots) {
   return `${base}${move}${mood}`.trim();
 }
 
+/**
+ * 🆕 v6.38-Peng-fix: 内容类型感知的情绪默认值
+ * 根因: 非山海经内容(教育/科普/医疗)的shot.emotion为空时,默认'neutral'无法约束LLM风格
+ * LLM自由发挥会跑偏到悬疑/惊悚等不匹配风格
+ * 修复: 根据storyPlan.videoType/storyPlan.style推断内容类型,注入匹配的情绪默认值
+ */
+function _detectContentMood(storyPlan) {
+  const videoType = (storyPlan?.videoType || '').toLowerCase();
+  const style = (storyPlan?.style || '').toLowerCase();
+  const combined = `${videoType} ${style}`;
+
+  if (/科普|教育|健康|医学|医疗|知识|讲解|教学|教程|护士|医生|疾病/.test(combined)) {
+    return 'warm, professional, educational, trustworthy, approachable';
+  }
+  if (/纪录|自然|人文|旅行|travel|doc/.test(combined)) {
+    return 'cinematic, authentic, immersive, observational, natural';
+  }
+  if (/科技|创新|tech|startup|创业/.test(combined)) {
+    return 'modern, innovative, dynamic, polished, forward-looking';
+  }
+  if (/品牌|luxury|高端|艺术|art|lifestyle/.test(combined)) {
+    return 'elegant, refined, sophisticated, timeless, premium';
+  }
+  return null; // 无匹配则返回null,由调用方使用原有逻辑
+}
+
 function buildShotContext(shot, storyPlan) {
   const segIdx = storyPlan.segments?.findIndex(s => s.shots?.some(s2 => s2.id === shot.id)) ?? -1;
   const seg = segIdx >= 0 ? storyPlan.segments[segIdx] : null;
-  const mood = shot.emotion || 'neutral';
+  // 🆕 v6.38-Peng-fix: 内容类型感知的情绪默认值
+  const contentMood = _detectContentMood(storyPlan);
+  const mood = shot.emotion || contentMood || 'neutral';
   const type = shot.type || 'normal';
 
   // 🆕 v6.22-Peng-fix17: 片头shot不传完整description给LLM
@@ -86,5 +114,6 @@ module.exports = {
   buildShotCinematographyContext,
   formatLLMCinematography,
   localCinematography,
-  buildShotContext
+  buildShotContext,
+  _detectContentMood  // 🆕 v6.38-Peng-fix: 导出供其他模块使用
 };

@@ -1,9 +1,39 @@
 # LATEST.md — ShanhaiStory Director Pipeline
-**当前版本**: v6.37-Peng
-**发布日期**: 2026-06-12
+**当前版本**: v6.38-Peng-fix
+**发布日期**: 2026-06-13
 **入口文件**: scripts/director-pipeline.js
 
-## 核心变更 (v6.37-Peng)
+## 核心变更 (v6.38-Peng-fix)
+
+### 🔧 通用内容系统级修复（3项根因修复）
+
+**背景**: 横纹肌溶解 E01 项目暴露出非山海经内容（教育/科普/医疗）的三个系统级问题：
+1. S00 片头风格跑偏（山海经史诗 → 需要医用标题卡）
+2. S01-S05 字段缺失 + 悬疑片风格（应为 warm/professional/educational）
+3. S05 speaker 串角色（白泽 → 应为陈卓）
+
+**修复**:
+
+#### Fix 1: 内容类型感知的情绪默认值注入
+- `stage8-support.js`: 新增 `_detectContentMood()` 函数，根据 storyPlan.videoType/style 推断内容类型
+- `director-pipeline.js`: `_normalizeShotInPlace` 接入 contentMood 作为 shot.mood 默认值
+- 教育/科普/医疗 → "warm, professional, educational, trustworthy, approachable"
+- 纪录片 → "cinematic, authentic, immersive, observational, natural"
+- 科技 → "modern, innovative, dynamic, polished, forward-looking"
+- 品牌 → "elegant, refined, sophisticated, timeless, premium"
+
+#### Fix 2: 通用角色识别 — detectDominantRole() 不再硬编码白泽/小G
+- `prompt-final-normalizer.js`: 三层优先级角色识别
+  - L1: shot.dialogues 显式 speaker
+  - L2: storyPlan.characters 非山海经角色
+  - L3: 山海经关键词匹配（保留原有逻辑）
+- fallback 台词 Map 不再硬编码，通用角色使用 "..." 占位
+
+#### Fix 3: 通用片头内容类型扩展
+- `opening-title-designer.js`: selectGeneralTemplate 新增 medical/医疗 关键词
+- `director-pipeline.js`: _designGeneralOpeningTitle 新增医疗相关关键词检测
+
+## 历史版本
 
 ### 🎵 背景音效生成器 — 通用化重构 v1.0-Peng
 

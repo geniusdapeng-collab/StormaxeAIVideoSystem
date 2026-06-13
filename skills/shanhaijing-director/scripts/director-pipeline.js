@@ -5836,6 +5836,33 @@ ${prompt.substring(0, 5500)}...
   }
 
   /**
+   * 🆕 v6.38-Peng-fix: 内容类型感知的情绪默认值
+   * 根因: 非山海经内容(教育/科普/医疗)的shot.emotion/mood为空时,LLM自由发挥会跑偏
+   * 修复: 根据storyPlan.videoType/storyPlan.style推断内容类型,返回匹配的情绪默认值
+   */
+  _detectContentMood() {
+    const storyPlan = this.results?.storyPlan;
+    if (!storyPlan) return null;
+    const videoType = (storyPlan.videoType || '').toLowerCase();
+    const style = (storyPlan.style || '').toLowerCase();
+    const combined = `${videoType} ${style}`;
+
+    if (/科普|教育|健康|医学|医疗|知识|讲解|教学|教程|护士|医生|疾病/.test(combined)) {
+      return 'warm, professional, educational, trustworthy, approachable';
+    }
+    if (/纪录|自然|人文|旅行|travel|doc/.test(combined)) {
+      return 'cinematic, authentic, immersive, observational, natural';
+    }
+    if (/科技|创新|tech|startup|创业/.test(combined)) {
+      return 'modern, innovative, dynamic, polished, forward-looking';
+    }
+    if (/品牌|luxury|高端|艺术|art|lifestyle/.test(combined)) {
+      return 'elegant, refined, sophisticated, timeless, premium';
+    }
+    return null;
+  }
+
+  /**
    * 🆕 v6.33-Peng-fix41: shot 统一归一化 (内部字段全部小写)
    */
   _normalizeShotInPlace(shot, idx = 0) {
@@ -5847,7 +5874,12 @@ ${prompt.substring(0, 5500)}...
     shot.character = shot.character || shot.Character || '';
     shot.action = shot.action || shot.Action || '';
     shot.scene = shot.scene || shot.Scene || shot.description || '';
-    shot.mood = shot.mood || shot.Mood || shot.emotion || '';
+    // 🆕 v6.38-Peng-fix: 内容类型感知的情绪默认值
+    // 根因: 非山海经内容(教育/科普/医疗)的shot.mood为空时,后续LLM生成会自由发挥
+    // 导致悬疑/惊悚等不匹配风格
+    // 修复: 根据storyPlan推断内容类型,注入匹配的情绪默认值
+    const contentMood = this._detectContentMood ? this._detectContentMood() : null;
+    shot.mood = shot.mood || shot.Mood || shot.emotion || contentMood || '';
     shot.camera = shot.camera || shot.Camera || '';
     shot.lighting = shot.lighting || shot.Lighting || '';
     shot.dialogue = shot.dialogue || shot.Dialogue || shot.dialogues || [];
@@ -6359,7 +6391,7 @@ async function _designGeneralOpeningTitle(pipeline, storyPlan) {
       typeof pipeline.options.userInput === 'string' ? pipeline.options.userInput : ''
     ].filter(Boolean).join(' ');
     
-    if (/科普|教育|健康|医学|知识|讲解|教学|教程/.test(userInputText)) contentType = 'education';
+    if (/科普|教育|健康|医学|医疗|知识|讲解|教学|教程|护士|医生|疾病|横纹肌|health|medical|science|education/.test(userInputText)) contentType = 'education';
     else if (/纪录|自然|人文|旅行|travel|doc/.test(userInputText)) contentType = 'documentary';
     else if (/科技|创新|tech|startup|创业/.test(userInputText)) contentType = 'tech';
     else if (/品牌|luxury|高端|艺术|art|lifestyle/.test(userInputText)) contentType = 'brand';

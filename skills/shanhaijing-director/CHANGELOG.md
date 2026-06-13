@@ -1,7 +1,28 @@
 # Director Pipeline 版本历史
 
-ShanhaiStory Forge v2.43-Peng | Director Pipeline v6.21-Peng-fix16 (Production)
-大视频系统统一版本号:v2.43-Peng(山海经系列 + 通用视频系列)
+ShanhaiStory Forge v2.44-Peng | Director Pipeline v6.38-Peng-fix (Production)
+大视频系统统一版本号:v2.44-Peng(山海经系列 + 通用视频系列)
+ *
+v6.38-Peng-fix 更新(2026-06-13)- 通用内容系统级修复(3项根因修复)
+- 🔧 Fix 1: 内容类型感知的情绪默认值注入
+  根因: 非山海经内容(教育/科普/医疗)的shot.emotion/mood为空时,LLM自由发挥会跑偏到悬疑/惊悚
+  修复: stage8-support.js 新增 _detectContentMood() — 根据storyPlan.videoType/style推断内容类型
+  教育/科普/医疗 → "warm, professional, educational, trustworthy, approachable"
+  纪录片 → "cinematic, authentic, immersive, observational, natural"
+  科技 → "modern, innovative, dynamic, polished, forward-looking"
+  品牌 → "elegant, refined, sophisticated, timeless, premium"
+  director-pipeline.js _normalizeShotInPlace 接入 contentMood 作为 shot.mood 默认值
+- 🔧 Fix 2: 通用角色识别 — detectDominantRole() 不再硬编码白泽/小G
+  根因: 非山海经内容的speaker可能是陈卓/医生/讲师等通用角色,旧逻辑只认白泽/小G
+  修复: prompt-final-normalizer.js detectDominantRole() 三层优先级
+  L1: shot.dialogues 显式 speaker → L2: storyPlan.characters 非山海经角色 → L3: 山海经关键词匹配
+  fallback台词Map不再硬编码白泽/小G,通用角色使用"..."占位
+- 🔧 Fix 3: 通用片头内容类型扩展
+  opening-title-designer.js selectGeneralTemplate 新增 medical/医疗 关键词匹配
+  director-pipeline.js _designGeneralOpeningTitle 新增 医疗/横纹肌/护士/医生 关键词检测
+  确保医疗健康类内容自动路由到 clean_typography 模板(干净排版+专业氛围)
+- 📝 影响范围: stage8-support.js, prompt-final-normalizer.js, director-pipeline.js, opening-title-designer.js
+- ✅ 语法检查: 4/4 文件通过
  *
 v6.20-Peng 更新(2026-06-06)- 5项功能增强Phase9-13全量落地
 - 🆕 Phase 9: 导演审片6问决策树 — 替代旧5维评分,任何1问不通过立即阻断
