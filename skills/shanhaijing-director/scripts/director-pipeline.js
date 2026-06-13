@@ -545,6 +545,13 @@ function getScriptwriterOptimizer() {
   return _scriptwriterOptimizer;
 }
 
+// ============ 好莱坞技能库懒加载 (Stage 8.4 按需) ============
+let _cinematographySkillRouter;
+function getCinematographySkillRouter() {
+  if (!_cinematographySkillRouter) _cinematographySkillRouter = require('./cinematography-skill-router');
+  return _cinematographySkillRouter;
+}
+
 // ==================== v6.27-Peng Prompt Final Normalizer ====================
 const {
   FINAL_PROMPT_FIELDS,
@@ -1097,6 +1104,11 @@ class DirectorPipeline {
         // 修复: 在stage8_2之后、compliance check之前调用
         console.log(`\n🔧 Stage 8.3: 质量校准 (v6.17-Peng 智能注入)`);
         await this._stage83_QualityCalibration();
+
+        // 🆕 v6.35-Peng: Stage 8.4 好莱坞技能路由注入
+        // 将 cinematography-skill-router.js 的149个镜头级专项技能注入每个shot的_generatedPrompt
+        console.log(`\n🎬 Stage 8.4: 好莱坞技能路由注入 (v6.35-Peng)`);
+        await this._stage84_CinematographySkillInjection();
 
         // 🆕 v2.4-Peng: Stage 8.3 - 最终Prompt合规检查(利用率硬性闸门)
         console.log(`\n🛡️ 阶段8.3/10: 最终Prompt合规检查 (v4.1 长度健康区间)`);
@@ -4102,6 +4114,94 @@ ${prompt.substring(0, 5500)}...
       finalNormalizeResults,
       timestamp: new Date().toISOString()
     };
+  }
+
+  /**
+   * 🆕 v6.35-Peng: Stage 8.4 好莱坞技能路由注入
+   * 将 cinematography-skill-router.js 的149个镜头级专项技能注入每个shot的_generatedPrompt
+   * 
+   * 工作流:
+   * 1. 收集所有shots
+   * 2. 对每个shot调用 routeAndEnhance() 匹配技能
+   * 3. 将技能增强关键词追加到 _generatedPrompt 末尾
+   * 4. 输出注入报告
+   * 
+   * 降级策略: 技能路由失败不阻断Pipeline, 继续使用原prompt
+   */
+  async _stage84_CinematographySkillInjection() {
+    const storyPlan = this.results.storyPlan;
+    if (!storyPlan) {
+      console.log(`  ⚠️ 无story-plan,跳过技能路由注入`);
+      return;
+    }
+
+    const allShots = [];
+    for (const segment of storyPlan.segments || []) {
+      allShots.push(...(segment.shots || []));
+    }
+
+    if (allShots.length === 0) {
+      console.log(`  ⚠️ 无shots,跳过技能路由注入`);
+      return;
+    }
+
+    try {
+      const { routeAndEnhance } = getCinematographySkillRouter();
+      
+      // 对每个shot调用技能路由
+      const { enhancedShots, report } = routeAndEnhance(allShots, {
+        minScore: 5,
+        maxSkillsPerShot: 2  // 每个镜头最多匹配2个技能,避免prompt过长
+      });
+
+      // 将增强后的_generatedPrompt写回shot
+      for (let i = 0; i < enhancedShots.length; i++) {
+        const enhanced = enhancedShots[i];
+        const original = allShots[i];
+        
+        if (enhanced._generatedPrompt && enhanced._generatedPrompt !== original._generatedPrompt) {
+          original._generatedPrompt = enhanced._generatedPrompt;
+          original._promptLength = this._countChars(enhanced._generatedPrompt);
+        }
+        
+        // 保留技能元数据供溯源
+        if (enhanced._appliedSkills) {
+          original._appliedSkills = enhanced._appliedSkills;
+        }
+      }
+
+      // 输出注入报告
+      console.log(`  ✅ 技能路由注入完成:`);
+      console.log(`     总镜头: ${report.totalShots}`);
+      console.log(`     增强镜头: ${report.enhancedShots}`);
+      console.log(`     跳过镜头: ${report.skippedShots}`);
+      console.log(`     使用技能: ${report.skillsUsed.length}个`);
+      
+      if (report.skillsUsed.length > 0) {
+        const sampleSkills = report.skillsUsed.slice(0, 5);
+        console.log(`     技能示例: ${sampleSkills.join(', ')}`);
+        if (report.skillsUsed.length > 5) {
+          console.log(`     ...及其他 ${report.skillsUsed.length - 5} 个技能`);
+        }
+      }
+
+      // 记录审计日志
+      this._writeAuditLog('stage8_4_skill_injection', {
+        status: 'success',
+        enhancedShots: report.enhancedShots,
+        skippedShots: report.skippedShots,
+        skillsUsed: report.skillsUsed.length,
+        sampleSkills: report.skillsUsed.slice(0, 10)
+      });
+
+    } catch (e) {
+      // 降级: 技能路由失败不阻断Pipeline
+      console.log(`  ⚠️ 技能路由注入失败(降级): ${e.message}`);
+      this._writeAuditLog('stage8_4_skill_injection', {
+        status: 'degraded',
+        error: e.message
+      });
+    }
   }
 
   /**
