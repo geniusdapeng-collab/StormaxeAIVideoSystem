@@ -368,7 +368,7 @@ async function buildNormalShotFields(shot, storyPlan, options = {}) {
 function _buildTitleOverlay(shot, storyPlan, titleConfig) {
   const overlay = shot?._titleOverlay || {};
   const mainTitle = overlay.mainTitle || storyPlan?.title || 'Untitled';
-  const subTitle = overlay.subTitle || '山海经异兽系列 · Nirath星球探险';
+  const subTitle = overlay.subTitle || storyPlan?.subtitle || 'Episode 1';
   const producer = overlay.producer || 'by Genius';
 
   // 标题动效: 从 _titleEffect 提取

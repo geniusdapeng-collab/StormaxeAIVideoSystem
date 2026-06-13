@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 /**
- * ShanhaiStory Forge v2.43-Peng | Director Pipeline v6.28-Peng (Production)
- * 大视频系统统一版本号:v2.43-Peng(山海经系列 + 通用视频系列)
+ * ShanhaiStory Forge v2.44-Peng | Director Pipeline v6.38-Peng (Production)
+ * 大视频系统统一版本号:v2.44-Peng(山海经系列 + 通用视频系列)
  *
- * v6.28-Peng 更新(2026-06-09) - 肾上腺镜头库 + 抖音/TikTok快剪模式
- * - 🆕 肾上腺镜头库:极限运动POV+外部跟拍双视角,支持6种运动(滑雪/翼装/冲浪/跑酷/攀岩/速降)
- * - 🆕 平台预设系统:douyin_short(15-30s)+tiktok_creator(30-60s),CLI参数--platform控制
+ * v6.38-Peng 更新(2026-06-13) - 系统通用性修复：任务路由+模式检测+片头兼容
+ * - 🔧 task-type-router.js: LLM智能路由（主通道）+ 关键词降级（兜底），防止科普内容误判为山海经
+ * - 🔧 shanhaijingMode检测: 反误判规则——科普/教育内容不激活山海经模式
+ * - 🔧 片头设计路由: 非山海经模式自动走通用片头模板（教育科普/纪录片/品牌等）
+ * - 🔧 S00标题注入: 通用模式使用英文标题，硬编码"Rhabdomyolysis"改为动态提取
+ * - 🔧 默认任务类型: shanhaijing→education（更通用的默认值）
+ * - 🔧 教育类关键词权重: 1.5x（高于山海经的1x），防止科普内容被误判
  *
  * v6.20-Peng 更新(2026-06-06)- 5项功能增强Phase9-13全量落地
  * - 🆕 Phase 9: 导演审片6问决策树 — 替代旧5维评分,任何1问不通过立即阻断
@@ -572,7 +576,7 @@ const {
 } = require('./platform-preset');
 
 // ============ 配置 ============
-const PIPELINE_VERSION = 'v6.37-Peng';
+const PIPELINE_VERSION = 'v6.38-Peng';
 const STAGES = [
   'prd-generation',
   'requirement-alignment',
@@ -700,7 +704,9 @@ class DirectorPipeline {
     }
 
     // 🆕 v4.3-Peng-C: 山海经模式开关检测
-    // 检测方式:世界观=shanhaijing 或 任务类型=山海经 或 风格档案=shanhaijing
+    // 🆕 v6.37-Peng-fix: 防止科普/教育内容被误判为山海经模式
+    // 检测方式: 1)世界观=shanhaijing 2)风格档案=shanhaijing 3)routeConfig明确为shanhaijing
+    // 不再从userInput关键词检测（科普内容可能引用山海经但不等于山海经视频）
     const userInputText = [
       options.userInput?.title,
       options.userInput?.outline,
@@ -708,11 +714,13 @@ class DirectorPipeline {
       typeof options.userInput === 'string' ? options.userInput : ''
     ].filter(Boolean).join(' ');
 
+    // 🆕 v6.37-Peng-fix: 反误判——检查是否为科普/教育内容
+    const isEducationContent = /科普|教育|知识|健康|医学|科学|讲解|教学|教程|护士|医生|横纹肌|疾病|health|medical|science|education/.test(userInputText);
+
     this.shanhaijingMode = (
       this.worldview === 'shanhaijing' ||
-      options.styleProfile === 'shanhaijing' ||
-      /山海经|异兽|神话|洪荒/.test(userInputText)
-    );
+      options.styleProfile === 'shanhaijing'
+    ) && !isEducationContent; // 🆕 科普内容即使worldview=shanhaijing也不激活山海经模式
 
     if (this.shanhaijingMode) {
       console.log(`🐉 山海经模式已激活: 启用Nirath原创世界观专用能力注入`);
@@ -922,7 +930,7 @@ class DirectorPipeline {
       // 🆕 v4.2-Peng: 任务类型自动检测与路由
       // 根据用户输入自动检测任务类型,配置完整链路
       const userQuery = typeof userInput === 'string' ? userInput : (userInput && (userInput.userQuery || userInput.title || JSON.stringify(userInput))) || '';
-      const routeConfig = autoRoute(userQuery);
+      const routeConfig = await autoRoute(userQuery);
 
       console.log(`\n🎯 任务类型自动检测: ${routeConfig.name} ${routeConfig.icon}`);
       console.log(`   检测来源: "${userQuery.substring(0, 80)}${userQuery.length > 80 ? '...' : ''}"`);
@@ -2951,11 +2959,23 @@ ${prompt.substring(0, 5500)}...
         impact: 'full_screen'  // 铺满全屏
       },
       // 🟢 v6.4-Peng-fix: 片头标题文字层注入
-      _titleOverlay: {
-        mainTitle: storyPlan.title || '未命名',
-        subTitle: '山海经异兽系列 · Nirath星球探险',
-        style: 'cinematic_title_card'
-      },
+      // 🆕 v6.37-Peng-fix: 通用模式使用英文标题（合规要求：非Dialogue字段必须全英文）
+      _titleOverlay: (() => {
+        const isShanhaijing = this.shanhaijingMode || this.worldview === 'shanhaijing';
+        if (isShanhaijing) {
+          return {
+            mainTitle: storyPlan.title || 'Untitled',
+            subTitle: storyPlan.subtitle || '山海经异兽系列',
+            style: 'cinematic_title_card'
+          };
+        }
+        // 通用模式：英文标题 + 副标题
+        return {
+          mainTitle: storyPlan.englishTitle || storyPlan.title || 'Untitled',
+          subTitle: storyPlan.englishSubtitle || 'Episode 1',
+          style: 'cinematic_title_card'
+        };
+      })(),
       // 🆕 v3.1-Peng: 声音层描述注入(Seedance同步生成)
       _audioLayer: hasAudioLayer ? {
         beastName: audioLayer.metadata.beastName,
@@ -3999,12 +4019,10 @@ ${prompt.substring(0, 5500)}...
         throw new Error(errorMsg);
       }
 
-      // v6.27-Peng: S00 片头镜头写盘前再次标准化
-      if (isOpeningTitleShot(shot)) {
-        await normalizeShotPromptFields(shot, storyPlan, {
-          openingTitle: this.results.openingTitle || null
-        });
-      }
+      // v6.27-Peng: 所有镜头写盘前标准化(确保TitleOverlay/BackgroundSound等12字段完整)
+      await normalizeShotPromptFields(shot, storyPlan, {
+        openingTitle: isOpeningTitleShot(shot) ? (this.results.openingTitle || null) : null
+      });
 
       // v6.27-Peng: 最终写入的一定是标准化后的 prompt
       const finalPrompt = this.replaceRefImagesFilenames(
@@ -6218,6 +6236,83 @@ function _translatePhasesToEnglish(openingTitle) {
  * 🆕 v6.3-Peng: 开场标题设计 (LLM创意生成)
  * 为第一个镜头设计场景化融入的标题展示(前3秒)
  */
+/**
+ * 🆕 v6.36-Peng: 通用片头标题设计（非山海经系列）
+ * 用于教育科普、纪录片、企业宣传、品牌内容等通用视频
+ * 调用 opening-title-designer.js 的 generateGeneralOpeningTitle
+ */
+async function _designGeneralOpeningTitle(pipeline, storyPlan) {
+  console.log(`  📚 [通用片头] 使用通用模板系统 v4.1-Peng`);
+
+  try {
+    const { generateGeneralOpeningTitle } = require('./opening-title-designer.js');
+
+    const title = storyPlan.title || pipeline.options.userInput?.title || '未命名';
+    const episodeNumber = pipeline.options.userInput?.episodeNumber || '';
+    const subtitle = pipeline.options.userInput?.subtitle || '';
+
+    // 推断内容类型
+    let contentType = 'education';
+    const userInputText = [
+      pipeline.options.userInput?.title,
+      pipeline.options.userInput?.userQuery,
+      typeof pipeline.options.userInput === 'string' ? pipeline.options.userInput : ''
+    ].filter(Boolean).join(' ');
+    
+    if (/科普|教育|健康|医学|知识|讲解|教学|教程/.test(userInputText)) contentType = 'education';
+    else if (/纪录|自然|人文|旅行|travel|doc/.test(userInputText)) contentType = 'documentary';
+    else if (/科技|创新|tech|startup|创业/.test(userInputText)) contentType = 'tech';
+    else if (/品牌|luxury|高端|艺术|art|lifestyle/.test(userInputText)) contentType = 'brand';
+
+    // 构建环境描述
+    const environment = storyPlan.setting || storyPlan.description ||
+      'professional studio environment with clean minimalist aesthetic';
+
+    // 声音层（通用模式：简洁环境音）
+    const audioLayer = {
+      description: 'low ambient room tone (30-60Hz sustained hum), subtle professional atmosphere, volume fades from 0 to 40%',
+      sfx: 'clean professional audio mix, gentle low-end presence, no music'
+    };
+
+    const openingDuration = 5; // 通用片头默认5秒
+
+    const openingTitle = generateGeneralOpeningTitle({
+      title,
+      subtitle,
+      episodeNumber,
+      contentType,
+      environment,
+      duration: openingDuration,
+      audioLayer
+    });
+
+    // 保存结果
+    pipeline.results.openingTitle = openingTitle;
+
+    // 写入文件
+    const fs = require('fs');
+    const path = require('path');
+    const titlePath = path.join(pipeline.productionDir, '03-shots', 'opening-title-design.json');
+    fs.writeFileSync(titlePath, JSON.stringify({
+      ...openingTitle,
+      source: 'general-template',
+      contentType
+    }, null, 2));
+
+    console.log(`  ✅ 通用片头设计完成:`);
+    console.log(`     模板: ${openingTitle.templateName} (${openingTitle.templateNameEn})`);
+    console.log(`     内容类型: ${contentType}`);
+    console.log(`     标题: ${openingTitle.title}`);
+    console.log(`     副标题: ${openingTitle.subtitle}`);
+    console.log(`     时长: ${openingDuration}秒`);
+    console.log(`     文件: ${titlePath}`);
+
+  } catch (error) {
+    console.log(`  ⚠️ 通用片头设计失败: ${error.message}`);
+    pipeline.errors.push({ stage: 'opening-title-design-general', error: error.message });
+  }
+}
+
 async function _designOpeningTitle(pipeline) {
   console.log(`\n🎬 Stage 8.1: 开场标题设计 (LLM创意生成 v6.3-Peng)`);
 
@@ -6227,6 +6322,19 @@ async function _designOpeningTitle(pipeline) {
     return;
   }
   const { storyPlan } = spStatus;
+
+  // 🆕 v6.37-Peng-fix: 通用/非山海经模式路由
+  // 当非山海经模式时，走通用片头模板（教育科普、纪录片、品牌等）
+  const isGeneralMode = (
+    !pipeline.shanhaijingMode &&
+    (pipeline.worldview === 'superreal' || pipeline.worldview === 'nirath')
+  );
+
+  if (isGeneralMode) {
+    console.log(`  📚 通用模式: 使用通用片头模板 (非山海经系列)`);
+    await _designGeneralOpeningTitle(pipeline, storyPlan);
+    return;
+  }
 
   try {
     // 🆕 v6.3-Peng: LLM生成开场标题创意方案

@@ -37,8 +37,9 @@ async function stage8_Cinematography(pipeline) {
     const shot = shots[idx];
     const shotContext = buildShotCinematographyContext(shot, idx, totalShots, storyPlan, shots);
 
-    const result = await llmLayer.llmReason(
-      `你是电影摄影师,为以下镜头生成专业运镜指令。
+    const result = await llmLayer.llmReason({
+      stage: 'cinematography',
+      userPrompt: `你是电影摄影师,为以下镜头生成专业运镜指令。
 
 镜头: ${shotContext}
 
@@ -48,13 +49,9 @@ async function stage8_Cinematography(pipeline) {
 - 氛围:史诗/紧张/宁静/动态/电影感
 - 景别:极远景/远景/全景/中景/近景/特写/大特写
 - 风格:参考: ${shot.type === 'action' ? '动作电影' : shot.type === 'dialogue' ? '剧情片' : '纪录片'}`,
-      {
-        role: 'cinematographer',
-        temperature: 0.4,
-        timeout: 30000,
-        fallback: () => localCinematography(shot, idx, totalShots)
-      }
-    );
+      level: 'medium',
+      fallback: () => localCinematography(shot, idx, totalShots)
+    });
 
     if (result && result.result) {
       const jsonStr = extractBalancedJSON(result.result);

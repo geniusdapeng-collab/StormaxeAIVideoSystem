@@ -244,6 +244,107 @@ const TITLE_TEMPLATES = {
   }
 };
 
+// ========== 通用模板（非Nirath/山海经系列） v4.1-Peng ==========
+// 用于非山海经系列的通用视频片头设计
+// 支持：教育科普、纪录片、企业宣传、品牌内容等
+const GENERAL_TITLE_TEMPLATES = {
+  /**
+   * 通用模板1: 干净排版
+   * 专业干净的标题排版，配合环境光效和微动效
+   * 适合：教育、科普、企业、纪录片
+   */
+  clean_typography: {
+    id: 'clean_typography',
+    name: '干净排版',
+    nameEn: 'Clean Typography',
+    description: '专业干净的标题排版，配合环境光效和微动效，适合教育/科普/企业内容',
+    promptBuilder: (title, subtitle, theme, config = {}) => {
+      const env = config.environment || 'professional studio environment with clean minimalist aesthetic';
+      return {
+        scene: `${env}, soft ambient lighting, professional atmosphere, subtle depth of field on background elements, clean composition with intentional negative space`,
+        title: `The main title "${title}" emerges from center screen with a soft luminous glow — clean sans-serif typography, white text with subtle edge illumination matching the scene's color temperature, fading in from 20% to 100% opacity over 1.5 seconds with a gentle breathing pulse (0.3Hz, ±5% brightness), the typography feels authoritative yet approachable`,
+        subtitle: `The subtitle "${subtitle}" fades in below the main title with a 0.8-second delay, slightly smaller font size, warm white color with subtle outline glow, creating a clear visual hierarchy between title levels`,
+        camera: `Static camera, centered symmetrical composition, subtle slow push-in (2% over duration) for gentle visual engagement, 50mm standard lens, f/4.0 for balanced depth of field`,
+        atmosphere: `Professional, clean, trustworthy, authoritative yet warm, modern broadcast quality`,
+        duration: 5,
+        style: 'Clean typography + subtle light effects + professional motion design'
+      };
+    }
+  },
+
+  /**
+   * 通用模板2: 环境融入
+   * 标题以光影/反射/材质方式自然融入场景环境
+   * 适合：纪录片、自然、人文主题
+   */
+  environmental_integration: {
+    id: 'environmental_integration',
+    name: '环境融入',
+    nameEn: 'Environmental Integration',
+    description: '标题以光影/反射/材质方式自然融入场景环境，适合纪录片/自然/人文主题',
+    promptBuilder: (title, subtitle, theme, config = {}) => {
+      const env = config.environment || 'natural authentic environment with organic textures and natural light';
+      return {
+        scene: `${env}, natural light creating organic shadow patterns across surfaces, environmental textures and materials visible in detail, the space feels lived-in and authentic, no artificial staging`,
+        title: `The title "${title}" appears as if naturally formed by light and shadow within the environment — not overlaid text but an organic part of the scene itself, light rays passing through or reflecting off environmental surfaces to create readable letterforms, the typography feels discovered rather than placed, as if the environment itself is speaking the title`,
+        subtitle: `"${subtitle}" manifests as a subtle environmental detail — perhaps light catching a surface at the perfect angle, or natural texture patterns organically forming the letters, appearing 1 second after the main title, like nature's own footnote`,
+        camera: `Slow establishing shot, camera gently reveals the title within the environment through natural movement, wide to medium shot transition, 35mm lens for environmental context, the camera movement feels observational rather than directed`,
+        atmosphere: `Natural, authentic, discovered, cinematic, immersive, unforced`,
+        duration: 6,
+        style: 'Environmental typography + natural light + documentary realism'
+      };
+    }
+  },
+
+  /**
+   * 通用模板3: 动态图形
+   * 现代动态图形标题动画，配合抽象视觉元素
+   * 适合：科技、创新、年轻化内容
+   */
+  dynamic_motion: {
+    id: 'dynamic_motion',
+    name: '动态图形',
+    nameEn: 'Dynamic Motion',
+    description: '现代动态图形标题动画，配合抽象视觉元素，适合科技/创新/年轻化内容',
+    promptBuilder: (title, subtitle, theme, config = {}) => {
+      const elements = config.motionElements || 'abstract geometric shapes and flowing energy lines';
+      return {
+        scene: `Abstract background with ${elements}, subtle particle effects drifting through space, clean modern aesthetic with depth created through layered motion and parallax, dark or gradient background providing contrast for bright typography`,
+        title: `The title "${title}" animates in with modern kinetic typography — each character or word assembles with smooth staggered motion, slight scale bounce on landing for tactile feel, clean bold sans-serif font, white or bright accent color with subtle glow and motion blur on fast movements`,
+        subtitle: `"${subtitle}" slides in from below with a smooth ease-out motion, appearing 0.6 seconds after the main title animation completes, lighter font weight, subtle transparency creating depth hierarchy`,
+        camera: `Dynamic virtual camera, subtle orbital movement around the typography creating parallax depth, depth of field shifts as abstract elements move through focal plane, 50mm lens with slight wide-angle distortion for immersive feel`,
+        atmosphere: `Modern, dynamic, energetic, innovative, polished, forward-looking`,
+        duration: 5,
+        style: 'Motion graphics + kinetic typography + modern design language'
+      };
+    }
+  },
+
+  /**
+   * 通用模板4: 极简优雅
+   * 极简优雅的标题呈现，强调留白和字体设计
+   * 适合：高端品牌、艺术、生活方式
+   */
+  minimal_elegant: {
+    id: 'minimal_elegant',
+    name: '极简优雅',
+    nameEn: 'Minimal Elegant',
+    description: '极简优雅的标题呈现，强调留白和字体设计，适合高端品牌/艺术/生活方式',
+    promptBuilder: (title, subtitle, theme, config = {}) => {
+      const bg = config.background || 'clean minimal background with subtle tonal gradient';
+      return {
+        scene: `${bg}, generous negative space composing the frame, sophisticated restrained color palette, the composition breathes with intentional emptiness, every element earns its place`,
+        title: `"${title}" appears with elegant restraint — thin to medium weight refined typography, generous letter-spacing for breathing room, fades in slowly over 2 seconds with impeccable timing, the typography itself is the undisputed visual centerpiece with no competing elements, like a whispered statement that commands attention through subtlety`,
+        subtitle: `"${subtitle}" materializes below after a 1.2-second contemplative pause, smaller and lighter in weight, like a quiet afterthought that completes the composition with understated confidence`,
+        camera: `Static camera, perfectly centered composition, absolutely no camera movement — the stillness is intentional and powerful, 85mm portrait lens for compressed elegant perspective`,
+        atmosphere: `Elegant, refined, sophisticated, calm, timeless, quietly confident`,
+        duration: 5,
+        style: 'Minimal design + elegant typography + intentional negative space'
+      };
+    }
+  }
+};
+
 /**
  * 副标题（出品人）样式配置
  * v1.1-Peng: 全面Nirath化，移除所有中国风元素
@@ -337,6 +438,134 @@ function selectTitleTemplate(theme, beastId, userPreference = null) {
     case 'scifi': return TITLE_TEMPLATES.crystal_formation;
     default: return TITLE_TEMPLATES.mountain_carving; // 默认史诗山崖
   }
+}
+
+/**
+ * 通用模板选择器 v4.1-Peng
+ * 根据内容类型自动选择最佳通用模板
+ */
+function selectGeneralTemplate(config = {}) {
+  const { theme, contentType, userPreference } = config;
+  
+  if (userPreference && GENERAL_TITLE_TEMPLATES[userPreference]) {
+    return GENERAL_TITLE_TEMPLATES[userPreference];
+  }
+  
+  // 基于内容类型自动选择
+  if (contentType) {
+    const ct = contentType.toLowerCase();
+    if (ct.includes('edu') || ct.includes('教育') || ct.includes('科普') || ct.includes('health') || ct.includes('健康') || ct.includes('tutorial') || ct.includes('教程')) {
+      return GENERAL_TITLE_TEMPLATES.clean_typography;
+    }
+    if (ct.includes('doc') || ct.includes('纪录') || ct.includes('自然') || ct.includes('人文') || ct.includes('travel') || ct.includes('旅行')) {
+      return GENERAL_TITLE_TEMPLATES.environmental_integration;
+    }
+    if (ct.includes('tech') || ct.includes('科技') || ct.includes('创新') || ct.includes('startup') || ct.includes('创业') || ct.includes('gaming') || ct.includes('游戏')) {
+      return GENERAL_TITLE_TEMPLATES.dynamic_motion;
+    }
+    if (ct.includes('brand') || ct.includes('品牌') || ct.includes('luxury') || ct.includes('高端') || ct.includes('art') || ct.includes('艺术') || ct.includes('lifestyle') || ct.includes('生活')) {
+      return GENERAL_TITLE_TEMPLATES.minimal_elegant;
+    }
+  }
+  
+  // 默认：干净排版（最通用）
+  return GENERAL_TITLE_TEMPLATES.clean_typography;
+}
+
+/**
+ * 通用开场标题生成器 v4.1-Peng
+ * 用于非山海经/Nirath系列的通用视频片头设计
+ * 支持：教育科普、纪录片、企业宣传、品牌内容等
+ */
+function generateGeneralOpeningTitle(config) {
+  const {
+    title,
+    subtitle = '',
+    episodeNumber,
+    theme,
+    contentType = 'education',
+    templateId,
+    environment,
+    motionElements,
+    background,
+    duration = 5,
+    audioLayer
+  } = config;
+
+  const fullTitle = episodeNumber ? `${episodeNumber} ${title}` : title;
+  const template = selectGeneralTemplate({ theme, contentType, userPreference: templateId });
+  const scene = template.promptBuilder(fullTitle, subtitle, theme, { environment, motionElements, background });
+  
+  if (config.duration && config.duration > 0) {
+    scene.duration = config.duration;
+  }
+  
+  const prompt = _assembleGeneralPrompt(scene, template, config);
+  
+  // 声音层注入
+  let finalPrompt = prompt;
+  if (audioLayer) {
+    const soundInjection = _generateGeneralSoundInjection(audioLayer);
+    if (soundInjection) {
+      finalPrompt = `${prompt}. ${soundInjection}`;
+    }
+  }
+  
+  return {
+    title: fullTitle,
+    subtitle,
+    episodeNumber,
+    templateId: template.id,
+    templateName: template.name,
+    templateNameEn: template.nameEn,
+    scene: scene.scene,
+    titleDisplay: scene.title,
+    subtitleDisplay: scene.subtitle,
+    camera: scene.camera,
+    atmosphere: scene.atmosphere,
+    duration: scene.duration,
+    style: scene.style,
+    seedancePrompt: finalPrompt,
+    generatedAt: new Date().toISOString(),
+    version: 'v4.1-Peng-general'
+  };
+}
+
+/**
+ * 组装通用Prompt v4.1-Peng
+ */
+function _assembleGeneralPrompt(scene, template, config) {
+  const { title, subtitle } = config;
+  const fullTitle = config.episodeNumber ? `${config.episodeNumber} ${title}` : title;
+  
+  const layers = [
+    `[TITLE DISPLAY] The screen must clearly display the main title "${fullTitle}"${subtitle ? ` and subtitle "${subtitle}"` : ''} in professional cinematic typography`,
+    scene.scene,
+    scene.title,
+    subtitle ? scene.subtitle : '',
+    scene.camera,
+    scene.atmosphere,
+    scene.style,
+    'CG hyper-realistic digital environment, cinematic composition, professional broadcast quality, 85mm lens'
+  ];
+  
+  return layers.filter(Boolean).join('. ');
+}
+
+/**
+ * 通用声音层注入 v4.1-Peng
+ */
+function _generateGeneralSoundInjection(audioLayer) {
+  if (!audioLayer) return '';
+  const parts = [];
+  if (audioLayer.description) {
+    parts.push(audioLayer.description);
+  }
+  if (audioLayer.sfx) {
+    parts.push(audioLayer.sfx);
+  }
+  parts.push('subtle ambient sound bed, professional audio quality, clean mix with gentle low-end presence');
+  return parts.join('. ');
 }
 
 /**
@@ -882,12 +1111,15 @@ function runQuickTests() {
 // 导出
 module.exports = {
   generateOpeningTitlePrompt,
+  generateGeneralOpeningTitle,
+  selectGeneralTemplate,
   integrateWithPipeline,
   selectTitleTemplate,
   TITLE_TEMPLATES,
+  GENERAL_TITLE_TEMPLATES,
   SUBTITLE_STYLES,
   runQuickTests,
-  OpeningTitleValidator  // 🆕 v4.1-Peng: 导出校验器供外部调用
+  OpeningTitleValidator
 };
 
 // 如果直接运行，执行测试
